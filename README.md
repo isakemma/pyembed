@@ -36,17 +36,38 @@ Four pages are available for navigating snippets:
 | `lecture.html?course=lectures&n=1` | All examples for a specific lesson inline |
 | `viewer.html?src=basic-examples/hello.json` | A single snippet, full-page |
 
-### Course URLs
-
-| Course | URL |
-|--------|-----|
-| DD1310 Lecture Examples | `lecture.html?course=lectures&n=1` |
-| Möbius DD100N | `lecture.html?course=mobius-dd100n&n=1` |
-| Möbius DD1310 | `lecture.html?course=mobius-dd1310&n=1` |
-| DD1310 Tutorials | `lecture.html?course=tutorials-dd1310&n=1` |
-| DD1320 Automater | `lecture.html?course=dd1320&n=1` |
-
 Change `n=1` to the lesson number you want.
+
+---
+
+## Categories and courses
+
+All snippet-browsing metadata lives in `snippets/index.json`.
+
+- **`categories`** — one entry per leaf folder under `snippets/`, e.g.:
+  ```json
+  { "id": "prgh-mobius-lesson01", "name": "Prgh Mobius – Lesson01", "folder": "prgh-mobius/lesson01", "snippets": [ ... ] }
+  ```
+  You normally don't hand-edit this — `create_index.py` rebuilds it from what's on disk (see [Utility scripts](#utility-scripts)).
+
+- **`courses`** — groups a run of lesson categories (e.g. `prgh-mobius/lesson01` … `lesson12`) into one big card on `gallery.html`, and drives the lesson navigator on `lecture.html?course=<id>&n=<N>`:
+  ```json
+  { "id": "prgh-mobius", "label": "Prgh Möbius", "folderPrefix": "prgh-mobius/lesson" }
+  ```
+  **This is the one place to edit** when adding a new multi-lesson course. `folderPrefix` must match the start of each category's `folder` value (categories are matched with `folder.startsWith(folderPrefix)`, then the two-digit lesson number is read off the rest of the string).
+
+Current courses:
+
+| id | label | folderPrefix |
+|----|-------|--------------|
+| lectures | DD1310 – Lecture Examples | `lecture-examples/lecture` |
+| mobius-dd100n | Möbius DD100N | `mobius-DD100N/lesson` |
+| mobius-dd1310 | Möbius DD1310 | `mobius-DD1310/lektion` |
+| tutorials-dd1310 | DD1310 Tutorials | `tutorials-DD1310/tutorial` |
+| dd1320 | DD1320 – Automater | `DD1320/` |
+| prgh-mobius | Prgh Möbius | `prgh-mobius/lesson` |
+
+Categories that don't match any course's `folderPrefix` (e.g. `basic-examples`, `prgh`) show up as individual cards on `gallery.html` instead of being grouped.
 
 ---
 
@@ -91,15 +112,11 @@ The first file named `main.py` is always the entry point executed when ▶ Run i
 
 ## Adding a new snippet
 
+**Single snippet:**
+
 1. Create a JSON file in the appropriate subfolder under `snippets/`
-2. Add an entry to `snippets/index.json` under the matching category
-3. Run `sync_index.py` to pull titles from the JSON files into the index:
-
-```bash
-python3 sync_index.py
-```
-
-4. Commit and push:
+2. Run `create_index.py` to register it in `snippets/index.json`
+3. Commit and push:
 
 ```bash
 git add snippets/
@@ -107,9 +124,38 @@ git commit -m "Add new snippet"
 git push
 ```
 
+**Bulk import (a directory of source files, one snippet per leaf folder):**
+
+1. Run `dir_to_snippets.py` to convert the directory tree into snippet JSON files (see [Utility scripts](#utility-scripts))
+2. Run `create_index.py` to register the new/changed snippets in `index.json`
+3. If it's a new multi-lesson course, add a `courses` entry (see [Categories and courses](#categories-and-courses))
+4. Commit and push
+
 ---
 
 ## Utility scripts
+
+### `create_index.py`
+
+Rebuilds `snippets/index.json`'s `categories` list by scanning `snippets/` for every folder that directly contains `.json` files. Preserves existing category/snippet `id`s and titles, adds new categories/snippets it finds on disk, and flags (without deleting) index entries whose folder has disappeared. Leaves the `courses` list untouched.
+
+```bash
+python3 create_index.py
+```
+
+Run this any time you add, remove, or move snippet JSON files by hand, or after running `dir_to_snippets.py`.
+
+### `dir_to_snippets.py`
+
+Bulk-converts a directory tree of source files into snippet JSON files under `snippets/`. Each leaf directory (one with no subdirectories) becomes one snippet: every file inside it becomes a `files` entry, and the directory itself collapses into a same-named `.json` file at the mirrored path. Deletes any snippet JSON under the output folder that no longer has a matching leaf directory in the input, and prunes directories left empty by that cleanup.
+
+```bash
+python3 dir_to_snippets.py path/to/source-files prgh-mobius
+# path/to/source-files/lesson01/{main.py,extra.py} → snippets/prgh-mobius/lesson01.json
+
+python3 dir_to_snippets.py path/to/source-files prgh-mobius --dryrun
+# preview writes/deletes without touching the filesystem
+```
 
 ### `sync_index.py`
 
@@ -121,7 +167,7 @@ python3 sync_index.py
 
 ### `py_to_json.py`
 
-Converts a single `.py` file into a snippet JSON file ready to drop into the `snippets/` folder.
+Converts a single `.py` file into a snippet JSON file ready to drop into the `snippets/` folder. For converting a whole directory of files at once, use `dir_to_snippets.py` instead.
 
 ```bash
 python3 py_to_json.py myprogram.py
@@ -132,10 +178,6 @@ python3 py_to_json.py myprogram.py snippets/lecture-examples/lecture01/05.json
 ```
 
 The output is a minimal single-file snippet with the filename as the title. Edit the `title` field in the JSON afterwards if needed, then run `sync_index.py` to update the index.
-
-### `generate_lecture_snippets.py`
-
-Converts source folders of `.py` files (and multi-file subfolders) into snippet JSON files and registers them in `index.json`. Used for bulk-importing lecture examples from Möbius/Trinket exports. Not committed to git — kept local only.
 
 ---
 
@@ -148,23 +190,25 @@ Converts source folders of `.py` files (and multi-file subfolders) into snippet 
 ├── lecture.html                ← inline lesson viewer (all examples for one lesson)
 ├── viewer.html                 ← single-snippet full-page viewer
 ├── embed.js                    ← the widget script (self-contained)
+├── create_index.py             ← rebuilds index.json's categories from snippets/ on disk
+├── dir_to_snippets.py          ← bulk-converts a directory of source files into snippet JSON files
 ├── sync_index.py               ← syncs titles from JSON files into index.json
-├── py_to_json.py               ← converts a .py file into a snippet JSON file
+├── py_to_json.py               ← converts a single .py file into a snippet JSON file
 ├── snippets/
-│   ├── index.json              ← master list of all categories and snippets
+│   ├── index.json              ← categories + courses (see Categories and courses)
 │   ├── basic-examples/
 │   ├── lecture-examples/
-│   │   ├── lecture01/
-│   │   │   ├── 01.json … 04.json
-│   │   └── lecture02/ … lecture15/
+│   │   └── lecture01/ … lecture16/
 │   ├── mobius-DD100N/
-│   │   ├── lesson01/ … lesson06/
+│   │   └── lesson01/ … lesson08/
 │   ├── mobius-DD1310/
-│   │   ├── lektion01/ … lektion12/
+│   │   └── lektion01/ … lektion12/
 │   ├── tutorials-DD1310/
-│   │   ├── tutorial01/ … tutorial04/
+│   │   └── tutorial01/ … tutorial06/
+│   ├── prgh-mobius/
+│   │   └── lesson01/ … lesson12/
 │   └── DD1320/
-│       └── 01/
+│       └── 01/ … 02/
 ├── .nojekyll                   ← disables Jekyll on GitHub Pages
 └── README.md
 ```
@@ -184,10 +228,19 @@ Converts source folders of `.py` files (and multi-file subfolders) into snippet 
 | **Fullscreen** | Browser fullscreen via the ⛶ button |
 | **Output resize** | Drag the bar between editor and output to resize the output panel |
 | **`input()`** | Rendered inline in the output panel — type and press Enter |
-| **File I/O** | Virtual filesystem: `open()`, `read()`, `write()`, `readline()`, `for line in file` all work; written files update in the editor |
+| **File I/O** | Virtual filesystem: `open()`, `read()`, `write()`, `readline()`, `for line in file` all work — see [File I/O in snippets](#file-io-in-snippets) below |
 | **Multi-file** | Import across files; file panel on the left switches between them |
 | **Turtle graphics** | `import turtle` opens a canvas overlay automatically |
 | **`</> Embed`** | Generates an iframe embed code for the current snippet |
+
+### File I/O in snippets
+
+The virtual filesystem backing `open()` treats files two ways, depending on whether the name being written already exists in the snippet:
+
+- **A file already in the snippet** (declared in its `files` array) — writing to it updates that file's content in the editor directly.
+- **A name chosen at runtime** — e.g. `name = input("Filename: ")` followed by `open(name, "w")` — adds a new entry to the file panel, marked with a **NEW** badge, plus a clickable "📄 Wrote `<name>` — click to view" link in the output panel that jumps straight to it.
+
+Either way, **↺ Reset** discards the changes: files revert to their original content, and any files created at runtime are removed from the panel.
 
 ---
 
@@ -233,8 +286,7 @@ Requires ES modules support (universally available since 2019).
 ## Limitations
 
 - Only standard Python built-ins and a subset of the standard library are available (no `numpy`, `pandas`, etc.) — see [Skulpt's supported modules](https://skulpt.org/docs/index.html)
-- Non-ASCII variable names (e.g. Swedish `å`, `ä`, `ö`) are supported via the skulpt.org build
-- `input()` pauses execution and waits for the user to type
+- A running snippet can't be driven or scripted from the host page — `input()` always blocks until a person types a response in the output panel
 - Only one snippet can run at a time per page
 - Network access from Python code is not available
 - `turtle` fill with `begin_fill()`/`end_fill()` only works reliably for one shape per run
@@ -246,6 +298,7 @@ Requires ES modules support (universally available since 2019).
 ### Skulpt
 - **What it is**: Python 3 interpreter compiled to JavaScript
 - **CDN**: `https://skulpt.org/js/skulpt.min.js`
+- Unicode identifiers, strings, and filenames all work correctly (tested with Swedish `å`/`ä`/`ö` as well as Greek, Cyrillic, and CJK characters)
 - **Licence**: MIT / Python Software Foundation License v2
 - **Source**: https://github.com/skulpt/skulpt
 
