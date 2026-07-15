@@ -1,0 +1,17 @@
+{
+  "title": "05-inheritance_overloading",
+  "files": [
+    {
+      "name": "konto.py",
+      "content": "class Konto:\n  \"\"\"Beskriver ett konto, har attributen kontoinnehavare (str), kontonr (int), pin (int), saldo (float)\"\"\"\n  \n  def __init__(self, namn, nr, pin, saldo):\n    \"\"\"Konstruktorn som anropas när vi skapar ett nytt konto\n      Parametrar: namn (str),nr (int), pin (int), saldo (float)\n      \"\"\"\n    self.kontonr = nr #int\n    self.saldo = saldo #float\n    self.kontoinnehavare = namn #string\n    self.pin = pin #int\n\n  def __str__(self):\n    \"\"\"Returnerar: en sträng som beskriver objektet\"\"\"\n    return self.kontoinnehavare + \" har \" + str(self.saldo) + \" på sitt konto \" + str(self.kontonr)\n\n  def ta_ut(self, belopp):\n    \"\"\"Metod för att ta ut pengar från kontot, ändrar saldo om det finns täckning på kontot.\n    Parametrar: self och belopp (int)\n    Returnerar: Inget \"\"\"\n    if self.saldo >= belopp:\n      self.saldo = self.saldo - belopp\n    else:\n      print(\"Du har för lite pengar på kontot! Saldot är \" + str(self.saldo))\n\n  def __lt__(self, other):\n    \"\"\"För jämförelser mellan konton (används vid sortering). \"\"\"\n    if self.saldo < other.saldo:\n     return True\n    else:\n      return False\n\n  def satt_in(self, pengar):\n    \"\"\"Insättning på kontot \n    Parametrar: self och pengar (int)\n    Returnerar: inget \"\"\"\n    self.saldo += pengar"
+    },
+    {
+      "name": "main.py",
+      "content": "from konto import*\nfrom sparkonto import*\n\n    \ndef huvudprogram():\n  \"\"\"Skapar Konto och Sparkonto objekt och skrier ut dessa\"\"\"\n  konto = Konto(\"Kontohavare A\",1120000, 1234, 10)\n  sparkonto = Sparkonto(\"Kontohavare A\",1120001, 1234, 1000, 1.5)\n  \n  print(\"Konto:\", konto)\n  print(\"Sparkonto:\", sparkonto)\n  \n  print(\"\\nRäntan ändras\")\n  sparkonto.ändra_ränta(2.3)\n  print(\"Sparkonto:\", sparkonto)\n\nhuvudprogram()"
+    },
+    {
+      "name": "sparkonto.py",
+      "content": "from konto import *\n\nclass Sparkonto(Konto):\n  \"\"\"Beskriver ett Sparkonto, ärver från klassen Konto har attributen kontoinnehavare (str), kontonr (int), pin (int), saldo (float)\"\"\"\n  \n  def __init__(self,namn, nr, pin, saldo, ränta):\n    self.kontonr = nr #int\n    self.saldo = saldo #float\n    self.kontoinnehavare = namn #string\n    self.pin = pin #int\n    self.ränta = ränta #float\n     \n  def __str__(self):\n    \"\"\"Returnerar: en sträng som beskriver objektet\"\"\"\n    return self.kontoinnehavare + \" har \" + str(self.saldo) + \" på sitt sparkonto \" + str(self.kontonr) + \" räntan är \" + str(self.ränta) + \"%\"\n    \n  def ändra_ränta(self, ny_ränta):\n    self.ränta = ny_ränta"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "06-builtin_class_example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "class Inköpslista(list):\n    \n  def __str__(self):\n    s = \"\"\n    for vara in self:\n      s += \" * \" + str(vara) + \"\\n\"\n    return s\n\ndef main():\n  lista = [\"3 Ägg\",\\\n  \"100 g Smör\",\\\n  \"15 liter Mjölk\"]\n\n  print(\"Utskrift av 'list'\")\n  print(lista)\n\n  inköpslista = Inköpslista(lista)\n  print(\"Utskrift av 'Inköpslista'\")\n  print(inköpslista)\n\n\nmain()"
+    }
+  ]
+}

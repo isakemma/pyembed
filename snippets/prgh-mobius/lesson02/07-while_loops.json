@@ -1,0 +1,9 @@
+{
+  "title": "07-while_loops",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "antalHej = int(input(\"Hur många gånger ska vi skriva 'Hej'?: \"))\ni = 0\n\nwhile i < antalHej:\n    print(\"Hej!\")\n    i += 1    \nprint(\"Tack! Programmet Avslutas.\")"
+    }
+  ]
+}

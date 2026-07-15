@@ -1,0 +1,9 @@
+{
+  "title": "04-multiple_conditions",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "# Ett program som visar hur if-elif-else fungerar\n\nbetyg = int(input(\"Ge poäng mellan 1-100: \"))\n\nif betyg >= 90:\n    print(\"Du fick betyget A\")\nelif betyg >= 80: \n    print(\"Du fick betyget B\")\nelif betyg >= 70:\n    print(\"Du fick betyget C\")\nelif betyg >= 60:\n    print(\"Du fick betyget D\")\nelif betyg >= 50:\n    print(\"Du fick betyget E\")\nelse:\n    print(\"Du fick betyget F\")"
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
-  "title": "l6-7_random",
+  "title": "07-modules_recursion_exercises",
   "files": [
     {
-      "name": "l6-7_random.py",
+      "name": "main.py",
       "content": "from random import choice\n\ndef slumpa_från_lista(lista):\n  if not lista:\n    return \"Listan är tom, det finns inget att slumpa.\"\n\n  #Använd choice för att slumpa fram ett element ur listan\n  return #returnera det slumade elementet\n\ndef test_kör():\n  min_lista = [\"äpple\", \"banan\", \"körsbär\", \"apelsin\", \"mango\"]\n  slumpat_resultat = slumpa_från_lista(min_lista)\n  print(\"Slumpat element från listan:\", slumpat_resultat)"
     }
   ]

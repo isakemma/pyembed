@@ -1,0 +1,9 @@
+{
+  "title": "05-sets",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "set1 ={1, 2, 3, 4}\nset2 = {2, 3, 5, 6}\n\nprint(\"Komplementmängden: \", set1 - set2)\nprint(\"Unionen: \", set1 | set2)\nprint(\"Snittet: \", set1 & set2)\nprint(\"Unionen - snittet: \", set1 ^ set2)\n"
+    }
+  ]
+}

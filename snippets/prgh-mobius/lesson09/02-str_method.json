@@ -1,0 +1,9 @@
+{
+  "title": "02-str_method",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "class Person:\n    def __init__(self, förnamn, efternamn, födelseår):\n      self.förnamn = förnamn\n      self.efternamn = efternamn\n      self.födelseår = födelseår\n        \n    def __repr__(self):\n      return self.förnamn + \": \" + str(2018 - self.födelseår)\n        \n    def skrivIntro(self):\n      print(\"Hej jag heter \" + self.förnamn + \" \" + self.efternamn + \" och jag är \" + str(self.födelseår) + \" år gammal\")\n\nkim = Person(\"Kim\",\"Efternamnsson\", 1995)\nprint(kim)"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "03-error_messages",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "#Den här koden innehåller en hel del fel.\n#Kan du provköra den och rätta till de?\n\nprint(\"Exempel 3: När det blir fel\")\n\nprint(\"Först vill jag sätta en variabel till värdet \" + 5 + \", mitt lyckotal\")\ntal = 5\n\nprint(\"Nu ska vi se att det lyckades, min variabel tal är: \" + str(tal))\nprint(\"Sedan vill jag dubblera mitt tal\")\n\nnytt_tal = taal*2\nprint(\"Mitt nya tal är då: \" + str (nytt_tal)\n\n#Prova gärna att göra samma sak i det redigeringsprogram du använder (t.ex. IDLE) \n#och se hur presentationen av felen ser ut där."
+    }
+  ]
+}

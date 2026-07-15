@@ -1,0 +1,9 @@
+{
+  "title": "03-parameters",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "def dörrvakt(namn, ålder): \n  if ålder < 18: \n    print(\"Tyvärr \" + namn + \", du får vänta tills du är 18\") \n    \n  else: \n    print(\"Välkommen in \" + namn) \n  \ndörrvakt(\"Nisse\", 17)"
+    }
+  ]
+}

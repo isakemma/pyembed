@@ -1,0 +1,9 @@
+{
+  "title": "04-range_for",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "for i in range(10):\n    print(i)"
+    }
+  ]
+}

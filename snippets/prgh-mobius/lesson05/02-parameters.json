@@ -1,0 +1,9 @@
+{
+  "title": "02-parameters",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "def skrik(meddelande): \n  print(meddelande+\"!!!\") \n\nskrik(\"Shhhh\")\nskrik(\"Tyst i klassen\")"
+    }
+  ]
+}

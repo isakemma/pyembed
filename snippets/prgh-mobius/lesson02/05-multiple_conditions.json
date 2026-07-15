@@ -1,0 +1,9 @@
+{
+  "title": "05-multiple_conditions",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "# Exempel med fel ordning på satser, \n# vi borde egentligen få A\n\nbetyg = 95\n\nif betyg >= 50:\n    print(\"Du fick betyget E\")\nelif betyg >= 60: \n    print(\"Du fick betyget D\")\nelif betyg >= 70:\n    print(\"Du fick betyget C\")\nelif betyg >= 80:\n    print(\"Du fick betyget B\")\nelif betyg >= 90:\n    print(\"Du fick betyget A\")\nelse:\n    print(\"Du fick betyget F\")"
+    }
+  ]
+}

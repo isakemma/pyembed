@@ -1,0 +1,9 @@
+{
+  "title": "08-break_continue",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "# Exempel med break och continue\n\ntal = 100\nwhile True:\n  if tal > 50:\n    tal -= 10\n    print(tal)\n    continue\n  print(\"Tal är nu\",tal ,\".\")\n  svar = input(\"Vil du fortsätta? (j/n)\")\n  \n  if svar == \"n\":\n    break\n  else:\n    tal = 100\n  \nprint(\"Tack och hej!\")"
+    }
+  ]
+}

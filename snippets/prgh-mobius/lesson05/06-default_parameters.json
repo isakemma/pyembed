@@ -1,0 +1,9 @@
+{
+  "title": "06-default_parameters",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "def dörrvakt(namn = \"Alex\", ålder = 17, åldersgräns = 18): \n  if ålder < åldersgräns: \n    print(\"Tyvärr \" + namn + \", du får vänta tills du är\", åldersgräns, \".\") \n    \n  else: \n    print(\"Välkommen in \" + namn) \n  \ndörrvakt(\"Nisse\", 22)\ndörrvakt()\ndörrvakt(ålder = 16, åldersgräns = 20)\ndörrvakt(\"Chris\", 14, 15)"
+    }
+  ]
+}

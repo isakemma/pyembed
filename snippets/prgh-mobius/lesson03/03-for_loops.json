@@ -1,0 +1,9 @@
+{
+  "title": "03-for_loops",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "namelist = [\"David\", \"Peter\", \"Julia\"]\nfor name in namelist:\n    print(name)"
+    }
+  ]
+}

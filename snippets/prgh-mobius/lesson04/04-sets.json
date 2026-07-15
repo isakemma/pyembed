@@ -1,0 +1,9 @@
+{
+  "title": "04-sets",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "färger = {\"grön\", \"gul\", \"vit\", \"blå\", \"rosa\", \"orange\", \"lila\"}\nprint(\"Om man printar ut hela mängden får en: \", färger)\n\nfärger.add(\"röd\")\nfärger.discard(\"vit\")\n\nprint(\"Efter ändringarna:\", färger)\n\n#Det går inte att använda index i mängder men vi kan kontrollera om ett element finns i mängden.\n\nif \"rosa\" in färger:\n  print(\"rosa är en färg som finns i mängden\")\n\n"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "02-multiple_conditions",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "# Ett program som gör många jämförelser\n\nbetyg = int(input(\"Ge poäng mellan 1-100: \"))\n\nif betyg >= 90:\n    print(\"Du fick betyget A\")\nif betyg >= 80: \n    print(\"Du fick betyget B\")\nif betyg >= 70:\n    print(\"Du fick betyget C\")\nif betyg >= 60:\n    print(\"Du fick betyget D\")\nif betyg >= 50:\n    print(\"Du fick betyget E\")\nif:\n    print(\"Du fick betyget F\")"
+    }
+  ]
+}

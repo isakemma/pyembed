@@ -1,0 +1,9 @@
+{
+  "title": "04-input",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "# Exempel som visar hur man skickar in variabel med int.\nkattNummer = 3\nkattNamn = input(\"Ge namnet på katt nummer \" + str(kattNummer) + \": \")\n\nprint(\"Katt nummer\", kattNummer, \"heter\", kattNamn)\n#print(\"Katt nummer \"+str(kattNummer)+\" heter \"+str(kattNamn))  \n\n# Testa båda print-funktionerna genom att ta bort \"#\" framför printen i rad 6!\n\n# Raden här under kommer att ge ett felmeddelande och inte fungera:\nkattNamn = input(\"Ge namnet på katt nummer\", kattNummer, \": \") "
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "02-count_up_down_example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "print(\"\\nExempel 2 - Heltal och flyttal\")\ncelsius = 10                      #Du kan prova att ändra temperatur\nfarenheit = celsius * 1.8 + 32\nprint(celsius, \"grader Celsius motsvarar\", farenheit, \"grader Farenheit\")\nGRADERS_ÖKNING = 1                #Du kan ändra hur många grader tempraturen ökar med\ncelsius += GRADERS_ÖKNING \nfarenheit = celsius * 1.8 + 32\nprint(str(celsius) + \" grader Celsius motsvarar \" + str(farenheit) + \" grader Farenheit\")"
+    }
+  ]
+}

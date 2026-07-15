@@ -1,0 +1,9 @@
+{
+  "title": "07-default_parameters",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "def skapa_djurlista():\n  djur = [\"katt\",\"hund\",\"häst\", \"marsvin\"]\n  return djur\n  \ndjuren = skapa_djurlista()\n\nfor djur in djuren:\n  print(djur)\n  \nfor djur in djuren:\n  print(djur, end =\"!!! \")"
+    }
+  ]
+}

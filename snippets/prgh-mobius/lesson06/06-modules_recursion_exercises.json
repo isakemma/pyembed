@@ -1,0 +1,9 @@
+{
+  "title": "06-modules_recursion_exercises",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "\ndef fakultet_iteration(tal):\n  \"\"\"Här använder vi en for-slinga för att räkna ut n! (fakultet av ett tal).\n  Inparameter: tal (heltal)\n  Returvärde: resultat (heltal)\"\"\"\n  resultat = 1\n  for i in range(1, tal + 1):\n    resultat *= i\n  return resultat\n\n\ndef fakultet_rekursion(tal):  \n  \"\"\"Här använder vi rekursion för att räkna ut n! (fakultet av ett tal).\n  Inparameter: tal (heltal)\n  Returvärde: resultat (heltal)\"\"\"\n  if tal == 1:\n    return 1 #Vårt bas-fall\n  else:\n    return tal * fakultet_rekursion(tal - 1) #Vårt rekursion-steg, vi använder att n! = n * (n-1)!\n\ndef huvudfunktion():\n  valt_tal = int(input(\"Vilket tal vill du räkna fakultet av? \"))\n  print(\"Fakultet med iteration: \", fakultet_iteration(valt_tal))\n  print(\"Fakultet med rekursion: \", fakultet_rekursion(valt_tal))\n\nhuvudfunktion()"
+    }
+  ]
+}

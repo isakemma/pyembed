@@ -1,0 +1,13 @@
+{
+  "title": "05-textfile_exercises",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "def läs_från_fil(filnam):\n  \"\"\"Läs in data från fil, lagra i en lista och returnera den\"\"\"\n  return lista\n  \ndef huvudfunktion():\n  tal_lista = läs_från_fil(\"tal.txt\")\n  for tal in tal_lista:\n    print(tal)\nhuvudfunktion() "
+    },
+    {
+      "name": "tal.txt",
+      "content": "13\n1\n5\n6\n7\n10\n123\n9\n12"
+    }
+  ]
+}

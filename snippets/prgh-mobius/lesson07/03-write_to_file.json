@@ -1,0 +1,9 @@
+{
+  "title": "03-write_to_file",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "with open('husdjur.txt', 'w') as fil: \n  namn = ['Katt', 'Hund', 'Marsvin'] \n  fil.write('\\n'.join(namn))"
+    }
+  ]
+}

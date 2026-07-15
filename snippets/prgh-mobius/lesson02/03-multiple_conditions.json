@@ -1,0 +1,9 @@
+{
+  "title": "03-multiple_conditions",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "# Nästlade if-satser\n\nbetyg = int(input(\"Ge poäng mellan 1-100: \"))\n\nif betyg >= 90:\n    print(\"Du fick betyget A\")\nelse:\n  if betyg >= 80: \n      print(\"Du fick betyget B\")\n  else:\n    if betyg >= 70:\n        print(\"Du fick betyget C\")\n    else:\n      if betyg >= 60:\n        print(\"Du fick betyget D\")\n      else:\n        if betyg >= 50:\n            print(\"Du fick betyget E\")\n        else:\n            print(\"Du fick betyget F\")"
+    }
+  ]
+}

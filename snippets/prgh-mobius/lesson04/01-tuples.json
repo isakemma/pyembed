@@ -1,0 +1,9 @@
+{
+  "title": "01-tuples",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "namn_tuple = (\"Emil\", \"Malin\", \"Andrea\", \"Love\", \"Sara\", \"Noah\", \"Taylor\")\n\nprint(\"Om man printar ut hela tuplen får man: \", namn_tuple)\nprint(\"Första namnet är \", namn_tuple[0])\nprint(\"Andra namnet är \", namn_tuple[1])\nprint(\"Sita namnet är \", namn_tuple[-1])"
+    }
+  ]
+}

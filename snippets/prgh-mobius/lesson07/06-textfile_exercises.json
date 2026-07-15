@@ -1,0 +1,9 @@
+{
+  "title": "06-textfile_exercises",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "def skriv_till_fil(lista,filnam):\n  \"\"\"Läs in data från fil, lagra i en lista och returnera den\"\"\"\n  \ndef huvudfunktion():\n  frukt = [\"äpple\",\"mango\",\"päron\",\"körsbär\",\"blåbär\",\"lingon\",\"tranbär\"]\n  skriv_till_fil(frukter, \"frukter.txt\")\n\nhuvudfunktion() "
+    }
+  ]
+}

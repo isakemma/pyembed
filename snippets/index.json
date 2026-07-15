@@ -23,6 +23,11 @@
           "id": "list_example",
           "file": "basic-examples/list_example.json",
           "title": "List Comprehensions"
+        },
+        {
+          "id": "basic-examples-greet",
+          "file": "basic-examples/greet.json",
+          "title": "Greeting Calculator"
         }
       ]
     },
@@ -1687,6 +1692,445 @@
         {
           "file": "DD1320/02/02.json",
           "title": "2.2 Syntaxkontroll för tågtider (v2)"
+        }
+      ]
+    },
+    {
+      "id": "prgh-mobius-lesson01",
+      "name": "Prgh Mobius – Lesson01",
+      "folder": "prgh-mobius/lesson01",
+      "snippets": [
+        {
+          "id": "prgh-mobius-lesson01-01-example-code-1",
+          "file": "prgh-mobius/lesson01/01-example_code_1.json",
+          "title": "01-example_code_1"
+        },
+        {
+          "id": "prgh-mobius-lesson01-02-count-up-down-example",
+          "file": "prgh-mobius/lesson01/02-count_up_down_example.json",
+          "title": "02-count_up_down_example"
+        },
+        {
+          "id": "prgh-mobius-lesson01-03-error-messages",
+          "file": "prgh-mobius/lesson01/03-error_messages.json",
+          "title": "03-error_messages"
+        },
+        {
+          "id": "prgh-mobius-lesson01-04-input",
+          "file": "prgh-mobius/lesson01/04-input.json",
+          "title": "04-input"
+        }
+      ]
+    },
+    {
+      "id": "prgh-mobius-lesson02",
+      "name": "Prgh Mobius – Lesson02",
+      "folder": "prgh-mobius/lesson02",
+      "snippets": [
+        {
+          "id": "prgh-mobius-lesson02-01-boolean-expressions",
+          "file": "prgh-mobius/lesson02/01-boolean_expressions.json",
+          "title": "01-boolean_expressions"
+        },
+        {
+          "id": "prgh-mobius-lesson02-02-multiple-conditions",
+          "file": "prgh-mobius/lesson02/02-multiple_conditions.json",
+          "title": "02-multiple_conditions"
+        },
+        {
+          "id": "prgh-mobius-lesson02-03-multiple-conditions",
+          "file": "prgh-mobius/lesson02/03-multiple_conditions.json",
+          "title": "03-multiple_conditions"
+        },
+        {
+          "id": "prgh-mobius-lesson02-04-multiple-conditions",
+          "file": "prgh-mobius/lesson02/04-multiple_conditions.json",
+          "title": "04-multiple_conditions"
+        },
+        {
+          "id": "prgh-mobius-lesson02-05-multiple-conditions",
+          "file": "prgh-mobius/lesson02/05-multiple_conditions.json",
+          "title": "05-multiple_conditions"
+        },
+        {
+          "id": "prgh-mobius-lesson02-06-error-message-example",
+          "file": "prgh-mobius/lesson02/06-error_message_example.json",
+          "title": "06-error_message_example"
+        },
+        {
+          "id": "prgh-mobius-lesson02-07-while-loops",
+          "file": "prgh-mobius/lesson02/07-while_loops.json",
+          "title": "07-while_loops"
+        },
+        {
+          "id": "prgh-mobius-lesson02-08-break-continue",
+          "file": "prgh-mobius/lesson02/08-break_continue.json",
+          "title": "08-break_continue"
+        }
+      ]
+    },
+    {
+      "id": "prgh-mobius-lesson03",
+      "name": "Prgh Mobius – Lesson03",
+      "folder": "prgh-mobius/lesson03",
+      "snippets": [
+        {
+          "id": "prgh-mobius-lesson03-01-lists",
+          "file": "prgh-mobius/lesson03/01-lists.json",
+          "title": "01-lists"
+        },
+        {
+          "id": "prgh-mobius-lesson03-02-lists",
+          "file": "prgh-mobius/lesson03/02-lists.json",
+          "title": "02-lists"
+        },
+        {
+          "id": "prgh-mobius-lesson03-03-for-loops",
+          "file": "prgh-mobius/lesson03/03-for_loops.json",
+          "title": "03-for_loops"
+        },
+        {
+          "id": "prgh-mobius-lesson03-04-range-for",
+          "file": "prgh-mobius/lesson03/04-range_for.json",
+          "title": "04-range_for"
+        },
+        {
+          "id": "prgh-mobius-lesson03-05-range-for",
+          "file": "prgh-mobius/lesson03/05-range_for.json",
+          "title": "05-range_for"
+        },
+        {
+          "id": "prgh-mobius-lesson03-06-nested-for-loops",
+          "file": "prgh-mobius/lesson03/06-nested_for_loops.json",
+          "title": "06-nested_for_loops"
+        },
+        {
+          "id": "prgh-mobius-lesson03-07-nested-for-loops",
+          "file": "prgh-mobius/lesson03/07-nested_for_loops.json",
+          "title": "07-nested_for_loops"
+        },
+        {
+          "id": "prgh-mobius-lesson03-08-nested-for-loops",
+          "file": "prgh-mobius/lesson03/08-nested_for_loops.json",
+          "title": "08-nested_for_loops"
+        }
+      ]
+    },
+    {
+      "id": "prgh-mobius-lesson04",
+      "name": "Prgh Mobius – Lesson04",
+      "folder": "prgh-mobius/lesson04",
+      "snippets": [
+        {
+          "id": "prgh-mobius-lesson04-01-tuples",
+          "file": "prgh-mobius/lesson04/01-tuples.json",
+          "title": "01-tuples"
+        },
+        {
+          "id": "prgh-mobius-lesson04-02-tuples",
+          "file": "prgh-mobius/lesson04/02-tuples.json",
+          "title": "02-tuples"
+        },
+        {
+          "id": "prgh-mobius-lesson04-03-tuples-continued",
+          "file": "prgh-mobius/lesson04/03-tuples_continued.json",
+          "title": "03-tuples_continued"
+        },
+        {
+          "id": "prgh-mobius-lesson04-04-sets",
+          "file": "prgh-mobius/lesson04/04-sets.json",
+          "title": "04-sets"
+        },
+        {
+          "id": "prgh-mobius-lesson04-05-sets",
+          "file": "prgh-mobius/lesson04/05-sets.json",
+          "title": "05-sets"
+        },
+        {
+          "id": "prgh-mobius-lesson04-06-dictionaries",
+          "file": "prgh-mobius/lesson04/06-dictionaries.json",
+          "title": "06-dictionaries"
+        },
+        {
+          "id": "prgh-mobius-lesson04-07-dict-lexicon-example",
+          "file": "prgh-mobius/lesson04/07-dict_lexicon_example.json",
+          "title": "07-dict_lexicon_example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-mobius-lesson05",
+      "name": "Prgh Mobius – Lesson05",
+      "folder": "prgh-mobius/lesson05",
+      "snippets": [
+        {
+          "id": "prgh-mobius-lesson05-01-function-def-call",
+          "file": "prgh-mobius/lesson05/01-function_def_call.json",
+          "title": "01-function_def_call"
+        },
+        {
+          "id": "prgh-mobius-lesson05-02-parameters",
+          "file": "prgh-mobius/lesson05/02-parameters.json",
+          "title": "02-parameters"
+        },
+        {
+          "id": "prgh-mobius-lesson05-03-parameters",
+          "file": "prgh-mobius/lesson05/03-parameters.json",
+          "title": "03-parameters"
+        },
+        {
+          "id": "prgh-mobius-lesson05-04-return-values",
+          "file": "prgh-mobius/lesson05/04-return_values.json",
+          "title": "04-return_values"
+        },
+        {
+          "id": "prgh-mobius-lesson05-05-default-parameters",
+          "file": "prgh-mobius/lesson05/05-default_parameters.json",
+          "title": "05-default_parameters"
+        },
+        {
+          "id": "prgh-mobius-lesson05-06-default-parameters",
+          "file": "prgh-mobius/lesson05/06-default_parameters.json",
+          "title": "06-default_parameters"
+        },
+        {
+          "id": "prgh-mobius-lesson05-07-default-parameters",
+          "file": "prgh-mobius/lesson05/07-default_parameters.json",
+          "title": "07-default_parameters"
+        },
+        {
+          "id": "prgh-mobius-lesson05-08-local-global-vars",
+          "file": "prgh-mobius/lesson05/08-local_global_vars.json",
+          "title": "08-local_global_vars"
+        },
+        {
+          "id": "prgh-mobius-lesson05-09-local-global-vars",
+          "file": "prgh-mobius/lesson05/09-local_global_vars.json",
+          "title": "09-local_global_vars"
+        },
+        {
+          "id": "prgh-mobius-lesson05-10-local-global-vars",
+          "file": "prgh-mobius/lesson05/10-local_global_vars.json",
+          "title": "10-local_global_vars"
+        },
+        {
+          "id": "prgh-mobius-lesson05-11-local-global-vars",
+          "file": "prgh-mobius/lesson05/11-local_global_vars.json",
+          "title": "11-local_global_vars"
+        }
+      ]
+    },
+    {
+      "id": "prgh-mobius-lesson06",
+      "name": "Prgh Mobius – Lesson06",
+      "folder": "prgh-mobius/lesson06",
+      "snippets": [
+        {
+          "id": "prgh-mobius-lesson06-01-recursion",
+          "file": "prgh-mobius/lesson06/01-recursion.json",
+          "title": "01-recursion"
+        },
+        {
+          "id": "prgh-mobius-lesson06-02-module-math",
+          "file": "prgh-mobius/lesson06/02-module_math.json",
+          "title": "02-module_math"
+        },
+        {
+          "id": "prgh-mobius-lesson06-03-module-turtle",
+          "file": "prgh-mobius/lesson06/03-module_turtle.json",
+          "title": "03-module_turtle"
+        },
+        {
+          "id": "prgh-mobius-lesson06-04-yatzy-example",
+          "file": "prgh-mobius/lesson06/04-yatzy_example.json",
+          "title": "04-yatzy_example"
+        },
+        {
+          "id": "prgh-mobius-lesson06-05-modules-recursion-exercises",
+          "file": "prgh-mobius/lesson06/05-modules_recursion_exercises.json",
+          "title": "05-modules_recursion_exercises"
+        },
+        {
+          "id": "prgh-mobius-lesson06-06-modules-recursion-exercises",
+          "file": "prgh-mobius/lesson06/06-modules_recursion_exercises.json",
+          "title": "06-modules_recursion_exercises"
+        },
+        {
+          "id": "prgh-mobius-lesson06-07-modules-recursion-exercises",
+          "file": "prgh-mobius/lesson06/07-modules_recursion_exercises.json",
+          "title": "07-modules_recursion_exercises"
+        }
+      ]
+    },
+    {
+      "id": "prgh-mobius-lesson07",
+      "name": "Prgh Mobius – Lesson07",
+      "folder": "prgh-mobius/lesson07",
+      "snippets": [
+        {
+          "id": "prgh-mobius-lesson07-01-read-file-lines",
+          "file": "prgh-mobius/lesson07/01-read_file_lines.json",
+          "title": "01-read_file_lines"
+        },
+        {
+          "id": "prgh-mobius-lesson07-02-read-whole-file",
+          "file": "prgh-mobius/lesson07/02-read_whole_file.json",
+          "title": "02-read_whole_file"
+        },
+        {
+          "id": "prgh-mobius-lesson07-03-write-to-file",
+          "file": "prgh-mobius/lesson07/03-write_to_file.json",
+          "title": "03-write_to_file"
+        },
+        {
+          "id": "prgh-mobius-lesson07-04-write-to-file",
+          "file": "prgh-mobius/lesson07/04-write_to_file.json",
+          "title": "04-write_to_file"
+        },
+        {
+          "id": "prgh-mobius-lesson07-05-textfile-exercises",
+          "file": "prgh-mobius/lesson07/05-textfile_exercises.json",
+          "title": "05-textfile_exercises"
+        },
+        {
+          "id": "prgh-mobius-lesson07-06-textfile-exercises",
+          "file": "prgh-mobius/lesson07/06-textfile_exercises.json",
+          "title": "06-textfile_exercises"
+        }
+      ]
+    },
+    {
+      "id": "prgh-mobius-lesson08",
+      "name": "Prgh Mobius – Lesson08",
+      "folder": "prgh-mobius/lesson08",
+      "snippets": [
+        {
+          "id": "prgh-mobius-lesson08-01-try-except",
+          "file": "prgh-mobius/lesson08/01-try_except.json",
+          "title": "01-try_except"
+        },
+        {
+          "id": "prgh-mobius-lesson08-02-try-except",
+          "file": "prgh-mobius/lesson08/02-try_except.json",
+          "title": "02-try_except"
+        },
+        {
+          "id": "prgh-mobius-lesson08-03-try-except",
+          "file": "prgh-mobius/lesson08/03-try_except.json",
+          "title": "03-try_except"
+        },
+        {
+          "id": "prgh-mobius-lesson08-04-error-handling-no-try-except",
+          "file": "prgh-mobius/lesson08/04-error_handling_no_try_except.json",
+          "title": "04-error_handling_no_try_except"
+        }
+      ]
+    },
+    {
+      "id": "prgh-mobius-lesson09",
+      "name": "Prgh Mobius – Lesson09",
+      "folder": "prgh-mobius/lesson09",
+      "snippets": [
+        {
+          "id": "prgh-mobius-lesson09-01-str-method",
+          "file": "prgh-mobius/lesson09/01-str_method.json",
+          "title": "01-str_method"
+        },
+        {
+          "id": "prgh-mobius-lesson09-02-str-method",
+          "file": "prgh-mobius/lesson09/02-str_method.json",
+          "title": "02-str_method"
+        },
+        {
+          "id": "prgh-mobius-lesson09-03-print-sorted",
+          "file": "prgh-mobius/lesson09/03-print_sorted.json",
+          "title": "03-print_sorted"
+        },
+        {
+          "id": "prgh-mobius-lesson09-04-print-sorted",
+          "file": "prgh-mobius/lesson09/04-print_sorted.json",
+          "title": "04-print_sorted"
+        },
+        {
+          "id": "prgh-mobius-lesson09-05-print-sorted",
+          "file": "prgh-mobius/lesson09/05-print_sorted.json",
+          "title": "05-print_sorted"
+        },
+        {
+          "id": "prgh-mobius-lesson09-06-classes-file-io",
+          "file": "prgh-mobius/lesson09/06-classes_file_io.json",
+          "title": "06-classes_file_io"
+        }
+      ]
+    },
+    {
+      "id": "prgh-mobius-lesson10",
+      "name": "Prgh Mobius – Lesson10",
+      "folder": "prgh-mobius/lesson10",
+      "snippets": [
+        {
+          "id": "prgh-mobius-lesson10-01-bank-example",
+          "file": "prgh-mobius/lesson10/01-bank_example.json",
+          "title": "01-bank_example"
+        },
+        {
+          "id": "prgh-mobius-lesson10-02-bank-example",
+          "file": "prgh-mobius/lesson10/02-bank_example.json",
+          "title": "02-bank_example"
+        },
+        {
+          "id": "prgh-mobius-lesson10-03-inheritance-overloading",
+          "file": "prgh-mobius/lesson10/03-inheritance_overloading.json",
+          "title": "03-inheritance_overloading"
+        },
+        {
+          "id": "prgh-mobius-lesson10-04-inheritance-overloading",
+          "file": "prgh-mobius/lesson10/04-inheritance_overloading.json",
+          "title": "04-inheritance_overloading"
+        },
+        {
+          "id": "prgh-mobius-lesson10-05-inheritance-overloading",
+          "file": "prgh-mobius/lesson10/05-inheritance_overloading.json",
+          "title": "05-inheritance_overloading"
+        },
+        {
+          "id": "prgh-mobius-lesson10-06-builtin-class-example",
+          "file": "prgh-mobius/lesson10/06-builtin_class_example.json",
+          "title": "06-builtin_class_example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-mobius-lesson11",
+      "name": "Prgh Mobius – Lesson11",
+      "folder": "prgh-mobius/lesson11",
+      "snippets": [
+        {
+          "id": "prgh-mobius-lesson11-01-splitting-code",
+          "file": "prgh-mobius/lesson11/01-splitting_code.json",
+          "title": "01-splitting_code"
+        },
+        {
+          "id": "prgh-mobius-lesson11-02-code-reuse-structure",
+          "file": "prgh-mobius/lesson11/02-code_reuse_structure.json",
+          "title": "02-code_reuse_structure"
+        },
+        {
+          "id": "prgh-mobius-lesson11-03-code-reuse-structure",
+          "file": "prgh-mobius/lesson11/03-code_reuse_structure.json",
+          "title": "03-code_reuse_structure"
+        }
+      ]
+    },
+    {
+      "id": "prgh-mobius-lesson12",
+      "name": "Prgh Mobius – Lesson12",
+      "folder": "prgh-mobius/lesson12",
+      "snippets": [
+        {
+          "id": "prgh-mobius-lesson12-01-tkinter-classes",
+          "file": "prgh-mobius/lesson12/01-tkinter_classes.json",
+          "title": "01-tkinter_classes"
         }
       ]
     }

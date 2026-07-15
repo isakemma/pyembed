@@ -1,0 +1,9 @@
+{
+  "title": "01-function_def_call",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "def hälsning(): \n  print(\"Hej!\")"
+    }
+  ]
+}

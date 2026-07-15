@@ -1,0 +1,9 @@
+{
+  "title": "01-lists",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "namnlista = [\"Ali\", \"Bertil\", \"Celina\"]\n\nprint(\"Om man printar ut hela listan får man: \", namnlista)\nprint(\"Första namnet är \", namnlista[0])\nprint(\"Andra namnet är \", namnlista[1])\nprint(\"Tredje namnet är \", namnlista[2])"
+    }
+  ]
+}

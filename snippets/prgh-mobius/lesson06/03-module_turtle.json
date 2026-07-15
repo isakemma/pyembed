@@ -1,0 +1,9 @@
+{
+  "title": "03-module_turtle",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "import turtle\n\ndef star(myTurtle, size,color):\n    myTurtle.color(color)      #sätter färgen på linjen\n    myTurtle.fillcolor(color)  #sätter färgen på fyllningen\n    myTurtle.begin_fill()      #sätter startpunkt för fyllningen\n    angle = 144             \n    for i in range(5):         #fem hörn\n        myTurtle.forward(size) #Gå framåt\n        myTurtle.right(angle)  #vrid åt höger\n    myTurtle.end_fill()        #avsluta fyllning\n    \ndef main(): \n  myTurtle = turtle.Turtle()  #skapar en sköldpadda\n  myTurtle.shape(\"turtle\")    #sätter sköldpaddan till att ta formen av sköldpadda\n  star(myTurtle, 100, \"blue\") #anropar vår funktion för att ritar en stjärna\n  myTurtle.penup()            #lyfter upp pennan så ingen linje ritas\n  myTurtle.goto(70,-100)      #går till koordinaten (70,-100)\n  myTurtle.pendown()          #sätter ner pennan\n  star(myTurtle, 70, \"green\") #anropar vår funktion för att rita en stjärna\n  \nmain()\n"
+    }
+  ]
+}

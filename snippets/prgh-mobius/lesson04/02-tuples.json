@@ -1,0 +1,9 @@
+{
+  "title": "02-tuples",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "namn_tuple = (\"Emil\", \"Malin\", \"Andrea\", \"Love\", \"Sara\", \"Noah\", \"Taylor\", (1, 3, 2, 1, 3, 1, 2))\n\nprint(\"Om man printar ut hela tuplen får man: \", namn_tuple)\n\n#För att skriva ut tuplen som är det sista elementet\nprint(\"Dessa tal fins som en tuple i det sista elementet:\")\nfor tal in namn_tuple[-1]:\n  print(tal, end=\" \")\n"
+    }
+  ]
+}

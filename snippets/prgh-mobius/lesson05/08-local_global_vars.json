@@ -1,0 +1,9 @@
+{
+  "title": "08-local_global_vars",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "def skapa_lista():\n  glasslista = [\"vaniljglass, jordgubsglass, chokladglass\"]\n  print(glasslista)\n  \nskapa_lista()\nprint(glasslista)"
+    }
+  ]
+}

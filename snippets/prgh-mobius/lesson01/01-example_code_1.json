@@ -1,0 +1,9 @@
+{
+  "title": "01-example_code_1",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "#Här brukar man kommentera med namn på den/de som skrivit koden.\n#Vilket datum koden skrevs eller vilken verision det är.\n#Är den inlämning, även med kurskoden.\n\nprint(\"Exempel 1 - Strängar\")\nFAVORITGLASS = \"Piggelin\"          #Här kan du ändra till din favoritglass\npåstående = FAVORITGLASS + \" är den godaste glassen!\"\nprint(påstående)\nprint(\"Om jag kodar hela förmiddagen får jag en \" + FAVORITGLASS + \" efter lunch.\", end = \" \")\nprint(\"Men om jag också städar i eftermiddag får jag åtminstonde en\", FAVORITGLASS, \"till!\")"
+    }
+  ]
+}

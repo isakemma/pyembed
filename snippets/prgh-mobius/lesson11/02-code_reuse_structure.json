@@ -1,0 +1,13 @@
+{
+  "title": "02-code_reuse_structure",
+  "files": [
+    {
+      "name": "frukter.txt",
+      "content": "mango, 25\näpple, 10\npäron, 12\n"
+    },
+    {
+      "name": "main.py",
+      "content": "def skriv_till_fil(frukter, filnamn ):\n  utfil = open(\"frukter.txt\", \"w\")\n  for objekt in frukter:\n    utfil.write(objekt.namn)\n    utfil.write(\", \")\n    utfil.write(str(objekt.pris))\n    utfil.write(\"\\n\")\n  utfil.close()\n  \nclass Frukt():\n  \"\"\"Vår klass, där varje objekt representerar en fruk\"\"\"\n  \n  def nytt_pris(self, uppdaterat_pris):\n    self.pris = uppdaterat_pris\n  \n  def __init__(self, namn, pris):\n\n    self.namn = namn\n    self.pris = pris\n        \n  def __lt__(self, other):\n\n    if self.pris < other.pris:\n      return True\n    else:\n      return False\n    \n  def __str__(self):\n    return self.namn + \" har priset \" + str(self.pris)  + \" kr.\"\n      \n    \ndef läs_in(fil):\n  \"\"\" Läser in data om personer från filen personer.txt, skapar Person-objekt och sparar de i till en lista som returneras\n  Parametrar: filnamn (string)\n  Returnerar:  lista (lista med objekt av typen Frukt)\"\"\"\n  infil = open(\"frukter.txt\", \"r\")\n  rad = infil.readline()\n  lista = []\n  while rad !=\"\":\n    rad = rad.strip()\n    rad_delar = rad.split(\", \")\n    objekt = Frukt(rad_delar[0],int(rad_delar[1]))\n    lista.append(objekt)\n    rad = infil.readline()\n  infil.close()\n  return lista\n\nfrukt_lista = läs_in(\"frukter.txt\")  \n\nprint(\"Nu är priserna: \")\nfor objekt in frukt_lista:\n  print(objekt)\n\nprint(\"Inflation har gått upp och du behöver höja priserna för frukterna.\")\nfor objekt in frukt_lista:\n  print(objekt)\n  pris = int(input(\"Vad är det nya priset? \"))\n  objekt.nytt_pris(pris)\n\nprint(\"De nya priserna: \")\nfor objekt in frukt_lista:\n  print(objekt)\n\nprint(\"De nya prisera kommer nu sparas till filen och programmet avslutas.\")\nskriv_till_fil(frukt_lista, \"frukter.txt\")\n \n    "
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "03-tuples_continued",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "\nfrukter = (\"äpplen\", \"mango\", \"päron\", \"apelsin\", \"kiwi\", \"annans\", \"passionsfrukt\")\n\npriser = []\nfor i in range(7):\n  pris = int(input(\"Vad kostar \" + frukter[i] + \"? \"))\n  priser.append(pris)\n\n\nprint(\"Tuplen frukter:\", frukter)\nprint(\"Listan priser:\", priser)\n\n\nprint(\"päron kostar\", priser[frukter.index(\"päron\")])"
+    }
+  ]
+}

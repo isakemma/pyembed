@@ -1,0 +1,13 @@
+{
+  "title": "05-modules_recursion_exercises",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "from matematik #här saknas en del av importeringen, lägg till det som saknas\n\ndef mata_in_tal():\n  antal = int(input(\"Hur många tal vill du ha i din lista? \"))\n  tal_lista = []\n  for i in range(antal):\n    tal = int(input(\"Ange tal nummer \"+ str(i+1)+ \": \"))\n    tal_lista.append(tal)\n  return tal_lista\n\ndef skriv_ut_menyn():\n  print(\"1. Beräkna medelvärdet.\")\n  print(\"2. Beräkna summan\")\n  print(\"3. Beräkna produkten\")\n  print(\"4. Avsluta.\")\n  \ndef meny_val(lista):\n  skriv_ut_menyn()\n  val = input(\"Vad vill du göra?\")\n  while val != \"4\":\n    if val == \"1\":\n      #Här behövs kod, anropa rätt funktion och skriv ut resultatet.\n    elif val == \"2\":\n      #Här behövs kod, anropa rätt funktion och skriv ut resultatet.\n    elif val == \"3\":\n      #Här behövs kod, anropa rätt funktion och skriv ut resultatet.\n    else:\n      print(\"Inte ett val.\")\n    skriv_ut_menyn()\n    val = input(\"Vad vill du göra?\")\n  print(\"Programmet avslutas!\")\n\n\ndef huvudprogram():\n  print(\"Välkommen till matematik programmet\")\n  lista_med_tal = mata_in_tal()\n  meny_val(lista_med_tal)\n  \nhuvudprogram()\n  "
+    },
+    {
+      "name": "matematik.py",
+      "content": "def summera(lista):\n  summa = 0\n  for tal in lista:\n    summa+= tal\n  return summa\n\ndef multiplicera(lista):\n  produkt = 1\n  for tal in lista:\n    produkt *= tal\n  return produkt\n  \ndef beräkna_medelvärde(lista):\n  summa = summera(lista)\n  medelvärde = summa/len(lista)\n  return medelvärde\n\n"
+    }
+  ]
+}
