@@ -193,6 +193,11 @@
 .${HOST_CLS} .pw-file.active { background: #fff; color: #0969da; border-left-color: #0969da; }
 .${HOST_CLS} .pw-file-icon   { font-size: 11px; flex-shrink: 0; }
 .${HOST_CLS} .pw-file-name   { overflow: hidden; text-overflow: ellipsis; }
+.${HOST_CLS} .pw-file-badge  {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+  color: #1a7f37; background: #dafbe1; border-radius: 3px; padding: 1px 4px;
+  flex-shrink: 0; margin-left: auto;
+}
 
 /* ── File tabs (narrow/mobile — shown instead of sidebar) ── */
 .${HOST_CLS} .pw-file-tabs {
@@ -273,6 +278,10 @@
 }
 .${HOST_CLS} .pw-err   { color: #cf222e; }
 .${HOST_CLS} .pw-muted { color: #8c959f; font-style: italic; }
+.${HOST_CLS} .pw-file-link {
+  color: #0969da; cursor: pointer; border-bottom: 1px dashed #0969da;
+}
+.${HOST_CLS} .pw-file-link:hover { border-bottom-style: solid; }
 
 /* ── IDLE-style inline input ── */
 .${HOST_CLS} .pw-input-line {
@@ -485,8 +494,12 @@
 
 
     // ── File state management ─────────────────────────────────────────────────
-    const fileStates = new Map();
-    const fileItems  = new Map();
+    const fileStates   = new Map();
+    const fileItems    = new Map();
+    const fileTabItems = new Map();
+    // Files created at runtime (e.g. open(input("filename..."), 'w')) that
+    // weren't part of the original snippet — tracked so Reset can remove them.
+    const dynamicFiles = new Set();
     let currentFile  = null;
 
     // IDLE-style editor theme — Menlo font, exact IDLE colours
@@ -576,8 +589,6 @@
       }
     }
 
-    const fileTabItems = new Map();
-
     for (const f of files) {
       fileStates.set(f.name, makeState(f.name, f.content ?? ''));
 
@@ -615,10 +626,47 @@
     const firstFile = files.find(f => f.name === 'main.py') ?? files[0];
     if (firstFile) switchToFile(firstFile.name);
 
+    // Adds a file panel entry for output created at runtime with a name that
+    // wasn't part of the original snippet (e.g. a filename chosen via input()).
+    function addDynamicFile(name, content) {
+      fileStates.set(name, makeState(name, content));
+      dynamicFiles.add(name);
+
+      const item = el('div', 'pw-file');
+      item.title = name;
+      item.innerHTML = `<span class="pw-file-icon">${fileIcon(name)}</span><span class="pw-file-name">${esc(name)}</span><span class="pw-file-badge">new</span>`;
+      item.addEventListener('click', () => switchToFile(name));
+      fileList.appendChild(item);
+      fileItems.set(name, item);
+
+      const tab = el('div', 'pw-file-tab');
+      tab.innerHTML = `<span>${fileIcon(name)}</span><span>${esc(name)}</span>`;
+      tab.addEventListener('click', () => switchToFile(name));
+      fileTabs.appendChild(tab);
+      fileTabItems.set(name, tab);
+    }
+
+    function removeDynamicFile(name) {
+      fileItems.get(name)?.remove();
+      fileTabItems.get(name)?.remove();
+      fileItems.delete(name);
+      fileTabItems.delete(name);
+      fileStates.delete(name);
+      dynamicFiles.delete(name);
+    }
+
     // ── Output helpers ────────────────────────────────────────────────────────
     function clearOutput() {
       outputPre.innerHTML = '<span class="pw-muted">Run your code to see output here.</span>';
       outputBody.querySelectorAll('.pw-input-row').forEach(r => r.remove());
+    }
+    function appendFileLink(name) {
+      outputPre.querySelector('.pw-muted')?.remove();
+      const s = el('span', 'pw-file-link', `📄 Wrote ${name} — click to view`);
+      s.addEventListener('click', () => switchToFile(name));
+      outputPre.appendChild(s);
+      outputPre.appendChild(document.createTextNode('\n'));
+      outputBody.scrollTop = outputBody.scrollHeight;
     }
     function appendOut(text, isErr) {
       outputPre.querySelector('.pw-muted')?.remove();
@@ -701,8 +749,11 @@
       for (const [name, content] of originalContents) {
         setContent(name, content);
       }
+      // Drop any file panel entries created by a previous run
+      const wasCurrent = currentFile && dynamicFiles.has(currentFile);
+      for (const name of [...dynamicFiles]) removeDynamicFile(name);
       // Re-activate the current file so the editor refreshes
-      const active = currentFile;
+      const active = wasCurrent ? null : currentFile;
       currentFile = null;
       switchToFile(active ?? firstFile?.name);
       clearOutput();
@@ -1040,10 +1091,21 @@ IsADirectoryError = IOError
           Sk.importMainWithBody('<stdin>', false, codeToRun, true)
         );
 
-        // Sync any files Python wrote back into the editor
+        // Sync any files Python wrote back into the editor. Names that match a
+        // file already in the snippet just get their content updated; names
+        // chosen at runtime (e.g. via input()) get a new file panel entry so
+        // the written output is actually visible somewhere.
         const written = readSkulptWritten();
         for (const [name, content] of Object.entries(written)) {
-          if (files.some(f => f.name === name)) setContent(name, content);
+          if (files.some(f => f.name === name)) {
+            setContent(name, content);
+          } else if (dynamicFiles.has(name)) {
+            setContent(name, content);
+            appendFileLink(name);
+          } else {
+            addDynamicFile(name, content);
+            appendFileLink(name);
+          }
         }
 
         // Show "(no output)" if output panel is empty
