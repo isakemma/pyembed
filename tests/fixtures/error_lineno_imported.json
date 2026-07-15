@@ -1,0 +1,7 @@
+{
+  "title": "error_lineno_imported_fixture",
+  "files": [
+    { "name": "helper.py", "content": "def boom():\n    print('line 2 of helper')\n    raise ValueError('boom on line 3 of helper')\n" },
+    { "name": "main.py", "content": "from helper import boom\nprint('line 2 of main')\nboom()\n" }
+  ]
+}

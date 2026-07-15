@@ -1,0 +1,6 @@
+{
+  "title": "error_lineno_mainfile_fixture",
+  "files": [
+    { "name": "main.py", "content": "print('line 1')\nprint('line 2')\nraise ValueError('boom on line 3')\n" }
+  ]
+}

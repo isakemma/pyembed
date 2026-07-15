@@ -1,0 +1,6 @@
+{
+  "title": "unicode_fileio_fixture",
+  "files": [
+    { "name": "main.py", "content": "with open('kafé.txt', 'w') as f:\n    f.write('Hej på dig, åäö! 变 λ п\\n')\nwith open('kafé.txt') as f:\n    print(f.read())\n" }
+  ]
+}
