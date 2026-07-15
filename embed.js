@@ -350,34 +350,17 @@
     return e;
   }
 
-  /** Format a Skulpt exception into a readable string, adjusting for preamble. */
-  function formatSkulptError(e, preambleLines) {
+  /** Format a Skulpt exception into a readable string. */
+  function formatSkulptError(e) {
     let type = 'Error', msg = '', line = null;
     try { type = e.tp$name || type; }           catch(_) {}
     try { msg  = e.args.v[0].v || ''; }         catch(_) {}
     try {
       const tbs = e.traceback || [];
       const tb  = tbs[tbs.length - 1];
-      if (tb && tb.lineno > preambleLines) line = tb.lineno - preambleLines;
+      if (tb && tb.lineno) line = tb.lineno;
     } catch(_) {}
     return `${type}: ${msg}` + (line ? ` (line ${line})` : '');
-  }
-
-  /** Read Skulpt's _vfs_written dict back into JS after a run. */
-  function readSkulptWritten() {
-    const result = {};
-    try {
-      const pyDict = window.Sk?.globals?.['_vfs_written'];
-      if (!pyDict || !pyDict.tp$iter) return result;
-      const iter = pyDict.tp$iter();
-      let key;
-      while ((key = iter.tp$iternext()) !== undefined) {
-        const val = pyDict.mp$subscript(key);
-        if (typeof key.v === 'string' && typeof val.v === 'string')
-          result[key.v] = val.v;
-      }
-    } catch(_) {}
-    return result;
   }
 
   // ── Widget initializer ─────────────────────────────────────────────────────
@@ -961,12 +944,13 @@
       // Declared outside try so catch/finally blocks can access them
       let turtleAnimId  = null;
       let skulptTarget  = null;
-      let preambleLines = 36;   // updated inside try; fallback if error occurs before preamble
+      let fileBackingContainer = null;
 
       try {
         const Sk = await skulptPromise;
 
-        // Snapshot of all project files for this run
+        // Snapshot of all project files for this run; mutated live by the
+        // filewrite hook below as the running program writes to files.
         const vfs = {};
         for (const f of files) vfs[f.name] = getContent(f.name);
 
@@ -1004,62 +988,39 @@
           turtleCloseBtn.onclick = () => { requestStop(); };
         }
 
-        // Build a Python dict literal for the VFS
-        const vfsPyLiteral = '{\n' +
-          Object.entries(vfs).map(([k, v]) =>
-            '    ' + JSON.stringify(k) + ': ' + JSON.stringify(v)
-          ).join(',\n') + '\n}';
+        // ── File I/O ─────────────────────────────────────────────────────────
+        // Skulpt's real open()/file object reads a file's initial content from
+        // a DOM element whose id matches the filename — that lookup happens
+        // before the fileopen hook below ever runs, so it's what makes reads
+        // work. filewrite fires on every .write(); there's no close hook, so
+        // the backing element and `written` are kept up to date on each write
+        // rather than finalized at close. Elements are scoped to this run and
+        // removed in the finally block — safe since only one snippet runs at
+        // a time per page.
+        fileBackingContainer = document.createElement('div');
+        fileBackingContainer.style.display = 'none';
+        document.body.appendChild(fileBackingContainer);
 
-        // ── File I/O preamble ──────────────────────────────────────────────
-        // Defines a virtual open() that reads from / writes to vfs.
-        // _vfs_written is populated on file.close() for write/append modes.
-        const preamble = `_vfs = ${vfsPyLiteral}
-_vfs_written = {}
+        const fileElements = new Map();
+        function backingElementFor(name) {
+          let elem = fileElements.get(name);
+          if (!elem) {
+            elem = document.createElement('div');
+            elem.id = name;
+            fileBackingContainer.appendChild(elem);
+            fileElements.set(name, elem);
+          }
+          return elem;
+        }
+        for (const name of Object.keys(vfs)) backingElementFor(name).textContent = vfs[name];
 
-class _VF:
-    def __init__(self, name, mode):
-        self.name = name
-        self.mode = 'a' if mode.startswith('a') else ('w' if mode.startswith('w') else 'r')
-        raw = _vfs.get(name, '')
-        self._buf = raw if self.mode == 'a' else ''
-        self._lines = raw.splitlines(True)
-        self._lpos = 0
-    def read(self, n=-1):
-        s = _vfs.get(self.name, '')
-        return s if n < 0 else s[:n]
-    def readline(self):
-        if self._lpos < len(self._lines):
-            l = self._lines[self._lpos]; self._lpos += 1; return l
-        return ''
-    def readlines(self): return list(self._lines[self._lpos:])
-    def write(self, s): self._buf += str(s); return len(str(s))
-    def writelines(self, ls):
-        for l in ls: self.write(l)
-    def close(self):
-        if self.mode in ('w', 'a'):
-            _vfs[self.name] = self._buf
-            _vfs_written[self.name] = self._buf
-    def __iter__(self): return self
-    def __next__(self):
-        line = self.readline()
-        if line == '': raise StopIteration
-        return line
-    def __enter__(self): return self
-    def __exit__(self, *a): self.close(); return False
+        const written = {};
 
-def open(name, mode='r', *args, **kwargs):
-    nm = str(name); m = mode.rstrip('+b ')
-    if nm in _vfs or m.startswith('w') or m.startswith('a'):
-        return _VF(nm, m)
-    raise IOError('File not found: ' + nm)
-
-# Python 3 aliases not present in this Skulpt build
-FileNotFoundError = IOError
-PermissionError   = IOError
-IsADirectoryError = IOError
-
-`;
-        preambleLines = preamble.split('\n').length;
+        // Python 3 exception names not present in this Skulpt build, aliased
+        // the same way Skulpt itself aliases e.g. basestring = str.
+        Sk.builtins.FileNotFoundError = Sk.builtin.IOError;
+        Sk.builtins.PermissionError   = Sk.builtin.IOError;
+        Sk.builtins.IsADirectoryError = Sk.builtin.IOError;
 
         // ── Configure Skulpt ───────────────────────────────────────────────
         Sk.TurtleGraphics = {
@@ -1072,6 +1033,17 @@ IsADirectoryError = IOError
           output: (text) => appendOut(text, false),
           inputfun: (prompt) => showInlineInput(prompt),
           inputfunTakesPrompt: true,
+          nonreadopen: true,
+          fileopen: (fileObj) => {
+            const mode = Sk.ffi.remapToJs(fileObj.mode);
+            fileObj._buf = mode.startsWith('a') ? (vfs[fileObj.name] ?? '') : '';
+          },
+          filewrite: (fileObj, pyStr) => {
+            fileObj._buf += Sk.ffi.remapToJs(pyStr);
+            vfs[fileObj.name] = fileObj._buf;
+            written[fileObj.name] = fileObj._buf;
+            backingElementFor(fileObj.name).textContent = fileObj._buf;
+          },
           read: (filename) => {
             // Serve project files (for inter-module imports)
             const clean = filename.replace(/^\.\//, '');
@@ -1084,8 +1056,7 @@ IsADirectoryError = IOError
           __future__: Sk.python3,
         });
 
-        // Prepend preamble to main.py for this run only
-        const codeToRun = preamble + getContent(mainFile.name);
+        const codeToRun = getContent(mainFile.name);
 
         await Sk.misceval.asyncToPromise(() =>
           Sk.importMainWithBody('<stdin>', false, codeToRun, true)
@@ -1095,7 +1066,6 @@ IsADirectoryError = IOError
         // file already in the snippet just get their content updated; names
         // chosen at runtime (e.g. via input()) get a new file panel entry so
         // the written output is actually visible somewhere.
-        const written = readSkulptWritten();
         for (const [name, content] of Object.entries(written)) {
           if (files.some(f => f.name === name)) {
             setContent(name, content);
@@ -1118,7 +1088,7 @@ IsADirectoryError = IOError
         if (_stopRequested || e.tp$name === 'TimeLimitError') {
           appendOut('\n[Stopped]', false);
         } else {
-          appendOut(formatSkulptError(e, preambleLines), true);
+          appendOut(formatSkulptError(e), true);
         }
       } finally {
         _stopRequested = false;
@@ -1131,6 +1101,7 @@ IsADirectoryError = IOError
         // Stop compositing loop, clean up hidden Skulpt target
         if (turtleAnimId) { cancelAnimationFrame(turtleAnimId); turtleAnimId = null; }
         if (skulptTarget) { skulptTarget.remove(); skulptTarget = null; }
+        if (fileBackingContainer) { fileBackingContainer.remove(); fileBackingContainer = null; }
         // Switch modal button to Close
         if (turtleModal.classList.contains('pw-turtle-open')) {
           turtleCloseBtn.textContent = '✕ Close';
