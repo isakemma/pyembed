@@ -91,51 +91,10 @@
 
   <script src="embed.js"></script>
   <script>
-    // ── Course configuration ────────────────────────────────────────────────
-    const COURSES = {
-      'lectures': {
-        folderPrefix: 'lecture-examples/lecture',
-        numFromFolder: function(f) { return parseInt(f.replace('lecture-examples/lecture', ''), 10); },
-        pageUrl:       function(n) { return 'lecture.html?course=lectures&n=' + n; },
-        courseTitle:   'DD1310 – Lecture Examples',
-        navLabel:      function(n) { return '' + n; }
-      },
-      'mobius-dd100n': {
-        folderPrefix: 'mobius-DD100N/lesson',
-        numFromFolder: function(f) { return parseInt(f.replace('mobius-DD100N/lesson', ''), 10); },
-        pageUrl:       function(n) { return 'lecture.html?course=mobius-dd100n&n=' + n; },
-        courseTitle:   'Möbius DD100N',
-        navLabel:      function(n) { return '' + n; }
-      },
-      'mobius-dd1310': {
-        folderPrefix: 'mobius-DD1310/lektion',
-        numFromFolder: function(f) { return parseInt(f.replace('mobius-DD1310/lektion', ''), 10); },
-        pageUrl:       function(n) { return 'lecture.html?course=mobius-dd1310&n=' + n; },
-        courseTitle:   'Möbius DD1310',
-        navLabel:      function(n) { return '' + n; }
-      },
-      'tutorials-dd1310': {
-        folderPrefix: 'tutorials-DD1310/tutorial',
-        numFromFolder: function(f) { return parseInt(f.replace('tutorials-DD1310/tutorial', ''), 10); },
-        pageUrl:       function(n) { return 'lecture.html?course=tutorials-dd1310&n=' + n; },
-        courseTitle:   'DD1310 Tutorials',
-        navLabel:      function(n) { return '' + n; }
-      },
-      'dd1320': {
-        folderPrefix: 'DD1320/',
-        numFromFolder: function(f) { return parseInt(f.replace('DD1320/', ''), 10); },
-        pageUrl:       function(n) { return 'lecture.html?course=dd1320&n=' + n; },
-        courseTitle:   'DD1320 – Automater',
-        navLabel:      function(n) { return '' + n; }
-      }
-    };
-
     const params   = new URLSearchParams(location.search);
     // Support old ?n=N links (no course param) — default to lectures
     const courseId = params.get('course') || 'lectures';
     const lessonN  = parseInt(params.get('n') || '1', 10);
-    const course   = COURSES[courseId] || COURSES['lectures'];
-    const catFolder = course.folderPrefix + String(lessonN).padStart(2, '0');
 
     async function load() {
       const state   = document.getElementById('state');
@@ -143,7 +102,12 @@
 
       try {
         const index = await fetch('snippets/index.json').then(r => r.json());
-        const cat   = index.categories.find(c => c.folder === catFolder);
+        const courses = index.courses || [];
+        const course  = courses.find(c => c.id === courseId) || courses.find(c => c.id === 'lectures');
+        if (!course) throw new Error('Course ' + courseId + ' not found in index.json');
+
+        const catFolder = course.folderPrefix + String(lessonN).padStart(2, '0');
+        const cat = index.categories.find(c => c.folder === catFolder);
         if (!cat) throw new Error('Lesson ' + lessonN + ' not found for course ' + courseId);
 
         // ── Build navigation ──────────────────────────────────────────────
@@ -154,17 +118,17 @@
 
         const lessons = index.categories.filter(c => c.folder.startsWith(course.folderPrefix));
         lessons.forEach(function(lc) {
-          const n   = course.numFromFolder(lc.folder);
+          const n   = parseInt(lc.folder.slice(course.folderPrefix.length), 10);
           const btn = document.createElement('a');
           btn.className   = 'nav-btn' + (n === lessonN ? ' active' : '');
-          btn.href        = course.pageUrl(n);
-          btn.textContent = course.navLabel(n);
+          btn.href        = `lecture.html?course=${course.id}&n=${n}`;
+          btn.textContent = '' + n;
           nav.appendChild(btn);
         });
 
         // ── Page titles ───────────────────────────────────────────────────
         const catName = cat.name || cat.label || catFolder;
-        document.title = catName + ' — ' + course.courseTitle;
+        document.title = catName + ' — ' + course.label;
         document.getElementById('header-title').textContent = catName;
         document.getElementById('hero-title').textContent   = catName;
         document.getElementById('hero-desc').textContent    =

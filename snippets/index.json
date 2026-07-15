@@ -1,4 +1,36 @@
 {
+  "courses": [
+    {
+      "id": "lectures",
+      "label": "DD1310 – Lecture Examples",
+      "folderPrefix": "lecture-examples/lecture"
+    },
+    {
+      "id": "mobius-dd100n",
+      "label": "Möbius DD100N",
+      "folderPrefix": "mobius-DD100N/lesson"
+    },
+    {
+      "id": "mobius-dd1310",
+      "label": "Möbius DD1310",
+      "folderPrefix": "mobius-DD1310/lektion"
+    },
+    {
+      "id": "tutorials-dd1310",
+      "label": "DD1310 Tutorials",
+      "folderPrefix": "tutorials-DD1310/tutorial"
+    },
+    {
+      "id": "dd1320",
+      "label": "DD1320 – Automater",
+      "folderPrefix": "DD1320/"
+    },
+    {
+      "id": "prgh-mobius",
+      "label": "Möbius DD1310 (prgh)",
+      "folderPrefix": "prgh-mobius/lesson"
+    }
+  ],
   "categories": [
     {
       "name": "Basic Examples",

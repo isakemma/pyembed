@@ -90,55 +90,24 @@
           state.remove();
 
           // ── Course groups shown as big cards ──────────────────────────
-          const COURSE_GROUPS = [
-            {
-              label:  'DD1310 – prgh lectures',
-              prefix: 'prgh-lectures/lecture',
-              href:   'lecture.html?course=lectures&n=1'
-            },
-            {
-              label:  'DD1310 – Lecture Examples',
-              prefix: 'lecture-examples/lecture',
-              href:   'lecture.html?course=lectures&n=1'
-            },
-            {
-              label:  'Möbius DD100N',
-              prefix: 'mobius-DD100N/lesson',
-              href:   'lecture.html?course=mobius-dd100n&n=1'
-            },
-            {
-              label:  'Möbius DD1310',
-              prefix: 'mobius-DD1310/lektion',
-              href:   'lecture.html?course=mobius-dd1310&n=1'
-            },
-            {
-              label:  'DD1310 Tutorials',
-              prefix: 'tutorials-DD1310/tutorial',
-              href:   'lecture.html?course=tutorials-dd1310&n=1'
-            },
-            {
-              label:  'DD1320',
-              prefix: 'DD1320/',
-              href:   'lecture.html?course=dd1320&n=1'
-            }
-          ];
+          const courses = data.courses || [];
 
-          for (const group of COURSE_GROUPS) {
-            const cats  = data.categories.filter(c => c.folder.startsWith(group.prefix));
+          for (const course of courses) {
+            const cats  = data.categories.filter(c => c.folder.startsWith(course.folderPrefix));
             const total = cats.reduce(function(sum, c) { return sum + c.snippets.length; }, 0);
             if (cats.length === 0) continue;
             const a = document.createElement('a');
             a.className = 'card';
-            a.href = group.href;
+            a.href = `lecture.html?course=${course.id}&n=1`;
             a.innerHTML = `
-              <div class="card-title">${group.label}</div>
+              <div class="card-title">${course.label}</div>
               <div class="card-desc">${cats.length} lesson${cats.length !== 1 ? 's' : ''} · ${total} examples</div>
               <div class="card-arrow">Browse →</div>`;
             grid.appendChild(a);
           }
 
           // ── Other categories (Basic Examples, Möbius Material etc) ────
-          const coursePrefixes = COURSE_GROUPS.map(function(g) { return g.prefix; });
+          const coursePrefixes = courses.map(function(c) { return c.folderPrefix; });
           for (const cat of data.categories) {
             const isCourse = coursePrefixes.some(function(p) { return cat.folder.startsWith(p); });
             if (isCourse) continue;
