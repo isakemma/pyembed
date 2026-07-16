@@ -1,9 +1,0 @@
-{
-  "title": "06-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "for i in range(1,4):\n    for j in range(1,4):\n        print(i*j, end =\" \")\n    print()"
-    }
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "title": "08-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "# En enkel telefonbok skapad utan funktioner\n# Camilla Björn\n# 5/11-2023\n\ntelefonbok = { \"Kalle Anka\" : [\"123 456 78\", \"09-06-1934\"], \n              \"Nemo\" : [\"481 444 36\", \"18-05-2003\"], \n              \"Bambi\" : [\"123 711 13\", \"09-08-1942\"], \n              \"Spindelmannen\" : [\"246 80 10\", \"01-08-1962\"], \n              \"I-or\" : [\"369 333 27\", \"25-12-1924\"]}\n\n\n# Meny\nprint(\"\\nVälkommen till telefonboken!\")\nwhile True:\n    print(\"Du har fyra val: \\n\" \\\n        \"1. Söka efter en person\\n\" \\\n        \"2. Lägga till en person\\n\" \\\n        \"3. Uppdatera ett telefonnummer\\n\"\\\n        \"4. Avsluta\\n\")\n    val = int(input(\"Vad vill du göra (välj 4 för att avsluta)? \"))\n    \n    # Söka efter person\n    if val == 1:\n        namn = input(\"Vad heter personen som du söker efter? \")\n        print(\"Här är\", namn + \"s\", \"information:\", telefonbok[namn])\n    \n    # Lägga till person\n    elif val == 2:\n        namn = input(\"Vad heter personen som du vill lägga till? \")\n        tel = input(\"Vad har \" + namn + \" för telefonnummer? \")\n        födelsedag = input(\"Vad är \" + namn + \"s födelsedatum? \")\n        telefonbok[namn] = [tel, födelsedag]\n        print(\"Nu är\", namn, \"tillagd i telefonboken.\")\n    \n    # Uppdatera telefonnummer\n    elif val == 3:\n        namn = input(\"Vad heter personen vars telefonnummer du vill ändra? \")\n        tel = input(\"Vad är \" + namn + \"s nya telefonnummer? \")\n        telefonbok[namn][1] = tel\n        print(\"Nu är\", namn, \"s telefonnummer uppdaterat.\")\n    \n    # Avsluta\n    elif val == 4:\n        break\n    \n    else:\n        print(\"Oj, nu blev det lite tokigt, ange ett av numrena 1-4 istället.\")\n    \n    print(\"\\n\")\n"
-    }
-  ]
-}

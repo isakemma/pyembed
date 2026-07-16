@@ -1,9 +1,0 @@
-{
-  "title": "11-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "fruktlista = [\"mango\", \"äpple\", \"bana\"] #fruktlista är ett bra variabelnamn \n                                        # gemener, substantiv, tydligt vad det innehåller\nfor i in range(len(fruktlista)):   #i är ett OK variabelnamn när det används lokalt i en slinga\n  print(fruktlista[i])             # används för index och bara i slingan, som en räknare\n  \nclass Båt():    #Är ett bra klassnamn, beskriver ett objekt, stor begynnelsebokstav, små bokstäver\n  \n  def __init__(self, längd, motor, passagerare = 0):\n    self.längd = längd\n    self.har_motor = motor\n    self.antal_passagerare = passagerare \n  \n  def lägg_till_passagerar(self, antal): #Bra metodnamn, beskriver vad metoden gör, gemener\n    self.antal_passagerare += antal\n    \n  def ta_bort_passagerar(self, antal): #Bra metodnamn, beskriver vad metoden gör, gemener\n    self.antal_passagerare -= antal\n    \n\ndef skapa_båt_objekt(): #Bra funktionsnamn, beskriver vad funktionen gör, gemener\n  båt = Båt(30, False, 2)\n  return båt\n  "
-    }
-  ]
-}

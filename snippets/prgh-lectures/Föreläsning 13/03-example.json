@@ -1,9 +1,0 @@
-{
-  "title": "03-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "def hitta_minsta(lista):\n    minsta = lista[0]\n    for element in lista:\n   \t if minsta > element:\n   \t\t minsta = element\n    return minsta\n\n\ndef main():\n    minlista = [45, 23, -2, 5, 1]\n    minimum = hitta_minsta(minlista)\n    print(minimum)\n\nmain()\n\n"
-    }
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "title": "04-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "class Tal():\n    def __init__(self, tal):\n        self.tal = tal\n\t\t\n    def __str__(self):\n\t    return \"från str: \" + str(self.tal)\n    \n    def __repr__(self):\n        return \"från repr: \" + str(self.tal)\n    \ndef main():\n    lista=[]\n    dict = {}\n    for i in range(5):\n        objekt = Tal(i)\n        lista.append(objekt)\n        dict[i] = objekt\n\n    print('lista', lista) \n    print('dict', dict)\n\n    print('Element i lista:')\n    for element in lista:\n            print(element) \n    print('\\nElement i dictionary:')\n    for nyckel in dict.keys():\n         print(dict[nyckel])\n\nmain()"
-    }
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "title": "05-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "#Lägg till alla djurens namn, sort och ålder i en lista utan att använda objekt\n#Exempel, övn4 DD1321\nimport random\n\n#Funktion som slumpar fram ett djur av en viss typ med ett namn och en ålder\n#Returnerar en tupel av namn, typ och ålder\ndef slumpaDjur():\n    namnlista = ['Kajsa', 'Agda', 'Urban', 'Sigvard', 'Sudda']\n    djurtyper = ['Ko', 'Gris', 'Hund']\n    typ = random.choice(djurtyper)\n    namn = random.choice(namnlista)\n    ålder = random.randint(0, 20)\n    return(namn, typ, ålder)\n\n#Funktion som låter åren gå så att djuret blir äldre\n#Indata: antal år\n#Ska uppdatera djurlistan för alla djur\n#??\n\n#Huvudprogram - skapa en djurlista och skriv ut den sorterad\ndef main():\n    djurlista = []\n    for i in range(5):\n        djurlista.append(slumpaDjur())\n    djurlista.sort(key=lambda a: a[1])\n    print(djurlista)\n\n#Lägg till ett attribut\n\n#Gör olika utskrifter baserat på djurtypen\n#Vad gör detta med vårt program?\n\nmain()"
-    }
-  ]
-}

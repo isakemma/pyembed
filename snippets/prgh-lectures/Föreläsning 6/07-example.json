@@ -1,9 +1,0 @@
-{
-  "title": "07-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "from random import randint\nslag1 = randint(1,6)\nslag2 = randint(1,6)\nprint(\"Du slog \" + str(slag1) + \" och \" + str(slag2) + \" på tärningarna\")\n"
-    }
-  ]
-}

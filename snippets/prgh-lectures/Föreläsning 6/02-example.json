@@ -1,9 +1,0 @@
-{
-  "title": "02-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "def addera(tal1, tal2, tal3 = 0):\n  summa = tal1 + tal2 + tal3   \n  return summa\n\ndef huvudfunktion():\n  tal1 = int(input(\"Tal 1: \"))\n  tal2 = int(input(\"Tal 2: \"))\n  tal3 = int(input(\"Tal 3: \"))\n  summan = addera(tal1, tal2)\n  summan_3tal = addera(tal1,tal2, tal3)\n  print(\"Med två tal:\", summan, \"\\nMed tre tal:\", summan_3tal)\n  \nhuvudfunktion()"
-    }
-  ]
-}

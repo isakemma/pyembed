@@ -1,9 +1,0 @@
-{
-  "title": "02-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "# Uppgift 1 övning 3\n# Camilla Björn\n# 2023-11-19\n\nord = 'snöflinga'\nstjärnlista = []\nfor bokstav in ord:\n    stjärnbokstav = '*' + bokstav + '*'\n    stjärnlista.append(stjärnbokstav)\n\n# Check att det fungerar som det ska\nprint(stjärnlista)"
-    }
-  ]
-}

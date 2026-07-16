@@ -1,9 +1,0 @@
-{
-  "title": "04-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "ANTAL_ELEVER = 3\nANTAL_HOPP = 3\n\nclass Elev:\n  def __init__ (self, namn):\n    self.namn = namn\n    self.hopp = []\n    \n  def __str__ (self):\n    sträng = self.namn + \" hoppade :\" \n    for hopp in self.hopp:\n        sträng += str(hopp) +  \", \"\n    return sträng[0:-2]\n    \n  def hoppat(self, antal_hopp):\n    for i in range(antal_hopp):\n        hoppet = float(input(\"Hur långt var hopp \" + str(i + 1) + \"? \"))\n        self.hopp.append(hoppet)\n        \ndef huvudprogram():\n  elever = []\n  for i in range(ANTAL_ELEVER):\n    namn = input(\"Vad heter elev \" + str(i+1) + \"?\")\n    elev = Elev(namn)\n    elev.hoppat(ANTAL_HOPP)\n    elever.append(elev)\n  \n  for objekt in elever:\n    print(objekt)\n  \nhuvudprogram()\n    \n  "
-    }
-  ]
-}

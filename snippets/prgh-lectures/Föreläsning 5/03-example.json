@@ -1,9 +1,0 @@
-{
-  "title": "03-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "def skriva_ut_hej(sträng):\n    print(sträng) #Koden i funktionen\n\nskriva_ut_hej(\"Texten som ska skrivas ut\")\n"
-    }
-  ]
-}

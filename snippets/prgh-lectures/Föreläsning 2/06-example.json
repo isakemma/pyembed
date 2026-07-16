@@ -1,9 +1,0 @@
-{
-  "title": "06-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "starttal = 0.5\nsluttal = 1.0\n\nprint(\"Hej!\")\nwhile (starttal != sluttal):\n  starttal += 0.1\n  print(\"Hej igen!\")\n\n#Innan du provkör - hur många gånger kommer programmet att skriva \"Hej igen!\"?"
-    }
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "title": "09-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "\nclass Leksak:\n    def __init__(self, färg, åldersgräns):\n        self.färg = färg\n        self.åldersgräns = åldersgräns\n\n    def __str__(self):\n        return \"En leksak för barn över \"+ str(self.åldersgräns)+\" år med färgen \"+self.färg+\".\"\n\nclass Hopprep(Leksak):\n    def __init__(self, färg, åldersgräns, längd):\n        self.färg = färg\n        self.åldersgräns = åldersgräns\n        self.längd = längd\n    \n    def __str__(self):\n        return \"Det här är ett hopprep som är \"+ str(self.längd) + \"cm långt.\"\n    \nr = Hopprep(\"blå\", 3, 150)\nl = Leksak(\"grön\", 8)\n\nprint(r, l)\n\nclass Bil(Leksak):\n    def __init__(self, färg, åldersgräns, ljudnivå):\n        self.ljudnivå = ljudnivå\n        super().__init__(färg, åldersgräns)\n\nb = Bil(\"röd\", 5, 45)\nprint(b)"
-    }
-  ]
-}

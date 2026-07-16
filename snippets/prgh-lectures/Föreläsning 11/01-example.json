@@ -1,9 +1,0 @@
-{
-  "title": "01-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "class Rum():\n  \n  def __init__(self, storlek, fönster, uthyrt=False):\n    self.storlek = storlek\n    self.antal_fönster = fönster\n    self.uthyrt = uthyrt\n    \n  def __str__(self):\n    if self.uthyrt:\n      sträng = \"Rummet är uthyrt: \"\n    else:\n      sträng = \"Rummet är ledigt: \"\n      \n    return sträng + str(self.storlek) + \" kvm stort och har \" + str(self.antal_fönster) + \" fönster.\"\n    \n  def hyr_ut(self):\n    self.uthyrt = True\n    \n  def är_ledigt(self):\n    self.uthyrt = False\n    \n\nclass Rum_med_Pentry(Rum):\n  \n  def utrustning(self, ugn=True, micro=True ):\n    self.ugn = ugn\n    self.micro = micro\n  \n\ndef main():\n  rum = Rum(16, 1, False)\n  print(rum)  \n  rum2 = Rum_med_Pentry(20, 1, True)\n  print(rum2)\n  \n  rum2.utrustning(False, True) #Sätter de ny attributen \n  print(\"Ugn:\", rum2.ugn, \"Micro:\", rum2.micro) #Skriver ut de\n\nmain()"
-    }
-  ]
-}

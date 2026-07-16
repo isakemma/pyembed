@@ -1,9 +1,0 @@
-{
-  "title": "01-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "def addera_subtrahera(tal1, tal2, tal3 = 0):\n  summa = tal1 + tal2 + tal3 \n  differens = tal1 - tal2 - tal3  \n  return summa, differens\n\n\nsumman, diffen = addera_subtrahera(5, 10, 4)\n\nprint(\"summan:\", summan, \"diffen:\", diffen)\n"
-    }
-  ]
-}

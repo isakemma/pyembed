@@ -1,9 +1,0 @@
-{
-  "title": "02-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "class Temp:\n    \"\"\" Klass för att hantera temperaturer i Kelvin, Fahrenheit och Celsius \"\"\"\n\n    nollC = 273.15                        \n    nollF = 255.3722                   #F-nollan i Kelvin\n\n    def __init__(self):\n        self.K = 0                     #Temperatur i Kelvin\n\n    def setK(self,K): \n        self.K = K\n\n    def setC(self,C):\n        self.K = Temp.nollC+C\n\n    def setF(self,F): \n        self.K = Temp.nollF+5*F/9\n\n    def getK(self):   \n        return self.K\n\n    def getC(self):   \n        return self.K-Temp.nollC\n\n    def getF(self):   \n        return (self.K-Temp.nollF)*9/5\n\ndef main():\n    t = Temp()\n    t.setC(20)\n    print(round(t.getF()), \"är temperaturen i Fahrenheit\")\n\nmain()"
-    }
-  ]
-}

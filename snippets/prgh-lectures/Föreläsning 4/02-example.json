@@ -1,9 +1,0 @@
-{
-  "title": "02-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "ANTAL_FRUKTER = 3\nfrukter_pris = {}\nfor i in range(ANTAL_FRUKTER):\n  frukt = input(\"Vilken frukt vill du lägga till?\")\n  pris =[None]*2\n  pris[0] = int(input(\"Vilket ordinarie pris? \"))\n  pris[1] = int(input(\"Vilket rea pris? \"))\n  frukter_pris[frukt] = pris\n\nprint(\"Utskrift variant 1:\")\nfor frukt in frukter_pris.keys():\n  print(frukt, \"har priserna\", frukter_pris[frukt])\n  \n  \nprint(\"\\nUtskrift variant 2:\")\nfor frukt in frukter_pris.keys():\n  print(frukt, \"har priserna:\", end=\" \")\n  for pris in frukter_pris[frukt]:\n    print(pris, end = \" \")\n  print()"
-    }
-  ]
-}

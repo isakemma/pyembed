@@ -1,9 +1,0 @@
-{
-  "title": "01-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "godis_pris = {}\nANTAL_SORTER = 2\nfor i in range(ANTAL_SORTER):\n  godis = input(\"Vilken godis vill du lägga till?\")\n  pris = int(input(\"Vad kostar den? \"))\n  godis_pris[godis] = pris\n  \nprint(godis_pris)\n"
-    }
-  ]
-}

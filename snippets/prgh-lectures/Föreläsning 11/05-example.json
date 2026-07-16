@@ -1,9 +1,0 @@
-{
-  "title": "05-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "class Sjutton(Exception):\n    pass\n\ndef skriv_tal(antal):\n    for i in range(antal):\n        if i == 17:\n            raise Sjutton\n        else:\n            print(i)\n\ndef main():\n    try:\n        skriv_tal(25)\n    except Sjutton:\n        print(\"Det var som sjutton!\")\n\nmain()\n"
-    }
-  ]
-}

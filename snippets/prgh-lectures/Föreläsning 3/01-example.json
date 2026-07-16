@@ -1,9 +1,0 @@
-{
-  "title": "01-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "frukter =[\"äpple\",\"päron\",\"körsbär\",\"mango\"]\nprint(frukter[3])\n\nfrukter[3] = \"apelsin\" #ändrar värdet på index 3\nprint(frukter)"
-    }
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "title": "02-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "lista = [3, 4, 1, -8, 12]\nprint(\"lista: \", lista)\n\nalias = lista.copy()\nlista.append(55)\nprint(\"lista: \", lista)\nprint(\"alias: \", alias)\n\n\n"
-    }
-  ]
-}

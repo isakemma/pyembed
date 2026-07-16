@@ -1,9 +1,0 @@
-{
-  "title": "01-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "sträng = \"Amanda, Benji, Cion, Dina\"\nnamnlista = sträng.split(\", \")\nprint(namnlista)"
-    }
-  ]
-}

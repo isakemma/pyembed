@@ -1,9 +1,0 @@
-{
-  "title": "13-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "\n\ndef summering(inmatning, tal):\n    \"\"\"Funktion som summerar två tal, varav det ena är angivet som en sträng.\n    Missbrukar returvärden - returnerar False om första parametern inte \n    går att konvertera till heltal, och summan av parametrarna (som tal)\n    annars. \n    Parametrar: inmatning (en sträng av ett tal)\n                tal (ett heltal)\n    Returnerar: summan av parametrarna (som tal) eller False om inmatning\n                inte går att typkonvertera.\n    \"\"\"\n    try:\n        inmatning = int(inmatning)\n        summa = inmatning + tal\n        return summa\n    except ValueError as ve: \t\n        print(\"Inte en siffra, försök igen.\")\n        return False\n    except TypeError as te: \n        print(\"Hoppsan...\")\n        return False\n\ntal = 24\nok = False\nwhile ok == False:\n    ok = summering(input(\"Mata in ett tal: \"), \"hej\")\nprint(ok)\n\n#Prova att avkommentera och köra detta:\n#ok = False\n#while ok == False:\n#  ok = summering(input(\"Mata in ett tal: \"), \"hej\")\n#print(ok)"
-    }
-  ]
-}

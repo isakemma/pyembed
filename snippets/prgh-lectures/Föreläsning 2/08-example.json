@@ -1,9 +1,0 @@
-{
-  "title": "08-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "tal = 0.0\nwhile abs(tal - 1.0) > 0.01:\n  print(tal)\n  tal += 0.1\n\n"
-    }
-  ]
-}

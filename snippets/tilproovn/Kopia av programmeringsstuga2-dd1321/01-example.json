@@ -1,9 +1,0 @@
-{
-  "title": "01-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "# Uppgift 1\nsträng = 'snöflinga'\nbokstav_3 = sträng[2]\nprint(bokstav_3)\n\n# Uppgift 2\nbokstav_slut = sträng[-1]\nprint(bokstav_slut)\n\n# Uppgift 3\nbokstäver_3_till_7 = sträng[3:8]\nprint(bokstäver_3_till_7)\n\n# Uppgift 4\nbokstäver_3_till_slut = sträng[3:]\nprint(bokstäver_3_till_slut)\n\n# Uppgift 5\nbokstäver_start_till_2 = sträng[:3]\nprint(bokstäver_start_till_2)\n\n# Uppgift 6\nsnöslinga = sträng[:3] + 's' + sträng[4:]\nprint(snöslinga)"
-    }
-  ]
-}

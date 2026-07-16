@@ -1,9 +1,0 @@
-{
-  "title": "02-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "antal_studenter = int(input(\"Hur många studenter är här? \"))\n\nif antal_studenter < 147:\n\tprint(\"Alla är inte här\")\n\nelif antal_studenter > 147: #Annars om detta är sant\n\tprint(\"Det är fler närvarande här än vad som är registrerade\")\n\nelse:  # I alla andra fall\n\tprint(\"Alla är här\")"
-    }
-  ]
-}

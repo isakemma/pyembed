@@ -1,9 +1,0 @@
-{
-  "title": "05-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "ANTAL_BÖCKER = 4\ntitlar = []\nfor i in range(ANTAL_BÖCKER): \n    bok = input(\"Vad heter bok nr \" + str(i+1)+ \"? \")\n    titlar.append(bok)\nprint(titlar) #skriver ut listan när slinga är klar"
-    }
-  ]
-}

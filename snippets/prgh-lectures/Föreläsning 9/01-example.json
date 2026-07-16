@@ -1,9 +1,0 @@
-{
-  "title": "01-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "class Spelare:\n  \n  def __init__ (self, namnet, poängen):\n    self.namn = namnet\n    self.poäng = poängen\n    \n  \n  def mer_poäng(self):\n    self.poäng += 1\n\nspelare = Spelare(\"Emma\", 23)\nprint(spelare.namn + \" har fått \"+ str(spelare.poäng) + \" poäng.\")\nspelare.mer_poäng()\nprint(\"\\nEfter metodanropet: \")\nprint(spelare.namn + \" har fått \"+ str(spelare.poäng) + \" poäng.\")\n  \n"
-    }
-  ]
-}

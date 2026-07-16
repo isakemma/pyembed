@@ -1,9 +1,0 @@
-{
-  "title": "02-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "antal_husdjur = int(input(\"Hur många husdjur har du?\"))\nprint(\"Ja, så du har\", antal_husdjur, \"husdjur\")"
-    }
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "title": "08-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "from random import randint\n\ndef tärning():\n  print(\"Du slog: \" + str(randint(1,6)))\n\n\ndef main():\n  antal_kast = int(input(\"Hur många gånger ska du kasta tärningen? \"))\n  for i in range(antal_kast):\n    tärning()\n    \nmain()"
-    }
-  ]
-}

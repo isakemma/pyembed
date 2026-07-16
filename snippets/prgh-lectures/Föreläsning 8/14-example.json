@@ -1,9 +1,0 @@
-{
-  "title": "14-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "def meny():\n  val = \"\"\n  while val != \"2\":\n    print(\"Meny\\n1. Val 1.\\n2. Avsluta.\")\n    val = input(\"Vad vill du göra?\")\n    if val == \"1\":\n      print(\"Du valde 1.\\n\")\n    elif val == \"2\":\n      print(\"Programmet avslutas\")\n    else:\n      print(\"Inte ett menyval, välj igen.\")\n\nmeny()"
-    }
-  ]
-}

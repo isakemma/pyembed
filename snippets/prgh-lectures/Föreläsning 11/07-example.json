@@ -1,9 +1,0 @@
-{
-  "title": "07-example",
-  "files": [
-    {
-      "name": "main.py",
-      "content": "class Långord:\n\n    VOKALER = \"aeiouyåäö\"  # VOKALER är ett klassattribut\n\n    def __init__(self, ordet):\n        self.ordet = ordet\n\n    def antal_vokaler(self):\n        antal = 0\n        for bokstav in self.ordet:\n            if bokstav in Långord.VOKALER:\n                antal += 1\n        return antal\n\ndef main():\n  ordobjekt = Långord(\"boendeparkeringstillstånd\")\n  print(ordobjekt.antal_vokaler())\n\nmain()\n"
-    }
-  ]
-}
