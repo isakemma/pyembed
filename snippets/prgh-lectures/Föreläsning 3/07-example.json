@@ -1,0 +1,9 @@
+{
+  "title": "07-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "matris = []\nANTAL_SPELARE = 2\nANTAL_FÖRSÖK = 3\nfor i in range(ANTAL_SPELARE):\n  rad=[]\n  print(\"Spelare \" + str(i+1) + \": \")\n  for j in range(ANTAL_FÖRSÖK):\n    resultat = int(input(\"Poäng försök \" + str(j+1) + \": \"))\n    rad.append(resultat)\n  matris.append(rad)\n\nprint(matris)"
+    }
+  ]
+}

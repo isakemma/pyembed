@@ -29,6 +29,21 @@
       "id": "prgh-mobius",
       "label": "Möbius DD1310 (prgh)",
       "folderPrefix": "prgh-mobius/lesson"
+    },
+    {
+      "id": "tildaovn",
+      "label": "Övningar DD1320",
+      "folderPrefix": "tildaovn"
+    },
+    {
+      "id": "tilproovn",
+      "label": "Övningar DD1321",
+      "folderPrefix": "tilproovn"
+    },
+    {
+      "id": "prgh-slides",
+      "label": "Föreläsningar DD1310",
+      "folderPrefix": "prgh/slides"
     }
   ],
   "categories": [
@@ -2163,6 +2178,878 @@
           "id": "prgh-mobius-lesson12-01-tkinter-classes",
           "file": "prgh-mobius/lesson12/01-tkinter_classes.json",
           "title": "01-tkinter_classes"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-1",
+      "name": "Prgh Lectures – Föreläsning 1",
+      "folder": "prgh-lectures/Föreläsning 1",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-1-01-example",
+          "file": "prgh-lectures/Föreläsning 1/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-1-02-example",
+          "file": "prgh-lectures/Föreläsning 1/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-1-03-example",
+          "file": "prgh-lectures/Föreläsning 1/03-example.json",
+          "title": "03-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-10",
+      "name": "Prgh Lectures – Föreläsning 10",
+      "folder": "prgh-lectures/Föreläsning 10",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-10-01-example",
+          "file": "prgh-lectures/Föreläsning 10/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-10-02-example",
+          "file": "prgh-lectures/Föreläsning 10/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-10-03-example",
+          "file": "prgh-lectures/Föreläsning 10/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-10-04-example",
+          "file": "prgh-lectures/Föreläsning 10/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-10-05-example",
+          "file": "prgh-lectures/Föreläsning 10/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-10-06-example",
+          "file": "prgh-lectures/Föreläsning 10/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-10-07-example",
+          "file": "prgh-lectures/Föreläsning 10/07-example.json",
+          "title": "07-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-10-08-example",
+          "file": "prgh-lectures/Föreläsning 10/08-example.json",
+          "title": "08-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-10-09-example",
+          "file": "prgh-lectures/Föreläsning 10/09-example.json",
+          "title": "09-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-11",
+      "name": "Prgh Lectures – Föreläsning 11",
+      "folder": "prgh-lectures/Föreläsning 11",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-11-01-example",
+          "file": "prgh-lectures/Föreläsning 11/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-11-02-example",
+          "file": "prgh-lectures/Föreläsning 11/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-11-03-example",
+          "file": "prgh-lectures/Föreläsning 11/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-11-04-example",
+          "file": "prgh-lectures/Föreläsning 11/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-11-05-example",
+          "file": "prgh-lectures/Föreläsning 11/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-11-06-example",
+          "file": "prgh-lectures/Föreläsning 11/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-11-07-example",
+          "file": "prgh-lectures/Föreläsning 11/07-example.json",
+          "title": "07-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-12",
+      "name": "Prgh Lectures – Föreläsning 12",
+      "folder": "prgh-lectures/Föreläsning 12",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-12-01-example",
+          "file": "prgh-lectures/Föreläsning 12/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-12-02-example",
+          "file": "prgh-lectures/Föreläsning 12/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-12-03-example",
+          "file": "prgh-lectures/Föreläsning 12/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-12-04-example",
+          "file": "prgh-lectures/Föreläsning 12/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-12-05-example",
+          "file": "prgh-lectures/Föreläsning 12/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-12-06-example",
+          "file": "prgh-lectures/Föreläsning 12/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-12-07-example",
+          "file": "prgh-lectures/Föreläsning 12/07-example.json",
+          "title": "07-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-13",
+      "name": "Prgh Lectures – Föreläsning 13",
+      "folder": "prgh-lectures/Föreläsning 13",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-13-01-example",
+          "file": "prgh-lectures/Föreläsning 13/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-13-02-example",
+          "file": "prgh-lectures/Föreläsning 13/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-13-03-example",
+          "file": "prgh-lectures/Föreläsning 13/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-13-04-example",
+          "file": "prgh-lectures/Föreläsning 13/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-13-05-example",
+          "file": "prgh-lectures/Föreläsning 13/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-13-06-example",
+          "file": "prgh-lectures/Föreläsning 13/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-13-07-example",
+          "file": "prgh-lectures/Föreläsning 13/07-example.json",
+          "title": "07-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-13-08-example",
+          "file": "prgh-lectures/Föreläsning 13/08-example.json",
+          "title": "08-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-13-09-example",
+          "file": "prgh-lectures/Föreläsning 13/09-example.json",
+          "title": "09-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-13-10-example",
+          "file": "prgh-lectures/Föreläsning 13/10-example.json",
+          "title": "10-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-13-11-example",
+          "file": "prgh-lectures/Föreläsning 13/11-example.json",
+          "title": "11-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-14",
+      "name": "Prgh Lectures – Föreläsning 14",
+      "folder": "prgh-lectures/Föreläsning 14",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-14-01-example",
+          "file": "prgh-lectures/Föreläsning 14/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-14-02-example",
+          "file": "prgh-lectures/Föreläsning 14/02-example.json",
+          "title": "02-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-15",
+      "name": "Prgh Lectures – Föreläsning 15",
+      "folder": "prgh-lectures/Föreläsning 15",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-15-01-example",
+          "file": "prgh-lectures/Föreläsning 15/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-15-02-example",
+          "file": "prgh-lectures/Föreläsning 15/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-15-03-example",
+          "file": "prgh-lectures/Föreläsning 15/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-15-04-example",
+          "file": "prgh-lectures/Föreläsning 15/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-15-05-example",
+          "file": "prgh-lectures/Föreläsning 15/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-15-06-example",
+          "file": "prgh-lectures/Föreläsning 15/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-15-07-example",
+          "file": "prgh-lectures/Föreläsning 15/07-example.json",
+          "title": "07-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-15-08-example",
+          "file": "prgh-lectures/Föreläsning 15/08-example.json",
+          "title": "08-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-15-09-example",
+          "file": "prgh-lectures/Föreläsning 15/09-example.json",
+          "title": "09-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-2",
+      "name": "Prgh Lectures – Föreläsning 2",
+      "folder": "prgh-lectures/Föreläsning 2",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-2-01-example",
+          "file": "prgh-lectures/Föreläsning 2/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-2-02-example",
+          "file": "prgh-lectures/Föreläsning 2/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-2-03-example",
+          "file": "prgh-lectures/Föreläsning 2/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-2-04-example",
+          "file": "prgh-lectures/Föreläsning 2/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-2-05-example",
+          "file": "prgh-lectures/Föreläsning 2/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-2-06-example",
+          "file": "prgh-lectures/Föreläsning 2/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-2-07-example",
+          "file": "prgh-lectures/Föreläsning 2/07-example.json",
+          "title": "07-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-2-08-example",
+          "file": "prgh-lectures/Föreläsning 2/08-example.json",
+          "title": "08-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-3",
+      "name": "Prgh Lectures – Föreläsning 3",
+      "folder": "prgh-lectures/Föreläsning 3",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-3-01-example",
+          "file": "prgh-lectures/Föreläsning 3/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-3-02-example",
+          "file": "prgh-lectures/Föreläsning 3/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-3-03-example",
+          "file": "prgh-lectures/Föreläsning 3/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-3-04-example",
+          "file": "prgh-lectures/Föreläsning 3/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-3-05-example",
+          "file": "prgh-lectures/Föreläsning 3/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-3-06-example",
+          "file": "prgh-lectures/Föreläsning 3/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-3-07-example",
+          "file": "prgh-lectures/Föreläsning 3/07-example.json",
+          "title": "07-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-4",
+      "name": "Prgh Lectures – Föreläsning 4",
+      "folder": "prgh-lectures/Föreläsning 4",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-4-01-example",
+          "file": "prgh-lectures/Föreläsning 4/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-4-02-example",
+          "file": "prgh-lectures/Föreläsning 4/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-4-03-example",
+          "file": "prgh-lectures/Föreläsning 4/03-example.json",
+          "title": "03-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-5",
+      "name": "Prgh Lectures – Föreläsning 5",
+      "folder": "prgh-lectures/Föreläsning 5",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-5-01-example",
+          "file": "prgh-lectures/Föreläsning 5/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-5-02-example",
+          "file": "prgh-lectures/Föreläsning 5/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-5-03-example",
+          "file": "prgh-lectures/Föreläsning 5/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-5-04-example",
+          "file": "prgh-lectures/Föreläsning 5/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-5-05-example",
+          "file": "prgh-lectures/Föreläsning 5/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-5-06-example",
+          "file": "prgh-lectures/Föreläsning 5/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-5-07-example",
+          "file": "prgh-lectures/Föreläsning 5/07-example.json",
+          "title": "07-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-5-08-example",
+          "file": "prgh-lectures/Föreläsning 5/08-example.json",
+          "title": "08-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-5-09-example",
+          "file": "prgh-lectures/Föreläsning 5/09-example.json",
+          "title": "09-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-6",
+      "name": "Prgh Lectures – Föreläsning 6",
+      "folder": "prgh-lectures/Föreläsning 6",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-6-01-example",
+          "file": "prgh-lectures/Föreläsning 6/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-6-02-example",
+          "file": "prgh-lectures/Föreläsning 6/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-6-03-example",
+          "file": "prgh-lectures/Föreläsning 6/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-6-04-example",
+          "file": "prgh-lectures/Föreläsning 6/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-6-05-example",
+          "file": "prgh-lectures/Föreläsning 6/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-6-06-example",
+          "file": "prgh-lectures/Föreläsning 6/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-6-07-example",
+          "file": "prgh-lectures/Föreläsning 6/07-example.json",
+          "title": "07-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-6-08-example",
+          "file": "prgh-lectures/Föreläsning 6/08-example.json",
+          "title": "08-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-6-09-example",
+          "file": "prgh-lectures/Föreläsning 6/09-example.json",
+          "title": "09-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-6-10-example",
+          "file": "prgh-lectures/Föreläsning 6/10-example.json",
+          "title": "10-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-6-11-example",
+          "file": "prgh-lectures/Föreläsning 6/11-example.json",
+          "title": "11-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-6-12-example",
+          "file": "prgh-lectures/Föreläsning 6/12-example.json",
+          "title": "12-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-6-13-example",
+          "file": "prgh-lectures/Föreläsning 6/13-example.json",
+          "title": "13-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-7",
+      "name": "Prgh Lectures – Föreläsning 7",
+      "folder": "prgh-lectures/Föreläsning 7",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-7-01-example",
+          "file": "prgh-lectures/Föreläsning 7/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-7-02-example",
+          "file": "prgh-lectures/Föreläsning 7/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-7-03-example",
+          "file": "prgh-lectures/Föreläsning 7/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-7-04-example",
+          "file": "prgh-lectures/Föreläsning 7/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-7-05-example",
+          "file": "prgh-lectures/Föreläsning 7/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-7-06-example",
+          "file": "prgh-lectures/Föreläsning 7/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-7-07-example",
+          "file": "prgh-lectures/Föreläsning 7/07-example.json",
+          "title": "07-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-7-08-example",
+          "file": "prgh-lectures/Föreläsning 7/08-example.json",
+          "title": "08-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-7-09-example",
+          "file": "prgh-lectures/Föreläsning 7/09-example.json",
+          "title": "09-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-7-10-example",
+          "file": "prgh-lectures/Föreläsning 7/10-example.json",
+          "title": "10-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-8",
+      "name": "Prgh Lectures – Föreläsning 8",
+      "folder": "prgh-lectures/Föreläsning 8",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-8-01-example",
+          "file": "prgh-lectures/Föreläsning 8/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-02-example",
+          "file": "prgh-lectures/Föreläsning 8/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-03-example",
+          "file": "prgh-lectures/Föreläsning 8/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-04-example",
+          "file": "prgh-lectures/Föreläsning 8/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-05-example",
+          "file": "prgh-lectures/Föreläsning 8/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-06-example",
+          "file": "prgh-lectures/Föreläsning 8/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-07-example",
+          "file": "prgh-lectures/Föreläsning 8/07-example.json",
+          "title": "07-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-08-example",
+          "file": "prgh-lectures/Föreläsning 8/08-example.json",
+          "title": "08-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-09-example",
+          "file": "prgh-lectures/Föreläsning 8/09-example.json",
+          "title": "09-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-10-example",
+          "file": "prgh-lectures/Föreläsning 8/10-example.json",
+          "title": "10-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-11-example",
+          "file": "prgh-lectures/Föreläsning 8/11-example.json",
+          "title": "11-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-12-example",
+          "file": "prgh-lectures/Föreläsning 8/12-example.json",
+          "title": "12-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-13-example",
+          "file": "prgh-lectures/Föreläsning 8/13-example.json",
+          "title": "13-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-14-example",
+          "file": "prgh-lectures/Föreläsning 8/14-example.json",
+          "title": "14-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-8-15-example",
+          "file": "prgh-lectures/Föreläsning 8/15-example.json",
+          "title": "15-example"
+        }
+      ]
+    },
+    {
+      "id": "prgh-lectures-f-rel-sning-9",
+      "name": "Prgh Lectures – Föreläsning 9",
+      "folder": "prgh-lectures/Föreläsning 9",
+      "snippets": [
+        {
+          "id": "prgh-lectures-f-rel-sning-9-01-example",
+          "file": "prgh-lectures/Föreläsning 9/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-9-02-example",
+          "file": "prgh-lectures/Föreläsning 9/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-9-03-example",
+          "file": "prgh-lectures/Föreläsning 9/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-9-04-example",
+          "file": "prgh-lectures/Föreläsning 9/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-9-05-example",
+          "file": "prgh-lectures/Föreläsning 9/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-9-06-example",
+          "file": "prgh-lectures/Föreläsning 9/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-9-07-example",
+          "file": "prgh-lectures/Föreläsning 9/07-example.json",
+          "title": "07-example"
+        }
+      ]
+    },
+    {
+      "id": "tildaovn-vning-1",
+      "name": "Tildaovn – Övning 1",
+      "folder": "tildaovn/Övning 1",
+      "snippets": [
+        {
+          "id": "tildaovn-vning-1-01-example",
+          "file": "tildaovn/Övning 1/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "tildaovn-vning-1-02-example",
+          "file": "tildaovn/Övning 1/02-example.json",
+          "title": "02-example"
+        }
+      ]
+    },
+    {
+      "id": "tildaovn-vning-2",
+      "name": "Tildaovn – Övning 2",
+      "folder": "tildaovn/Övning 2",
+      "snippets": [
+        {
+          "id": "tildaovn-vning-2-01-example",
+          "file": "tildaovn/Övning 2/01-example.json",
+          "title": "01-example"
+        }
+      ]
+    },
+    {
+      "id": "tilproovn-kopia-av-programmeringsstuga2-dd1321",
+      "name": "Tilproovn – Kopia av programmeringsstuga2 Dd1321",
+      "folder": "tilproovn/Kopia av programmeringsstuga2-dd1321",
+      "snippets": [
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga2-dd1321-01-example",
+          "file": "tilproovn/Kopia av programmeringsstuga2-dd1321/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga2-dd1321-02-example",
+          "file": "tilproovn/Kopia av programmeringsstuga2-dd1321/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga2-dd1321-03-example",
+          "file": "tilproovn/Kopia av programmeringsstuga2-dd1321/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga2-dd1321-04-example",
+          "file": "tilproovn/Kopia av programmeringsstuga2-dd1321/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga2-dd1321-05-example",
+          "file": "tilproovn/Kopia av programmeringsstuga2-dd1321/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga2-dd1321-06-example",
+          "file": "tilproovn/Kopia av programmeringsstuga2-dd1321/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga2-dd1321-07-example",
+          "file": "tilproovn/Kopia av programmeringsstuga2-dd1321/07-example.json",
+          "title": "07-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga2-dd1321-08-example",
+          "file": "tilproovn/Kopia av programmeringsstuga2-dd1321/08-example.json",
+          "title": "08-example"
+        }
+      ]
+    },
+    {
+      "id": "tilproovn-kopia-av-programmeringsstuga3-dd1321",
+      "name": "Tilproovn – Kopia av programmeringsstuga3 Dd1321",
+      "folder": "tilproovn/Kopia av programmeringsstuga3-dd1321",
+      "snippets": [
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga3-dd1321-01-example",
+          "file": "tilproovn/Kopia av programmeringsstuga3-dd1321/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga3-dd1321-02-example",
+          "file": "tilproovn/Kopia av programmeringsstuga3-dd1321/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga3-dd1321-03-example",
+          "file": "tilproovn/Kopia av programmeringsstuga3-dd1321/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga3-dd1321-04-example",
+          "file": "tilproovn/Kopia av programmeringsstuga3-dd1321/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga3-dd1321-05-example",
+          "file": "tilproovn/Kopia av programmeringsstuga3-dd1321/05-example.json",
+          "title": "05-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga3-dd1321-06-example",
+          "file": "tilproovn/Kopia av programmeringsstuga3-dd1321/06-example.json",
+          "title": "06-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga3-dd1321-07-example",
+          "file": "tilproovn/Kopia av programmeringsstuga3-dd1321/07-example.json",
+          "title": "07-example"
+        }
+      ]
+    },
+    {
+      "id": "tilproovn-kopia-av-programmeringsstuga4-dd1321",
+      "name": "Tilproovn – Kopia av programmeringsstuga4 Dd1321",
+      "folder": "tilproovn/Kopia av programmeringsstuga4-dd1321",
+      "snippets": [
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga4-dd1321-01-example",
+          "file": "tilproovn/Kopia av programmeringsstuga4-dd1321/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "tilproovn-kopia-av-programmeringsstuga4-dd1321-02-example",
+          "file": "tilproovn/Kopia av programmeringsstuga4-dd1321/02-example.json",
+          "title": "02-example"
+        }
+      ]
+    },
+    {
+      "id": "tilproovn-tilpro-vning-4",
+      "name": "Tilproovn – Tilpro övning 4",
+      "folder": "tilproovn/tilpro Övning 4",
+      "snippets": [
+        {
+          "id": "tilproovn-tilpro-vning-4-01-example",
+          "file": "tilproovn/tilpro Övning 4/01-example.json",
+          "title": "01-example"
+        },
+        {
+          "id": "tilproovn-tilpro-vning-4-02-example",
+          "file": "tilproovn/tilpro Övning 4/02-example.json",
+          "title": "02-example"
+        },
+        {
+          "id": "tilproovn-tilpro-vning-4-03-example",
+          "file": "tilproovn/tilpro Övning 4/03-example.json",
+          "title": "03-example"
+        },
+        {
+          "id": "tilproovn-tilpro-vning-4-04-example",
+          "file": "tilproovn/tilpro Övning 4/04-example.json",
+          "title": "04-example"
+        },
+        {
+          "id": "tilproovn-tilpro-vning-4-05-example",
+          "file": "tilproovn/tilpro Övning 4/05-example.json",
+          "title": "05-example"
         }
       ]
     }

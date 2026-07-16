@@ -1,0 +1,13 @@
+{
+  "title": "06-example",
+  "files": [
+    {
+      "name": "dice.py",
+      "content": "from random import *\n\ndef kasta(sidor=6):\n  kast = randint(1,sidor)\n  return kast"
+    },
+    {
+      "name": "main.py",
+      "content": "from dice import kasta\n\ndef huvudprogram():\n  fortsätt = True\n  while fortsätt:\n    antal_kast = int(input(\"Hur många kast vill du göra? \"))\n    antal_sidor = int(input(\"Hur många sidor har varje tärning? \"))\n    print(\"Resultatet blev:\")\n    for i in range(antal_kast):\n      print(kasta(antal_sidor), end=\" \")\n    igen = input(\"\\n\\nVill du kasta igen? \")\n    if igen.lower() != \"ja\":\n      fortsätt = False\n  \nhuvudprogram()"
+    }
+  ]
+}

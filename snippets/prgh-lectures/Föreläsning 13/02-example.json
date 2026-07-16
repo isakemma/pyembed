@@ -1,0 +1,21 @@
+{
+  "title": "02-example",
+  "files": [
+    {
+      "name": "Santa.py",
+      "content": "\nimport random\nfrom people import Child, NaughtyChild, NiceChild\n\n\nclass Santa:\n   #Base class for Santas. Each santa has an age and an experience, and also a sack with gifts.\n   def __init__(self, age, experience):\n      self.age = age\n      self.experience = experience\n      self.sack = [\"Doll\", \"Train\", \"Ball\", \"Book\"]\n   \n   def __str__(self):\n      return f\"{self.age} years old Santa with experience level {self.experience}\"\n   \n   def deliver(self, toPerson):\n      toPerson.receive(random.choice(self.sack))\n\n\n\nclass SeniorSanta(Santa):\n   #Child class - Senior santa has earned himself a name and a rank, and is somewhat more strategic when he delivers packages...\n   def __init__(self, age, experience, rank, name):\n      super().__init__(age, experience)\n      self.rank = rank\n      self.name = name\n   \n   def __str__(self):\n      return f\"Senior santa {self.name} with rank {self.rank}\"\n   \n   def deliver(self, toPerson):\n      if toPerson.isNaughty():\n         toPerson.receive(\"Lump of coal\")\n      else:\n         wantedgifts = set(self.sack).intersection(set(toPerson.getWishlist()))\n         toPerson.receive(random.choice(list(wantedgifts)))\n      print(\"Hohoho\")\n\nif __name__ == \"__main__\":\n   '''Test code for Santas. Requires other people as well. Does not run on import.'''\n   testSanta = Santa(45, 4)\n   senior = SeniorSanta(89, 100, \"expert\", \"Nicholas\")\n   child1 = NaughtyChild(\"Tom\")\n   child2 = NiceChild(\"Tage\")\n         \n   print(senior)\n   print(child1.getWishlist())\n   senior.deliver(child1)\n   senior.deliver(child2)\n\n   print(testSanta)\n   testSanta.deliver(child1)\n   testSanta.deliver(child2)\n   \n\n\n"
+    },
+    {
+      "name": "children.txt",
+      "content": "Tom\nNAUGHTY\nCar Ball Desk Laptop\n\nTed\nNICE\nCar Train Doll\n\nAnn\nNICE\nCar Computer Book\n\nElsie\nNAUGHTY\nBook Doll Train"
+    },
+    {
+      "name": "main.py",
+      "content": "from people import *\nimport Santa\n\ndef readChild(infile):\n  '''Reads three rows of the infile and creates an object of a subclass of Child.\n  If the name (first line) is empty, returns None, else returns a child object.'''\n  name = infile.readline().strip()\n  if (name == \"\"):\n      return \n  type = infile.readline().strip()\n  wishlist = infile.readline().split()\n  if type == \"NAUGHTY\":\n      return NaughtyChild(name)\n  elif type == \"NICE\":\n      return NiceChild(name)\n  else:\n      print(type)\n      print(\"Invalid input\")\n\ndef createChildren():\n  '''Reads an infile (hard coded) and creates a list of children. Returns the list.'''\n  children = []\n  with open (\"children.txt\", 'r') as infile:\n      child = readChild(infile) \n      while child:\n          children.append(child)\n          row = infile.readline()\n          child = readChild(infile)\n  return children\n\nprint(createChildren())"
+    },
+    {
+      "name": "people.py",
+      "content": "import random\n\n#Sketchy parent class with children, uncommented..\nclass Child:\n      def __init__(self, name, isNice):\n         self.name = name\n         if isNice:\n            self.__type = \"NICE\"\n         else:\n            self.__type = \"NAUGHTY\"\n         #Placeholder - we should read wishlist from file instead!\n         self.__wishlist = random.sample([\"Computer\", \"Horse\", \"Train\", \"Book\", \"Doll\"], 3)\n      \n      def isNaughty(self):\n         return self.__type == \"NAUGHTY\"\n      \n      def getWishlist(self):\n         return self.__wishlist\n      \n      def receive(self, gift):\n         pass\n      \n      def __repr__(self):\n        return f\"{self.name } is a {self.__type.lower()} child\\n\" \n\nclass NiceChild(Child):\n   def __init__(self, name):\n      super().__init__(name, True)\n   \n   def receive(self, gift):\n      print(f\"Thank you, dear Santa. I always wanted a {gift}\")\n\nclass NaughtyChild(Child):\n   def __init__(self, name):\n      super().__init__(name, False)\n   \n   def receive(self, gift):\n      print(f\"Boo! Stupid Santa. I did not want a {gift}\")"
+    }
+  ]
+}

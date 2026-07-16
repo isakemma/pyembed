@@ -1,0 +1,33 @@
+{
+  "title": "03-example",
+  "files": [
+    {
+      "name": "intlist.py",
+      "content": "#När vi lagt till copy kommer alla exemplen att bete sig som ordet\n\ntal = [1,2,3,4]\nprint(\"ursprunglig: \", tal)\nnya_tal = tal\ntal[1] = 50\nprint(\"ändrad: \",tal)\nprint(\"kopian: \",nya_tal)"
+    },
+    {
+      "name": "julkula.py",
+      "content": "#När vi lagt till copy kommer alla exemplen att bete sig som ordet\nclass Julkula:\n   def __init__(self, ord):\n      self.ord = ord\n   def __repr__(self):\n      return self.ord\n\nordlista = []\nfor i in (\"sko\", \"mus\", \"ost\", \"katt\"):\n   ordlista.append(Julkula(i))\n\nprint(\"ursprunglig: \", ordlista)\nny_ordlista = ordlista.copy()\nordlista[2] = Julkula(\"hus\")\nprint(\"ändrad: \", ordlista)\nprint(\"kopia: \", ny_ordlista)"
+    },
+    {
+      "name": "main.py",
+      "content": "\n# Inget konstigt här!\nimport ord\n\n# Men här:\nimport strlist\n\n# Och här, om vi inte lägger till .copy()\nimport intlist\n\n# Blir det någon skillnad med objekt?\nimport wrapped_int\nimport julkula\n\n# Och sista exemplet!\nimport tal"
+    },
+    {
+      "name": "ord.py",
+      "content": "\nord = \"hoppla\"\nprint(\"ursprunglig: \", ord)\nnytt_ord = ord\nord = \"hemma\"\nprint(\"ändrad: \",ord)\nprint(\"kopian:\", nytt_ord)"
+    },
+    {
+      "name": "strlist.py",
+      "content": "#När vi lagt till copy kommer alla exemplen att bete sig som ordet\n\nträd = [\"asp\", \"bok\", \"ceder\", \"lönn\"]\nprint(\"ursprunglig: \", träd)\nnya_träd = träd\nträd[1] = \"tall\"\nprint(\"ändrad: \", träd)\nprint(\"kopian: \",nya_träd)"
+    },
+    {
+      "name": "tal.py",
+      "content": "# ... men om vi ändrar INUTI objekten så slår ändringen igenom i kopian! Det räcker inte med .copy()!\nclass Tal:\n  \n  def __init__(self, talet):\n    self.nummer = talet\n\n  def __repr__(self):\n    return str(self.nummer)\n\nlista = [Tal(3), Tal(4), Tal(1), Tal(-8), Tal(12)]\nprint(\"lista: \", lista)\n\nalias = lista.copy()\nlista[0].nummer = 0\n\nprint(\"lista: \", lista)\nprint(\"alias: \", alias)"
+    },
+    {
+      "name": "wrapped_int.py",
+      "content": "#När vi lagt till copy kommer alla exemplen att bete sig som ordet\n\nclass Testtal(int):\n   def __init__(self, tal):\n      self.tal = tal\n\nlista = []\nfor i in range(4):\n   lista.append(Testtal(i))\n\nprint(\"ursprunglig: \",lista)\nny_lista = lista.copy()\nlista[2] = Testtal(23)\nprint(\"ändrad: \", lista)\nprint(\"kopia: \",ny_lista)"
+    }
+  ]
+}

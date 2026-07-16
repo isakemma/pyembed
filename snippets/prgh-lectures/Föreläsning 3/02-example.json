@@ -1,0 +1,9 @@
+{
+  "title": "02-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "frukter=[\"äpple\",\"päron\",\"körsbär\",\"mango\"]\nfrukter.insert(1,\"banan\")\n\n\nprint(frukter)"
+    }
+  ]
+}

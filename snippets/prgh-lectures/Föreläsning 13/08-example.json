@@ -1,0 +1,9 @@
+{
+  "title": "08-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "matris = []\nfor i in range(1,4):\n  rad=[]\n  for j in range(1,4):\n    rad.append(j*i)\n  matris.append(rad)\nprint(matris)\n\nprint(matris[1][2])"
+    }
+  ]
+}

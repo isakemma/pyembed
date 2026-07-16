@@ -1,0 +1,9 @@
+{
+  "title": "06-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "class Inköpslista(list):\n    \n  def __str__(self):\n    sträng = \"\"\n    for vara in self:\n      sträng += \" * \" + str(vara) + \"\\n\"\n    return sträng\n\ndef main():\n  lista = [\"Ägg\",\"Smör\",\"Mjölk\"]\n  print(\"Utskrift av 'list'\")\n  print(lista)\n  inköpslista = Inköpslista(lista)\n  print(\"Utskrift av 'Inköpslista'\")\n  print(inköpslista)\n\n\nmain()"
+    }
+  ]
+}

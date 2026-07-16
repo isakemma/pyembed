@@ -1,0 +1,9 @@
+{
+  "title": "07-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "# Uppgift 5 övning 3\n# Camilla Björn\n# 2023-11-19\n\ndef skapa_stjärlista(ord):\n    '''Funktion som tar ett ord och skapar en lista där varje element är en\n    bokstav i ordet omringad av *.\n    IN: ord (str)\n    UT: stjärnlista (list)'''\n    stjärnlista = []\n    for bokstav in ord:\n        stjärnbokstav = '*' + bokstav + '*'\n        stjärnlista.append(stjärnbokstav)\n    return stjärnlista\n\n\ndef skapa_julkaos(ord, hjälplista):\n    '''Funktion som tar ett ord och skapar en lista av kaosiga julord med *-or i.\n    IN: ord (str)\n    IN: hjälplista med strängar (list)\n    UT: stjärnlista (list)'''\n    stjärnlista = skapa_stjärlista(ord)\n\n    hjälplista = ['julkula', 'rensläde', 'nötknäckare']\n    julkaos_listan = []\n    for ord in hjälplista:\n        for element in stjärnlista:\n            kaos_ord = ord[:3] + element + ord[3:]\n            julkaos_listan.append(kaos_ord)\n    return julkaos_listan\n\ndef main():\n    fler_ord = ['snöflinga', 'snögubbe', 'jultomte']\n    hjälplista = ['julkula', 'rensläde', 'nötknäckare']\n    mer_julkaos_lista = []\n    for ord in fler_ord:\n        ny_julkaos_lista = skapa_julkaos(ord, hjälplista)\n        mer_julkaos_lista.extend(ny_julkaos_lista)\n\n    # Check att det fungerar som det ska.\n    # Det kan vara lite svårt att se att det funkar som det ska, men\n    # fundera över vilka bokstäver som ska stå mellan *-orna.\n    print(mer_julkaos_lista)\n\nmain()"
+    }
+  ]
+}

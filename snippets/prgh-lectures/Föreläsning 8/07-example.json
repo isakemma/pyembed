@@ -1,0 +1,13 @@
+{
+  "title": "07-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "def positivt_heltal(inmatning):\n  \"\"\"Tar reda på om en inmatning är ett postivit heltal\n  Inparametrar: inmatning\n  Returvärde: True/False (bool)\"\"\"\n  try:\n    inmatning = int(inmatning)\n    if inmatning < 0:\n      return False\n    else:\n  \t  return True\n  except ValueError:\n    return False\n\ndef läs_tal_från_fil(filnamn):\n  \"\"\" Läser ifrån en fil och returnerar en lista av postiva heltal\n        Inparameter: filnamn (str)\n        Returvärde:  resultat (list<Int>)\n    \"\"\"\n  infil = open(filnamn, \"r\")\n  resultat = []\n  for rad in infil:\n    rad = rad.strip()\n    if positivt_heltal(rad):\n      resultat.append(int(rad))\n    else:\n      print(rad, \"är inte ett postivt heltal!\")\n  infil.close()\n  return resultat\n\ndef huvudfunktion():\n  resultat = läs_tal_från_fil(\"tal.txt\")\n  print(\"\\nAlla positiva heltal från filen:\")\n  for tal in resultat:\n    print(tal)\n    \nhuvudfunktion()\n"
+    },
+    {
+      "name": "tal.txt",
+      "content": "45\n8\n-1\n23\nhej\n3\nnej\n7.1\n-34\n62"
+    }
+  ]
+}

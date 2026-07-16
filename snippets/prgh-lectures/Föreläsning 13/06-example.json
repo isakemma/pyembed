@@ -1,0 +1,13 @@
+{
+  "title": "06-example",
+  "files": [
+    {
+      "name": "infil.txt",
+      "content": "mjölk 15\nbröd 25\nost 65\nfil 23\nsylt 45\n"
+    },
+    {
+      "name": "main.py",
+      "content": "#Ett program som läser in produkter och priser\ndef läs_in(filnamn):\n  \"\"\"Läser in produkter och priser från fil\n  Inparameter: filnamn (sträng)\n  Returerar:  produkter (matris [[sträng, int]]\"\"\"\n  fil = open(filnamn, \"r\")\n  produkter = []\n  rad = fil.readline().strip()\n  while rad != \"\":           #Så länge som raden inte är tom\n    rad = rad.split()        #delar upp strängen i två\n    produkter.append([rad[0],int(rad[1])])\n    rad = fil.readline().strip()  #läser in nästa rad\n  return produkter\n \ndef lägg_till(filnamn, produkter):\n  fil = open(filnamn, \"a\")\n  fil.write(produkter[-1][0] + \" \")\n  fil.write(str(produkter[-1][1]) + \"\\n\")\n  fil.close()\n\n\ndef main():\n  inlästa_produkter = läs_in(\"infil.txt\")\n  for produkt in inlästa_produkter:\n    print(produkt[0] + \" har priset \" + str(produkt[1]) + \" kr.\")\n  ny_produkt = input(\"Vilken produkt vill du lägga till? \")\n  pris = int(input(\"Vilken pris har den? \"))\n  inlästa_produkter.append([ny_produkt, pris]) \n  lägg_till(\"infil.txt\", inlästa_produkter)\n  \nmain()"
+    }
+  ]
+}

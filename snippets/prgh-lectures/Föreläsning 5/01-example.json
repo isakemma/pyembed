@@ -1,0 +1,9 @@
+{
+  "title": "01-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "def skriva_ut_hej():\n\tprint(\"Hej\") #Koden i funktionen\n\t"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "01-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "def fib(n):\n  första = 0\n  andra = 1\n  summa = 0\n  räknare = 1\n  while(räknare <=n):\n    räknare +=1\n    första= andra\n    andra = summa\n    summa = första + andra\n  return summa\n  \nprint(fib(0), fib(1), fib(2), fib(3), fib(4), fib(5), fib(6))\n\t\n"
+    }
+  ]
+}

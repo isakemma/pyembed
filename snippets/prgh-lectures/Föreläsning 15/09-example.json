@@ -1,0 +1,9 @@
+{
+  "title": "09-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "print(\"Svårläst tabell: \")\nfor n in range(10):\n  print(f\"{n} {n**2} {n**3} {n**4}\")\n\nprint()\nprint(\"Finare tabell: \")\nfor n in range(10):\n  print(f\"{n:>2} {n**2:>3} {n**3:>4} {n**4:>5}\")\n"
+    }
+  ]
+}

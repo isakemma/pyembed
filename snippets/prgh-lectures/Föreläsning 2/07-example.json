@@ -1,0 +1,9 @@
+{
+  "title": "07-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "mittHeltal = 10\n\nif (mittHeltal == 10):\n  print(\"Heltalet jämförs fint!\")\n\nmittFlyttal = 10.01\n\n#for i in range(10):\n#  if (mittFlyttal == 10.01):\n#    print(\"Flyttalet jämförs fint!\")\n    \n#for i in range(10):\n#  mittNyaFlyttal = mittFlyttal+0.1-0.5+0.7-0.3\n#  if (mittNyaFlyttal == mittFlyttal):\n#    print(\"Nya flyttalet är lika med gamla!\")\n#print(0.1+0.7-0.5-0.3)\n#print(1-5+7-3)"
+    }
+  ]
+}

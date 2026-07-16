@@ -1,0 +1,9 @@
+{
+  "title": "13-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "#VÄLDIGT dåligt sätt att göra en meny på. Provkör och se om du lyckas avsluta!\n\ndef missbruk1():\n  val = input(\"Ange siffra 1-3\")\n  while val != \"3\":\n    if val == \"1\":\n      print(\"Du valde 1.\")\n    elif val == \"2\":\n      print(\"Du valde 2.\")\n    else:\n      print(\"Välj om! \")\n    missbruk1()\n\n#missbruk1()\n\n#Fortfarande VÄLDIGT dåligt sätt att göra en meny på. Provkör och se om du lyckas avsluta nu!\ndef missbruk2():\n  val = 1\n  while val != \"3\":\n    val = input(\"Ange siffra 1-3\")\n    if val == \"1\":\n      print(\"Du valde 1.\")\n    elif val == \"2\":\n      print(\"Du valde 2.\")\n    else:\n      print(\"Välj om! \")\n    missbruk2()\n\n#missbruk2()\n\n#No good...\ndef missbruk3(val):\n  val = input(\"Ange siffra 1-3\")\n  while val!=\"3\":\n    if val == \"1\":\n      print(\"Du valde 1.\")\n    elif val == \"2\":\n      print(\"Du valde 2.\")\n    else:\n      print(\"Välj om! \")\n    missbruk3(val)\n\n#missbruk3(1)\n\nval = input(\"Ange siffra 1-3\")\ndef missbrukadRekursion(val):\n  while val!=\"3\":\n    if val == \"1\":\n      print(\"Du valde 1.\")\n    elif val == \"2\":\n      print(\"Du valde 2.\")\n    else:\n      print(\"Välj om! \")\n    val = input(\"Ange siffra 1-3\")\n    missbrukadRekursion(val)\n\nmissbrukadRekursion(val) \n"
+    }
+  ]
+}

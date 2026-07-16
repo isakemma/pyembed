@@ -1,0 +1,13 @@
+{
+  "title": "01-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "# Klasser\n# Arv\n# Filer\n# Villkor och loopar\n# Funktioner\n\n# Exempel: Bygga en TODO-lista\n\n\"\"\" Uppgifter\n   - namn på uppgiften\n   - deadline\n   - prioritet\n   - klar/inte klar\n\n   Vilka uppgifter gör vi just nu?\n   Lägga till uppgifter\n   Starta uppgifter\n   Checka av uppgifter\n   Spara till fil\n   Läs från fil\n\n   \"\"\"\n\nclass Task:\n\n    def __init__(self, taskname, deadline = None, prio = -1):\n        self.task = taskname\n        self.deadline = deadline\n        self.priority = prio\n        self.__done = False\n    \n    def __str__(self):\n        return self.taskname+ \": \" + str(self.deadline)+ (\" priority: \" + self.prio)\n    \n    def __lt__(self, other):\n        return self.priority < other.priority\n    \n    def mark_done(self):\n        self.__done = True\n\ndef read_tasks(filename):\n    tasks = []\n    with open(filename, \"r\", encoding=\"UTF-8\") as file:\n        row = file.readline()\n        while row != \"\":\n            row = row.strip().split(\",\")\n            #print(row)\n            task = Task(row[0], row[1], row[2])\n            tasks.append(task)\n            row = file.readline()\n    return tasks\n\nif __name__ ==\"__main__\":\n    #Vi sparar listan som read_tasks returnerar i variabeln tasklist.\n    tasklist = read_tasks(\"taskfile.txt\")\n    print(tasklist) # Här behövs __repr__ för att det ska bli snyggt! __str__ används för enskilda objekt."
+    },
+    {
+      "name": "taskfile.txt",
+      "content": "Köp mjölk, 2025-12-10,\nBetala elräkning, 2025-12-29,\nRing mamma, ,\nBär bort återvinning, 2025-12-12, 2"
+    }
+  ]
+}
