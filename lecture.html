@@ -106,7 +106,7 @@
         const course  = courses.find(c => c.id === courseId) || courses.find(c => c.id === 'lectures');
         if (!course) throw new Error('Course ' + courseId + ' not found in index.json');
 
-        const catFolder = course.folderPrefix + String(lessonN).padStart(2, '0');
+        const catFolder = course.folderPrefix + String(lessonN).padStart(course.pad ?? 2, '0');
         const cat = index.categories.find(c => c.folder === catFolder);
         if (!cat) throw new Error('Lesson ' + lessonN + ' not found for course ' + courseId);
 
@@ -116,7 +116,10 @@
         nav.innerHTML  = '';
         nav.appendChild(allBtn);
 
-        const lessons = index.categories.filter(c => c.folder.startsWith(course.folderPrefix));
+        const lessons = index.categories
+          .filter(c => c.folder.startsWith(course.folderPrefix))
+          .sort((a, b) => parseInt(a.folder.slice(course.folderPrefix.length), 10)
+                        - parseInt(b.folder.slice(course.folderPrefix.length), 10));
         lessons.forEach(function(lc) {
           const n   = parseInt(lc.folder.slice(course.folderPrefix.length), 10);
           const btn = document.createElement('a');
