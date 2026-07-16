@@ -8,7 +8,12 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; background: transparent; }
     body { display: flex; flex-direction: column; }
-    .py-snippet { flex: 1; }
+    /* !important: the widget adds its own "psw" class to this same element,
+       and embed.js's `.psw { all: initial; ... }` reset otherwise wins the
+       equal-specificity tie (it's injected after this stylesheet), silently
+       dropping flex: 1 and letting the widget grow to its content's height
+       instead of filling the iframe — which breaks internal scrolling. */
+    .py-snippet { flex: 1 !important; min-height: 0 !important; }
     /* Let the widget fill the iframe */
     .psw .pw-widget { height: 100% !important; border-radius: 0 !important; border: none !important; }
   </style>
