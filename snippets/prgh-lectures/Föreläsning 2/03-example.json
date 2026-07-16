@@ -1,0 +1,9 @@
+{
+  "title": "03-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "while True:\n\tprint(\"Det här skrivs tills du skriver nej\")\n\tfortsätt = input(\"Vill du fortsätta? \")\n\tif fortsätt == \"nej\":\n\t\tbreak\n\t\t"
+    }
+  ]
+}

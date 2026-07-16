@@ -1,0 +1,9 @@
+{
+  "title": "03-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "def skapa_matris(rader, kolumner):\n  matris = []\n  for i in range(rader):\n    ny_rad = []\n    for j in range(kolumner):\n      tal = int(input(\"Ange siffran på rad \" + str(i+1) + \" kolumn \"+ str(j+1) + \" : \"))\n      ny_rad.append(tal)\n    matris.append(ny_rad)\n  return matris\n  \ndef utskrift_matris(matris):\n  print(\"Fin utskrift av matrisen: \")\n  for rad in matris:\n    for element in rad:\n      print(element, end= \" \")\n    print()\n\ndef plocka_ut_element(matris):\n  rad_index = int(input(\"På vilken rad? \"))\n  kolumn_index = int(input(\"Vilken kolumn? \"))\n  print(\"På rad\", rad_index, \"och kolumn\", kolumn_index, \"finns \", matris[rad_index][kolumn_index])\n    \ndef inmatning():\n  antal_rader = int(input(\"Hur många rader vill du ha?: \"))\n  antal_kolumner = int(input(\"Hur många kolumner vill du ha?: \"))\n  return antal_rader, antal_kolumner\n\ndef huvudfunktion():\n\trader, kolumner = inmatning()\n\tmatrisen = skapa_matris(rader, kolumner)\n\tprint(matrisen)\n\tutskrift_matris(matrisen)\n\tplocka_ut_element(matrisen)\n\t\nhuvudfunktion()\n"
+    }
+  ]
+}

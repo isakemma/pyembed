@@ -1,0 +1,9 @@
+{
+  "title": "03-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "# Uppgift 2 övning 3\n# Camilla Björn\n# 2023-11-19\n\nord = 'snöflinga'\nstjärnlista = []\nfor bokstav in ord:\n    stjärnbokstav = '*' + bokstav + '*'\n    stjärnlista.append(stjärnbokstav)\n\nhjälplista = ['julkula', 'rensläde', 'nötknäckare']\njulkaos_listan = []\nfor ord in hjälplista:\n    for element in stjärnlista:\n        kaos_ord = ord[:3] + element + ord[3:]\n        julkaos_listan.append(kaos_ord)\n\n# Check att det fungerar som det ska\nprint(julkaos_listan)\n"
+    }
+  ]
+}

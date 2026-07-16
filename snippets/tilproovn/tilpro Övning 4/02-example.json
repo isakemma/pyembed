@@ -1,0 +1,9 @@
+{
+  "title": "02-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "class Paj:\n  \n  def __init__(self, typ, fyllning, portioner):\n    self.typ = typ\n    self.fyllning = fyllning\n    self.antal_portioner = portioner\n    \n  def __str__(self):\n    return self.fyllning + \"s\" + self.typ + \" för \"+ str(self.antal_portioner) + \" pers.\"\n    \n  def tillagningstid(self):\n    if self.typ == \"smulpaj\":\n      print(\"Ca 20 minuter på 225 C\")\n    elif self.fyllning == \"pekannöter\" or self.fyllning == \"äpple\":\n      print(\"Ca 35-40 minuter på 200 C\")\n    else:\n      print(\"Ca 25-30 minuter på 200 C\")\n    \n  def nytt_antal(self, nytt_antal):\n    self.antal_portioner = nytt_antal"
+    }
+  ]
+}

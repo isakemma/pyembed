@@ -1,0 +1,9 @@
+{
+  "title": "05-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "from copy import *\n\nclass Tal:\n  \n  def __init__(self, talet):\n    self.nummer = talet\n\n  def __repr__(self):\n    return str(self.nummer)\n\nlista = [Tal(3), Tal(4), Tal(1), Tal(-8), Tal(12)]\nprint(\"lista: \", lista)\n\nalias = deepcopy(lista)\nlista[0].nummer = 0\n\nprint(\"lista: \", lista)\nprint(\"alias: \", alias)\n\n\n"
+    }
+  ]
+}

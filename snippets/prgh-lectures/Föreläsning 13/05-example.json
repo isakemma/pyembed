@@ -1,0 +1,9 @@
+{
+  "title": "05-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "class Kakformer(set):\n  def __str__(self):\n    sträng = \"Former: \"\n    for form in self:\n      sträng +=  str(form) + \", \"\n    return sträng[:-2] \n\ndef main():\t\n  mina_former = Kakformer({\"hjärta\", \"gran\", \"gris\", \"klocka\"})\n  print(mina_former)\n  kompis_former = Kakformer({\"hjärta\", \"häst\", \"älg\", \"stjärna\"})\n  \n  snitt = mina_former.intersection(kompis_former)\n  alla = mina_former.union(kompis_former)\n  print(\"Snitt: \", snitt)\n  print(\"Union: \", Kakformer(alla))\n  \n  \nmain()"
+    }
+  ]
+}

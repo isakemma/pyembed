@@ -1,0 +1,9 @@
+{
+  "title": "02-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "class Film:\n  \n  def __init__(self, namn, utgivningsår, kommentatorspår = False):\n    self.titel = namn\n    self.utgivningsår = utgivningsår\n    self.kommentatorspår = kommentatorspår\n    \n  def __str__(self):\n    if self.kommentatorspår == False:\n      sträng = \" har inte kommentatorspår.\"\n    else:\n      sträng = \" har kommentatorspår.\"\n    return self.titel + \"gavs ut \" + str(self.utgivningsår) + sträng\n    \n  def lägg_till_kommentatorspår(self):\n    self.kommentatorspår = True\n    \nfilm = Film(\"Nyckeln till frihet\", 1994, False)\nfilmer= [Film(\"Gudfadern\",1972, False), Film(\"Titanic\",1997,False), film]\nfilm.lägg_till_kommentatorspår()\n\nfor element in filmer:\n  print(element)"
+    }
+  ]
+}

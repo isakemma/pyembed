@@ -1,0 +1,9 @@
+{
+  "title": "03-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "frukter = [\"äpple\",\"päron\",\"körsbär\",\"mango\"]\nfor frukt in frukter:\n    print(frukt, end =\" \")"
+    }
+  ]
+}

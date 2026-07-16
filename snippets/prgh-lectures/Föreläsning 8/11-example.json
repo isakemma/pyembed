@@ -1,0 +1,9 @@
+{
+  "title": "11-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "def summering(inmatning, tal):\n  try:\n    inmatning = int(inmatning)\n    summa = inmatning + tal\n    return summa\n  except:     #Alla typer av fel\n    print(\"Inte en positiv siffra, försök igen.\")\n    return False\n    \ndef huvudprogram():\n  TAL = 24 #Prova att ändra till en sträng\n  inmatning = input(\"Mata in ett tal: \")\n  while summering(inmatning, TAL) == False:\n    inmatning = input(\"Mata in ett tal: \")\n  print(\"Summan blev: \", summering(inmatning, TAL))\n  \nhuvudprogram()"
+    }
+  ]
+}

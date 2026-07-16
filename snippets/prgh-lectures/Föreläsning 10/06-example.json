@@ -1,0 +1,13 @@
+{
+  "title": "06-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "from tal import *\n\ndef main():\n  lista=[]\n  for i in range(5):\n    objekt = Tal(i)\n    lista.append(objekt)\n  \n  print(lista) #Här används repr, om den inte finns kommer du få var den finns i minnet: <__main__.Tal object at 0x7f19b2c9fd90>\n  \n  for element in lista:\n    print(element) #Här str, om de inte finns repr\n    \nmain()"
+    },
+    {
+      "name": "tal.py",
+      "content": "class Tal():\n  \n  def __init__(self, tal):\n    self.tal = tal\n\n  def __str__(self):\n    return \"från str: \" + str(self.tal)\n  \n  def __repr__(self):\n    return \"från repr: \" + str(self.tal)\n    "
+    }
+  ]
+}

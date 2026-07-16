@@ -1,0 +1,9 @@
+{
+  "title": "05-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "val = input(\"Vad vill du göra ? Ange siffra 1-3\")\nwhile val != \"3\":\n  if val == \"1\":\n    print(\"Du valde 1.\")\n  elif val == \"2\":\n    print(\"Du valde 2.\")\n  else:\n    print(\"Du valde inte en siffra 1-3.\")\n  val = input(\"Vad vill du göra ? Ange siffra 1-3\")\nprint(\"Du valde 3. Hejdå!\")"
+    }
+  ]
+}
