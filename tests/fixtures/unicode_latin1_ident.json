@@ -1,0 +1,6 @@
+{
+  "title": "unicode_latin1_ident_fixture",
+  "files": [
+    { "name": "main.py", "content": "lösenord = 'öppna'\ndef är_öppen(x):\n    return x == lösenord\nprint(är_öppen('öppna'))\n" }
+  ]
+}

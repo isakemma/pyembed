@@ -1,0 +1,6 @@
+{
+  "title": "write_then_reread_fixture",
+  "files": [
+    { "name": "main.py", "content": "with open('notes.txt', 'w') as f:\n    f.write('first\\n')\n    f.write('second\\n')\n\nwith open('notes.txt') as f:\n    print(f.read())\n" }
+  ]
+}

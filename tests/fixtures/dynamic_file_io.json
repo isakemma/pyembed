@@ -1,0 +1,9 @@
+{
+  "title": "dynamic_file_io_fixture",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "name = input('Enter filename: ')\nwith open(name, 'w') as f:\n    f.write('hello from dynamic file\\n')\nprint('Wrote to', name)\n"
+    }
+  ]
+}

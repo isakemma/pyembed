@@ -1,0 +1,6 @@
+{
+  "title": "unicode_nonlatin1_ident_fixture",
+  "files": [
+    { "name": "main.py", "content": "变量 = 42\nλ = 3\nп = 7\nprint(变量 + λ + п)\n" }
+  ]
+}

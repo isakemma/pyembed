@@ -96,9 +96,16 @@
             const cats  = data.categories.filter(c => c.folder.startsWith(course.folderPrefix));
             const total = cats.reduce(function(sum, c) { return sum + c.snippets.length; }, 0);
             if (cats.length === 0) continue;
+            // Not every course's lesson numbering starts at 1 (e.g. a course
+            // whose first folder was removed) — link to the lowest lesson
+            // that actually exists.
+            const nums = cats
+              .map(c => parseInt(c.folder.slice(course.folderPrefix.length), 10))
+              .filter(n => !isNaN(n));
+            const firstN = nums.length ? Math.min(...nums) : 1;
             const a = document.createElement('a');
             a.className = 'card';
-            a.href = `lecture.html?course=${course.id}&n=1`;
+            a.href = `lecture.html?course=${course.id}&n=${firstN}`;
             a.innerHTML = `
               <div class="card-title">${course.label}</div>
               <div class="card-desc">${cats.length} lesson${cats.length !== 1 ? 's' : ''} · ${total} examples</div>
