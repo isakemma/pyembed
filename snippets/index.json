@@ -41,9 +41,9 @@
       "folderPrefix": "tilproovn"
     },
     {
-      "id": "prgh-slides",
+      "id": "prgh-lectures",
       "label": "Föreläsningar DD1310",
-      "folderPrefix": "prgh/slides"
+      "folderPrefix": "prgh-lectures"
     }
   ],
   "categories": [
