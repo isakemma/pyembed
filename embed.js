@@ -226,7 +226,7 @@
 
 /* ── Editor section ── */
 .${HOST_CLS} .pw-editor-section { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
-.${HOST_CLS} .pw-editor-area   { flex: 1; min-height: 0; position: relative; }
+.${HOST_CLS} .pw-editor-area   { flex: 1; min-height: clamp(120px, 35%, 200px); position: relative; }
 .${HOST_CLS} .pw-editor-area .cm-editor  { position: absolute; inset: 0; font-size: 12px !important; }
 .${HOST_CLS} .pw-editor-area .cm-scroller {
   font-family: Menlo, Monaco, 'Courier New', Courier, monospace !important;
