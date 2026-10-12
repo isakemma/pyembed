@@ -3052,6 +3052,18 @@
           "title": "05-example"
         }
       ]
+    },
+    {
+      "id": "editor",
+      "name": "Editor",
+      "folder": "editor",
+      "snippets": [
+        {
+          "id": "editor-testspace",
+          "file": "editor/TestSpace.json",
+          "title": "TestSpace"
+        }
+      ]
     }
   ]
 }
