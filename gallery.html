@@ -73,6 +73,7 @@
     </div>
   </div>
 
+  <script src="site.js"></script>
   <script>
     const params = new URLSearchParams(location.search);
     const catId  = params.get('cat');
@@ -86,7 +87,7 @@
         document.getElementById('cat-desc').textContent = 'Choose a category below.';
         // Show category cards
         try {
-          const data = await fetch('snippets/index.json').then(r => r.json());
+          const data = await PySnippets.loadIndex();
           state.remove();
 
           // ── Course groups shown as big cards ──────────────────────────
@@ -135,7 +136,7 @@
       }
 
       try {
-        const data = await fetch('snippets/index.json').then(r => r.json());
+        const data = await PySnippets.loadIndex();
         const cat  = data.categories.find(c => c.folder === catId);
         if (!cat) throw new Error(`Category "${catId}" not found in index.json`);
 
@@ -146,24 +147,28 @@
 
         state.remove();
 
-        // Fetch each snippet's title/description for the card
+        // Fetch each snippet's title/description for the card. The cards are
+        // put in place first, so that they stay in the lesson's order
+        // whichever file arrives first.
         await Promise.all(cat.snippets.map(async (s, i) => {
+          const a = document.createElement('a');
+          a.className = 'card';
+          grid.appendChild(a);
+
           let title = s.title, desc = '';
           try {
-            const sn = await fetch('snippets/' + s.file).then(r => r.json());
+            const sn = await fetch(PySnippets.srcFor(s.file)).then(r => r.json());
             title = sn.title || s.title;
             desc  = sn.description || '';
           } catch(_) {}
 
-          const a = document.createElement('a');
-          a.className = 'card';
-          a.href = `viewer.html?src=${encodeURIComponent(s.file)}`;
+          // The snippet's address (viewer.html?folder/name), see site.js
+          a.href = await PySnippets.linkTo(s.file);
           a.innerHTML = `
             <div class="card-num">#${String(i + 1).padStart(2, '0')}</div>
             <div class="card-title">${title}</div>
             ${desc ? `<div class="card-desc">${desc}</div>` : ''}
             <div class="card-arrow">Open →</div>`;
-          grid.appendChild(a);
         }));
 
       } catch(e) {

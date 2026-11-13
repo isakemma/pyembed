@@ -20,18 +20,26 @@
 </head>
 <body>
   <div class="py-snippet" id="widget"></div>
+  <script src="site.js"></script>
+  <script src="embed.js"></script>
   <script>
-    const raw = new URLSearchParams(location.search).get('src');
+    // Which snippet the link is about is worked out in site.js, for links
+    // of every kind: ?folder/name, and ?src=folder/03.json from before names.
     const el = document.getElementById('widget');
-    if (raw) {
-      // If src is already absolute (http/https) use it as-is; otherwise treat as relative to snippets/
-      const src = /^https?:\/\//.test(raw) ? raw : 'snippets/' + raw;
-      el.dataset.src = src;
-    } else {
+    function say(text) {
       el.style.cssText = 'display:flex;align-items:center;justify-content:center;height:100%;font-family:sans-serif;color:#cf222e;font-size:13px;';
-      el.textContent = '⚠ No snippet specified. Add ?src=basic-examples/hello.json to the URL.';
+      el.textContent = text;
+    }
+    const raw = PySnippets.addressFromQuery(location.search);
+    if (raw) {
+      PySnippets.resolve(raw).then(found => {
+        if (found.retired) { say('⚠ This example has been removed.'); return; }
+        el.dataset.src = found.src;
+        window._pySnippetInitAll();
+      });
+    } else {
+      say('⚠ No snippet specified. Add ?basic-examples/hello to the URL.');
     }
   </script>
-  <script src="embed.js"></script>
 </body>
 </html>

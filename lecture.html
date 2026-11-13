@@ -89,6 +89,7 @@
     </div>
   </footer>
 
+  <script src="site.js"></script>
   <script src="embed.js"></script>
   <script>
     const params   = new URLSearchParams(location.search);
@@ -101,7 +102,7 @@
       const content = document.getElementById('content');
 
       try {
-        const index = await fetch('snippets/index.json').then(r => r.json());
+        const index = await PySnippets.loadIndex();
         const courses = index.courses || [];
         const course  = courses.find(c => c.id === courseId) || courses.find(c => c.id === 'lectures');
         if (!course) throw new Error('Course ' + courseId + ' not found in index.json');
@@ -151,7 +152,7 @@
 
           const widget = document.createElement('div');
           widget.className   = 'py-snippet';
-          widget.dataset.src = 'snippets/' + s.file;
+          widget.dataset.src = PySnippets.srcFor(s.file);
           group.appendChild(widget);
 
           content.appendChild(group);
