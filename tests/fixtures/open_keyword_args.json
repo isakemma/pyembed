@@ -1,0 +1,7 @@
+{
+  "title": "open_keyword_args_fixture",
+  "files": [
+    { "name": "main.py", "content": "with open('notes.txt', 'w', encoding='UTF8') as f:\n    f.write('räksmörgås\\n')\n\nwith open('notes.txt', encoding='utf-8') as f:\n    print(f.read())\n\nwith open(file='data.txt', mode='rt', encoding='utf-8') as f:\n    for line in f:\n        print(line.strip())\n\nwith open('notes.txt', mode='a', encoding='utf-8') as f:\n    f.write('appended\\n')\n\nprint(open('notes.txt', 'r').read())\n\ntry:\n    open('notes.txt', bogus=1)\nexcept TypeError as e:\n    print('TypeError')\n\ntry:\n    open('missing.txt', encoding='utf-8')\nexcept FileNotFoundError:\n    print('missing')\n" },
+    { "name": "data.txt", "content": "ett\ntvå\n" }
+  ]
+}

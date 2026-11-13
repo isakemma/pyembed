@@ -1014,6 +1014,59 @@
         Sk.builtins.PermissionError   = Sk.builtin.IOError;
         Sk.builtins.IsADirectoryError = Sk.builtin.IOError;
 
+        // Skulpt's open() is Python 2's open(name[, mode[, buffering]]) and
+        // takes no keyword arguments, so open(name, encoding="utf-8") — the
+        // form students are taught — fails with "open() takes no keyword
+        // arguments". Wrap it in Python 3's signature. File content is a JS
+        // string all the way through, so encoding/errors/newline are accepted
+        // and ignored. Skulpt's file object also only knows the modes r, w, a
+        // (and rb/wb/ab), so the text-mode "t" is dropped ("rt" → "r").
+        Sk.builtins.open = new Sk.builtin.sk_method({
+          $name: 'open',
+          $meth(file, mode, buffering) {
+            const none = Sk.builtin.none.none$;
+            let m = mode === none ? 'r' : Sk.ffi.remapToJs(mode);
+            if (typeof m !== 'string')
+              throw new Sk.builtin.TypeError("open() argument 'mode' must be str");
+            if (m.includes('+') || m.includes('x'))
+              throw new Sk.builtin.NotImplementedError(
+                `open() mode '${m}' is not supported here — use 'r', 'w' or 'a'`);
+            m = m.replace('t', '') || 'r';
+            return Sk.builtin.open(file, new Sk.builtin.str(m),
+                                   buffering === none ? undefined : buffering);
+          },
+          $flags: {
+            NamedArgs: ['file', 'mode', 'buffering', 'encoding', 'errors', 'newline', 'closefd', 'opener'],
+            Defaults: Array(7).fill(Sk.builtin.none.none$),
+          },
+          $textsig: "($module, /, file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)",
+          $doc: 'Open file and return a file object.',
+        }, null, 'builtins');
+
+        // Skulpt's math.gcd takes exactly two arguments; since Python 3.9 it
+        // takes any number (gcd() == 0, gcd(x) == abs(x)). The math module is
+        // only built when a program imports it, so the two-argument gcd is
+        // replaced right after that import by one that folds over it.
+        Sk.onAfterImport = (name) => {
+          if (name !== 'math') return;
+          const math = Sk.sysmodules.mp$lookup(new Sk.builtin.str('math'));
+          const gcd2 = math && math.$d.gcd;
+          if (!gcd2 || gcd2.$variadic) return;
+          const gcd = new Sk.builtin.sk_method({
+            $name: 'gcd',
+            $meth(...ints) {
+              let result = new Sk.builtin.int_(0);
+              for (const n of ints) result = Sk.misceval.callsimArray(gcd2, [result, n]);
+              return result;
+            },
+            $flags: { MinArgs: 0 },
+            $textsig: '($module, /, *integers)',
+            $doc: 'Greatest Common Divisor.',
+          }, null, 'math');
+          gcd.$variadic = true;
+          math.$d.gcd = gcd;
+        };
+
         // ── Configure Skulpt ───────────────────────────────────────────────
         Sk.TurtleGraphics = {
           target: skulptTarget || undefined,

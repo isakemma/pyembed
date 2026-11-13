@@ -1,0 +1,6 @@
+{
+  "title": "math_gcd_variadic_fixture",
+  "files": [
+    { "name": "main.py", "content": "import math\nfrom math import gcd\n\nprint(math.gcd(12, 18))\nprint(math.gcd(12, 18, 24))\nprint(gcd(12, 18, 24, 9))\nprint(math.gcd(), math.gcd(-7), math.gcd(0, 0), math.gcd(-4, 6))\nprint(math.gcd(2**70, 2**65, 2**80) == 2**65)\ntry:\n    math.gcd(4, 2.5)\nexcept TypeError:\n    print('TypeError')\n" }
+  ]
+}
