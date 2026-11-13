@@ -382,7 +382,7 @@
     }
 
     const { EditorView, basicSetup, EditorState, python, syntaxHighlighting, HighlightStyle, tags,
-            ViewPlugin, Decoration, MatchDecorator, keymap, indentWithTab } = cm;
+            ViewPlugin, Decoration, MatchDecorator, keymap, indentWithTab, acceptCompletion } = cm;
 
     // ── Python built-in highlighter (MatchDecorator) ──────────────────────────
     // lezer-python cannot distinguish built-in calls from user-defined calls via
@@ -495,6 +495,13 @@
       '.cm-activeLine':       { backgroundColor: '#ffffcc' },
       '.cm-activeLineGutter': { backgroundColor: '#fffaaa' },
       '.cm-matchingBracket':  { backgroundColor: '#e0e0e0', outline: 'none' },
+      // Say how to use the autocomplete list, under its last suggestion
+      '.cm-tooltip.cm-tooltip-autocomplete::after': {
+        content: '"Tab or Enter: accept  ·  ↑↓: choose  ·  Esc: close"',
+        display: 'block', padding: '3px 6px', borderTop: '1px solid #ddd',
+        backgroundColor: '#f6f8fa', color: '#57606a', whiteSpace: 'nowrap',
+        fontSize: '11px', fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      },
     }, { dark: false });
 
     // Exact IDLE Python syntax colours:
@@ -542,7 +549,9 @@
         doc: content,
         extensions: [
           basicSetup,
-          keymap.of([indentWithTab]),
+          // Tab accepts the highlighted autocomplete suggestion (as Enter does);
+          // with no suggestions showing, it falls through and indents.
+          keymap.of([{ key: 'Tab', run: acceptCompletion }, indentWithTab]),
           lightTheme,
           idleHighlight,
           builtinHighlighter,

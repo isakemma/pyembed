@@ -7,3 +7,4 @@ export { syntaxHighlighting, HighlightStyle } from '@codemirror/language';
 export { tags } from '@lezer/highlight';
 export { ViewPlugin, Decoration, MatchDecorator, keymap } from '@codemirror/view';
 export { indentWithTab } from '@codemirror/commands';
+export { acceptCompletion } from '@codemirror/autocomplete';
