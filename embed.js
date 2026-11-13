@@ -14,6 +14,7 @@
 
   let _skulptPromise  = null;
   let _cmPromise      = null;
+  let _qrPromise      = null;
   let _widgetCounter  = 0;
   let _stylesInjected = false;
 
@@ -43,6 +44,19 @@
     if (_cmPromise) return _cmPromise;
     _cmPromise = import(VENDOR + 'codemirror.js');
     return _cmPromise;
+  }
+
+  // ── QR code generator loader (only when the Link & QR dialog is opened) ────
+  // Loaded from the jsDelivr CDN, with no copy in vendor/: nobody needs a QR
+  // code to run a snippet, and if the CDN is down the dialog says so and the
+  // link itself still works. (Skulpt and CodeMirror are deliberately not
+  // loaded this way: see README.)
+  const QRCODE_CDN = 'https://cdn.jsdelivr.net/npm/qrcode-generator@2.0.4/dist/qrcode.mjs';
+  function getQrcode() {
+    if (_qrPromise) return _qrPromise;
+    _qrPromise = import(QRCODE_CDN).then(m => m.default);
+    _qrPromise.catch(() => { _qrPromise = null; });   // let the next click retry
+    return _qrPromise;
   }
 
   // ── Global styles (injected once) ─────────────────────────────────────────
@@ -104,8 +118,8 @@
 .${HOST_CLS} .pw-btn-dl:not(:disabled):hover    { background: #f3f4f6; border-color: #9a9da1; }
 .${HOST_CLS} .pw-btn-reset { background: #fff; color: #57606a; border-color: #d0d7de; }
 .${HOST_CLS} .pw-btn-reset:not(:disabled):hover { background: #fff8c5; border-color: #d4a72c; color: #24292e; }
-.${HOST_CLS} .pw-btn-embed { background: #fff; color: #0969da; border-color: #d0d7de; }
-.${HOST_CLS} .pw-btn-embed:hover { background: #dbeafe; border-color: #0969da; }
+.${HOST_CLS} .pw-btn-embed, .${HOST_CLS} .pw-btn-link { background: #fff; color: #0969da; border-color: #d0d7de; }
+.${HOST_CLS} .pw-btn-embed:hover, .${HOST_CLS} .pw-btn-link:hover { background: #dbeafe; border-color: #0969da; }
 .${HOST_CLS} .pw-hint     { font-size: 12px; color: #57606a; flex-shrink: 0; }
 .${HOST_CLS} .pw-hint-err { color: #cf222e; }
 
@@ -137,8 +151,9 @@
 }
 .psw-modal-copy  { background: #0969da; color: #fff; border-color: #0969da; }
 .psw-modal-copy:hover  { background: #0860ca; }
-.psw-modal-close { background: #fff; color: #24292e; border-color: #d0d7de; }
-.psw-modal-close:hover { background: #f3f4f6; }
+.psw-modal-close, .psw-modal-qr-dl { background: #fff; color: #24292e; border-color: #d0d7de; }
+.psw-modal-close:hover, .psw-modal-qr-dl:not(:disabled):hover { background: #f3f4f6; }
+.psw-modal-qr-dl:disabled { opacity: 0.5; cursor: default; }
 .psw-modal-dl    { background: #1f883d; color: #fff; border-color: #1f883d; }
 .psw-modal-dl:hover    { background: #1a7f37; }
 /* Tabs */
@@ -157,6 +172,12 @@
   color: #24292e; margin-bottom: 12px; outline: none;
 }
 .psw-modal-filename:focus { border-color: #0969da; box-shadow: 0 0 0 3px rgba(9,105,218,0.1); }
+/* Link & QR tab */
+.psw-modal-qr {
+  display: flex; justify-content: center; align-items: center;
+  min-height: 200px; margin-bottom: 16px; font-size: 12px; color: #57606a;
+}
+.psw-modal-qr svg { width: 200px; height: 200px; display: block; }
 .psw-modal-panel { display: none; }
 .psw-modal-panel.active { display: block; }
 
@@ -213,6 +234,7 @@
 .${HOST_CLS}.pw-narrow .pw-btn-dl-label    { display: none; }
 .${HOST_CLS}.pw-narrow .pw-btn-reset-label { display: none; }
 .${HOST_CLS}.pw-narrow .pw-btn-embed-label { display: none; }
+.${HOST_CLS}.pw-narrow .pw-btn-link-label  { display: none; }
 .${HOST_CLS}.pw-narrow .pw-files     { display: none; }
 .${HOST_CLS}.pw-narrow .pw-file-tabs { display: block; }
 
@@ -419,10 +441,13 @@
     const embedBtn = el('button', 'pw-btn pw-btn-embed');
     embedBtn.title = 'Get embed code for this snippet';
     embedBtn.innerHTML = '&lt;/&gt; <span class="pw-btn-embed-label">Embed</span>';
+    const linkBtn = el('button', 'pw-btn pw-btn-link');
+    linkBtn.title = 'Get a link and a QR code for this snippet';
+    linkBtn.innerHTML = '🔗 <span class="pw-btn-link-label">Link</span>';
     const fsBtn = el('button', 'pw-fullscreen-btn', '⛶');
     fsBtn.title = 'Fullscreen';
     const hint = el('span', 'pw-hint', 'Loading Python…');
-    toolbar.append(titleArea, runBtn, dlBtn, resetBtn, embedBtn, fsBtn, hint);
+    toolbar.append(titleArea, runBtn, dlBtn, resetBtn, linkBtn, embedBtn, fsBtn, hint);
     widget.appendChild(toolbar);
 
     // Main area
@@ -734,8 +759,13 @@
       clearOutput();
     });
 
-    embedBtn.addEventListener('click', () => {
-      // ── iframe embed code ────────────────────────────────────────────────────
+    // One dialog for both buttons: 🔗 Link opens it on the "Link & QR" tab,
+    // </> Embed on the "iframe Embed" tab.
+    linkBtn.addEventListener('click', () => openShareModal('link'));
+    embedBtn.addEventListener('click', () => openShareModal('iframe'));
+
+    function openShareModal(initialTab) {
+      // ── Link to the snippet on a page of its own, and iframe embed code ────────────────────────────────────────────────────
       const base = _embedScriptSrc
         ? _embedScriptSrc.replace(/\/embed\.js$/, '')
         : 'https://USERNAME.github.io/REPO';
@@ -744,28 +774,44 @@
       const iframeCode = `<iframe\n  src="${viewerUrl}"\n  width="100%"\n  height="540"\n  style="border:none;border-radius:8px;"\n  loading="lazy"\n  allowfullscreen\n></iframe>`;
 
       // ── Suggest a filename from the snippet title ────────────────────────────
-      const defaultFilename = (snippet.title || 'my_snippet')
-        .toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') + '.json';
+      const defaultBasename = (snippet.title || 'my_snippet')
+        .toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') || 'my_snippet';
+      const defaultFilename = defaultBasename + '.json';
+      const active = tab => (tab === initialTab ? ' active' : '');
 
       // ── Build modal ──────────────────────────────────────────────────────────
       const overlay = document.createElement('div');
       overlay.className = 'psw-modal-overlay';
       overlay.innerHTML = `
         <div class="psw-modal" role="dialog" aria-modal="true">
-          <p class="psw-modal-title">Export / Embed</p>
+          <p class="psw-modal-title">Link / Embed / Export</p>
 
           <div class="psw-modal-tabs">
-            <button class="psw-modal-tab active" data-tab="iframe">iframe Embed</button>
-            <button class="psw-modal-tab"        data-tab="json">Create JSON file</button>
+            <button class="psw-modal-tab${active('link')}"   data-tab="link">Link &amp; QR</button>
+            <button class="psw-modal-tab${active('iframe')}" data-tab="iframe">iframe Embed</button>
+            <button class="psw-modal-tab${active('json')}"   data-tab="json">Create JSON file</button>
+          </div>
+
+          <!-- Tab: link and QR code -->
+          <div class="psw-modal-panel${active('link')}" data-panel="link">
+            <p class="psw-modal-sub">A link to this snippet on a page of its own. The QR code leads to the same address.</p>
+            <input class="psw-modal-filename psw-modal-url" type="text" readonly spellcheck="false"
+                   value="${viewerUrl.replace(/&/g,'&amp;').replace(/"/g,'&quot;')}" />
+            <div class="psw-modal-qr">Creating QR code…</div>
+            <div class="psw-modal-actions">
+              <button class="psw-modal-btn psw-modal-close">Close</button>
+              <button class="psw-modal-btn psw-modal-qr-dl" disabled>Download QR code</button>
+              <button class="psw-modal-btn psw-modal-copy psw-modal-copy-link">Copy link</button>
+            </div>
           </div>
 
           <!-- Tab: iframe -->
-          <div class="psw-modal-panel active" data-panel="iframe">
+          <div class="psw-modal-panel${active('iframe')}" data-panel="iframe">
             <p class="psw-modal-sub">Paste this into any HTML page — no extra script tag needed.</p>
             <div class="psw-modal-code">${iframeCode.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
             <div class="psw-modal-actions">
               <button class="psw-modal-btn psw-modal-close">Close</button>
-              <button class="psw-modal-btn psw-modal-copy">Copy</button>
+              <button class="psw-modal-btn psw-modal-copy psw-modal-copy-iframe">Copy</button>
             </div>
           </div>
 
@@ -792,28 +838,79 @@
       });
 
       // ── Close ────────────────────────────────────────────────────────────────
-      const closeModal = () => overlay.remove();
+      const onKey = e => { if (e.key === 'Escape') closeModal(); };
+      const closeModal = () => { overlay.remove(); document.removeEventListener('keydown', onKey); };
+      document.addEventListener('keydown', onKey);
       overlay.querySelectorAll('.psw-modal-close').forEach(btn => {
         btn.addEventListener('click', closeModal);
       });
       overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
 
-      // ── Copy iframe code ─────────────────────────────────────────────────────
-      const copyBtn = overlay.querySelector('.psw-modal-copy');
-      copyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(iframeCode).then(() => {
-          copyBtn.textContent = 'Copied!';
-          setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
-        }).catch(() => {
-          const ta = document.createElement('textarea');
-          ta.value = iframeCode;
-          ta.style.position = 'fixed'; ta.style.opacity = '0';
-          document.body.appendChild(ta); ta.select();
-          document.execCommand('copy');
-          document.body.removeChild(ta);
-          copyBtn.textContent = 'Copied!';
-          setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
+      // ── Copy link / copy iframe code ─────────────────────────────────────────
+      function copyOnClick(btn, text) {
+        const label = btn.textContent;
+        const done = () => {
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = label; }, 2000);
+        };
+        btn.addEventListener('click', () => {
+          navigator.clipboard.writeText(text).then(done).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed'; ta.style.opacity = '0';
+            document.body.appendChild(ta); ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            done();
+          });
         });
+      }
+      const copyLinkBtn = overlay.querySelector('.psw-modal-copy-link');
+      copyOnClick(copyLinkBtn, viewerUrl);
+      copyOnClick(overlay.querySelector('.psw-modal-copy-iframe'), iframeCode);
+      const urlInput = overlay.querySelector('.psw-modal-url');
+      urlInput.addEventListener('focus', () => urlInput.select());
+      // Enter copies the link straight away when the dialog opens on that tab
+      if (initialTab === 'link') copyLinkBtn.focus();
+
+      // ── QR code for the link ─────────────────────────────────────────────────
+      // Drawn as SVG on screen and as a PNG of about 1000 px for download, both
+      // with the 4-module white margin that scanners expect.
+      const qrBox = overlay.querySelector('.psw-modal-qr');
+      const qrDlBtn = overlay.querySelector('.psw-modal-qr-dl');
+      getQrcode().then(qrcode => {
+        const qr = qrcode(0, 'M');
+        qr.addData(viewerUrl);
+        qr.make();
+        const n = qr.getModuleCount(), margin = 4, size = n + 2 * margin;
+        let path = '';
+        for (let r = 0; r < n; r++)
+          for (let c = 0; c < n; c++)
+            if (qr.isDark(r, c)) path += `M${c + margin} ${r + margin}h1v1h-1z`;
+        qrBox.innerHTML =
+          `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges"` +
+          ` role="img" aria-label="QR code for the link above">` +
+          `<rect width="${size}" height="${size}" fill="#fff"/><path d="${path}" fill="#000"/></svg>`;
+
+        qrDlBtn.disabled = false;
+        qrDlBtn.addEventListener('click', () => {
+          const scale = Math.ceil(1000 / size);
+          const canvas = Object.assign(document.createElement('canvas'),
+                                       { width: size * scale, height: size * scale });
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#fff';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = '#000';
+          for (let r = 0; r < n; r++)
+            for (let c = 0; c < n; c++)
+              if (qr.isDark(r, c)) ctx.fillRect((c + margin) * scale, (r + margin) * scale, scale, scale);
+          const a = Object.assign(document.createElement('a'),
+                                  { href: canvas.toDataURL('image/png'), download: defaultBasename + '_qr.png' });
+          document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        });
+      }).catch(() => {
+        qrBox.textContent = 'The QR code generator could not be loaded (it comes from cdn.jsdelivr.net). ' +
+                            'The link above works, and any QR code generator can make a code from it.';
       });
 
       // ── Download JSON ────────────────────────────────────────────────────────
@@ -836,7 +933,7 @@
         document.body.appendChild(a); a.click(); document.body.removeChild(a);
         setTimeout(() => URL.revokeObjectURL(url), 500);
       });
-    });
+    }
 
     // ── Responsive: narrow mode via ResizeObserver ────────────────────────────
     const ro = new ResizeObserver(entries => {
