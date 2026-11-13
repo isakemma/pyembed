@@ -3,7 +3,8 @@
 export { EditorView, basicSetup } from 'codemirror';
 export { EditorState } from '@codemirror/state';
 export { python } from '@codemirror/lang-python';
-export { syntaxHighlighting, HighlightStyle } from '@codemirror/language';
+export { syntaxHighlighting, HighlightStyle, indentUnit } from '@codemirror/language';
 export { tags } from '@lezer/highlight';
 export { ViewPlugin, Decoration, MatchDecorator, keymap } from '@codemirror/view';
 export { indentWithTab } from '@codemirror/commands';
+export { acceptCompletion } from '@codemirror/autocomplete';

@@ -10,6 +10,8 @@ import json
 import os
 import sys
 
+from fix_indent import fix_mixed_indentation
+
 
 def read_python_file(path):
     """
@@ -105,6 +107,10 @@ def main():
 
     filename = os.path.basename(input_path)
     content = read_python_file(input_path)
+    fixed = fix_mixed_indentation(content)
+    if fixed != content:
+        print("Note: mixed tabs and spaces converted to spaces (see fix_indent.py).")
+        content = fixed
     snippet = build_snippet(filename, content)
     write_json_file(output_path, snippet)
 

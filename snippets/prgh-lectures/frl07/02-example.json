@@ -7,7 +7,7 @@
     },
     {
       "name": "main.py",
-      "content": "def läs_fil():\n  with open(\"fil.txt\", \"r\") as infil:\n  \t  all_text = infil.readlines()\n  #Kommer stänga filen när detta körts klart\n  return all_text\n \nprint(läs_fil())"
+      "content": "def läs_fil():\n  with open(\"fil.txt\", \"r\") as infil:\n    all_text = infil.readlines()\n  #Kommer stänga filen när detta körts klart\n  return all_text\n\nprint(läs_fil())"
     }
   ]
 }
