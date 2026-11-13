@@ -127,7 +127,7 @@ def check_site(page, site):
         ".card", "els => els.map(e => [e.querySelector('.card-title').textContent, e.getAttribute('href')])")
     assert cards == [["First", "viewer.html?fake/lesson01/01"],
                      ["Sortering", "viewer.html?fake/lesson01/sortering"]], cards
-    page.click(".card:nth-child(2)")
+    page.click(".card-cell:nth-child(2) .card")
     page.wait_for_selector(".pw-file", timeout=10000)
     assert page.inner_text(".pw-title") == "Sortering"
 

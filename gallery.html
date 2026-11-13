@@ -47,6 +47,20 @@
     .card-desc  { font-size: 13px; color: var(--muted); }
     .card-arrow { font-size: 13px; color: var(--accent); margin-top: auto; padding-top: 10px; }
 
+    /* ── Download buttons (made by PySnippets.downloadButton in site.js) ── */
+    .dl-btn {
+      padding: 5px 12px; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--accent); font-size: 13px;
+      font-family: inherit; cursor: pointer; white-space: nowrap;
+    }
+    .dl-btn:hover:not(:disabled) { background: var(--border); }
+    .dl-btn:disabled { opacity: 0.5; cursor: default; }
+    .hero .dl-btn { margin-top: 12px; }
+    /* A snippet's card with its download button underneath */
+    .card-cell { display: flex; flex-direction: column; gap: 6px; }
+    .card-cell .card { flex: 1; }
+    .card-cell .dl-btn { align-self: flex-start; }
+
     /* ── States ── */
     .state { padding: 60px 0; text-align: center; color: var(--muted); font-size: 14px; }
     .state-err { color: #cf222e; }
@@ -147,13 +161,23 @@
 
         state.remove();
 
+        // Everything in the category as one zip: folder/name/files
+        if (cat.snippets.length) {
+          document.querySelector('.hero').appendChild(PySnippets.downloadButton(
+            '↓ Download all (.zip)', cat.snippets.map(s => s.file), cat.folder.replace(/\//g, '-') + '.zip'));
+        }
+
         // Fetch each snippet's title/description for the card. The cards are
         // put in place first, so that they stay in the lesson's order
         // whichever file arrives first.
         await Promise.all(cat.snippets.map(async (s, i) => {
+          const cell = document.createElement('div');
+          cell.className = 'card-cell';
           const a = document.createElement('a');
           a.className = 'card';
-          grid.appendChild(a);
+          cell.append(a, PySnippets.downloadButton(
+            '↓ Files (.zip)', [s.file], () => PySnippets.zipNameFor(s.file)));
+          grid.appendChild(cell);
 
           let title = s.title, desc = '';
           try {
