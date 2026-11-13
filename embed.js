@@ -1043,6 +1043,30 @@
           $doc: 'Open file and return a file object.',
         }, null, 'builtins');
 
+        // Skulpt's math.gcd takes exactly two arguments; since Python 3.9 it
+        // takes any number (gcd() == 0, gcd(x) == abs(x)). The math module is
+        // only built when a program imports it, so the two-argument gcd is
+        // replaced right after that import by one that folds over it.
+        Sk.onAfterImport = (name) => {
+          if (name !== 'math') return;
+          const math = Sk.sysmodules.mp$lookup(new Sk.builtin.str('math'));
+          const gcd2 = math && math.$d.gcd;
+          if (!gcd2 || gcd2.$variadic) return;
+          const gcd = new Sk.builtin.sk_method({
+            $name: 'gcd',
+            $meth(...ints) {
+              let result = new Sk.builtin.int_(0);
+              for (const n of ints) result = Sk.misceval.callsimArray(gcd2, [result, n]);
+              return result;
+            },
+            $flags: { MinArgs: 0 },
+            $textsig: '($module, /, *integers)',
+            $doc: 'Greatest Common Divisor.',
+          }, null, 'math');
+          gcd.$variadic = true;
+          math.$d.gcd = gcd;
+        };
+
         // ── Configure Skulpt ───────────────────────────────────────────────
         Sk.TurtleGraphics = {
           target: skulptTarget || undefined,
