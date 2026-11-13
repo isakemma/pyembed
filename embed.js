@@ -382,7 +382,7 @@
     }
 
     const { EditorView, basicSetup, EditorState, python, syntaxHighlighting, HighlightStyle, tags,
-            ViewPlugin, Decoration, MatchDecorator, keymap, indentWithTab, acceptCompletion } = cm;
+            ViewPlugin, Decoration, MatchDecorator, keymap, indentWithTab, acceptCompletion, indentUnit } = cm;
 
     // ── Python built-in highlighter (MatchDecorator) ──────────────────────────
     // lezer-python cannot distinguish built-in calls from user-defined calls via
@@ -544,11 +544,37 @@
         color: '#000000' },
     ]));
 
+    // The indentation a file already uses: '\t', or 1–8 spaces. Enter and Tab
+    // must continue in the same style, because Python rejects a block whose
+    // lines are indented differently (and any mix of tabs and spaces). Measured
+    // as the most common step in from a line ending in ':' to the line after
+    // it; a file with no such block yet gets 4 spaces, as in IDLE and PEP 8.
+    function detectIndent(content) {
+      const counts = new Map();
+      let opener = null;                       // indentation of a preceding "...:" line
+      for (const line of content.split('\n')) {
+        const code = line.replace(/#.*$/, '').trimEnd();
+        if (!code.trim()) continue;
+        const lead = code.match(/^[ \t]*/)[0];
+        if (opener !== null && lead.length > opener.length && lead.startsWith(opener)) {
+          const step = lead.slice(opener.length);
+          const unit = step[0] === '\t' ? '\t' : /^ {1,8}$/.test(step) ? step : null;
+          if (unit) counts.set(unit, (counts.get(unit) || 0) + 1);
+        }
+        opener = code.endsWith(':') ? lead : null;
+      }
+      let best = '    ', bestCount = 0;
+      for (const [unit, count] of counts)
+        if (count > bestCount) { best = unit; bestCount = count; }
+      return best;
+    }
+
     function makeState(name, content) {
       return EditorState.create({
         doc: content,
         extensions: [
           basicSetup,
+          indentUnit.of(detectIndent(content)),
           // Tab accepts the highlighted autocomplete suggestion (as Enter does);
           // with no suggestions showing, it falls through and indents.
           keymap.of([{ key: 'Tab', run: acceptCompletion }, indentWithTab]),

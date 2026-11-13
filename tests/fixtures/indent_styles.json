@@ -1,0 +1,13 @@
+{
+  "title": "indent_styles_fixture",
+  "files": [
+    { "name": "main.py", "content": "print('see the other files')\n" },
+    { "name": "four.py", "content": "def f(x):\n    if x:\n        return 1" },
+    { "name": "two.py", "content": "def f(x):\n  if x:\n    return 1" },
+    { "name": "tabs.py", "content": "def f(x):\n\tif x:\n\t\treturn 1" },
+    { "name": "three.py", "content": "def f(x):\n   if x:\n      return 1" },
+    { "name": "mostly_two.py", "content": "# an aligned continuation line must not count as a block\ntotal = sum([1,\n             2])\nif total:\n  for i in range(total):\n    print(i)\nelse:\n  pass\ndef f(x):\n  if x:\n    return 1" },
+    { "name": "flat.py", "content": "x = 1\nprint(x)" },
+    { "name": "empty.py", "content": "" }
+  ]
+}
