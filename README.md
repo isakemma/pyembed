@@ -22,6 +22,7 @@ Embed a snippet on any page with a single `<iframe>`:
 - Replace `USERNAME` and `REPO` with your GitHub username and repository name
 - The `src` parameter is relative to the `snippets/` folder
 - Use the **</> Embed** button on any widget to get a ready-to-paste iframe
+- Use the **🔗 Link** button to get the snippet's address (the `viewer.html` URL above) with a **Copy link** button, and a QR code for it that can be downloaded as a PNG for slides and handouts
 
 ---
 
@@ -341,6 +342,13 @@ files in `vendor/` are committed, so GitHub Pages still needs no build step.
   **Updates:** `.github/workflows/skulpt-watch.yml` checks skulpt.org every
   Monday and opens an issue when the build has changed. Then run
   `npm run skulpt`, run the tests and commit `vendor/`.
+- **The QR code generator** ([qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator),
+  MIT) is the exception: nobody needs it to run code, so it is loaded from the
+  jsDelivr CDN when the Link dialog is opened, and there is no copy in
+  `vendor/`. If the CDN is down the dialog says so; the link still works, and
+  any other QR code generator can make a code from it.
+  **Updates:** the version is part of the address in `embed.js` (`QRCODE_CDN`);
+  change it there by hand. Dependabot does not know about it.
 
 By hand (Node 20+):
 
