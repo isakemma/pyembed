@@ -1014,6 +1014,35 @@
         Sk.builtins.PermissionError   = Sk.builtin.IOError;
         Sk.builtins.IsADirectoryError = Sk.builtin.IOError;
 
+        // Skulpt's open() is Python 2's open(name[, mode[, buffering]]) and
+        // takes no keyword arguments, so open(name, encoding="utf-8") — the
+        // form students are taught — fails with "open() takes no keyword
+        // arguments". Wrap it in Python 3's signature. File content is a JS
+        // string all the way through, so encoding/errors/newline are accepted
+        // and ignored. Skulpt's file object also only knows the modes r, w, a
+        // (and rb/wb/ab), so the text-mode "t" is dropped ("rt" → "r").
+        Sk.builtins.open = new Sk.builtin.sk_method({
+          $name: 'open',
+          $meth(file, mode, buffering) {
+            const none = Sk.builtin.none.none$;
+            let m = mode === none ? 'r' : Sk.ffi.remapToJs(mode);
+            if (typeof m !== 'string')
+              throw new Sk.builtin.TypeError("open() argument 'mode' must be str");
+            if (m.includes('+') || m.includes('x'))
+              throw new Sk.builtin.NotImplementedError(
+                `open() mode '${m}' is not supported here — use 'r', 'w' or 'a'`);
+            m = m.replace('t', '') || 'r';
+            return Sk.builtin.open(file, new Sk.builtin.str(m),
+                                   buffering === none ? undefined : buffering);
+          },
+          $flags: {
+            NamedArgs: ['file', 'mode', 'buffering', 'encoding', 'errors', 'newline', 'closefd', 'opener'],
+            Defaults: Array(7).fill(Sk.builtin.none.none$),
+          },
+          $textsig: "($module, /, file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)",
+          $doc: 'Open file and return a file object.',
+        }, null, 'builtins');
+
         // ── Configure Skulpt ───────────────────────────────────────────────
         Sk.TurtleGraphics = {
           target: skulptTarget || undefined,
