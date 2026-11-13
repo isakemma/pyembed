@@ -21,6 +21,12 @@ directories left empty by those deletions are removed as well.
 
 Pass --dryrun to print what would be written/deleted without touching
 the filesystem.
+
+The name of a leaf directory decides the snippet's place in its lesson and
+its address in links: 03b-sortering comes after 03-... and gets the address
+.../sortering. Run create_index.py afterwards; it gives new snippets their
+addresses and lets a renamed directory keep the ones it had (see
+snippet_addresses.py and "Addresses" in README.md).
 """
 
 import argparse
@@ -29,6 +35,7 @@ import os
 import sys
 
 from fix_indent import fix_mixed_indentation
+from snippet_addresses import NOT_SNIPPETS
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SNIPPETS_ROOT = os.path.join(SCRIPT_DIR, "snippets")
@@ -148,6 +155,11 @@ def existing_json_files(output_root):
             if name.endswith(".json"):
                 full = os.path.join(dirpath, name)
                 rel = os.path.relpath(full, output_root).replace(os.sep, "/")
+                # index.json and addresses.json are not snippets, and the
+                # address list cannot be made again if it is deleted
+                at_root = os.path.normpath(dirpath) == os.path.normpath(SNIPPETS_ROOT)
+                if at_root and name in NOT_SNIPPETS:
+                    continue
                 found.add(rel)
     return found
 
