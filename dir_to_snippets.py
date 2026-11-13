@@ -28,6 +28,8 @@ import json
 import os
 import sys
 
+from fix_indent import fix_mixed_indentation
+
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SNIPPETS_ROOT = os.path.join(SCRIPT_DIR, "snippets")
 
@@ -46,6 +48,27 @@ def read_file(path):
         return f.read()
 
 
+def read_snippet_file(path):
+    """
+    Reads one file for a snippet. Python files whose indentation mixes tabs
+    and spaces are converted to spaces only (see fix_indent.py); the file on
+    disk is not changed.
+
+    Arguments:
+        path (str): Path to the file.
+
+    Returns:
+        str: The content to store in the snippet.
+    """
+    content = read_file(path)
+    if path.endswith(".py"):
+        fixed = fix_mixed_indentation(content)
+        if fixed != content:
+            print("  Note: mixed tabs and spaces converted to spaces: " + path)
+        return fixed
+    return content
+
+
 def build_snippet(title, filenames, leaf_dir):
     """
     Builds a snippet dictionary in the widget JSON format.
@@ -61,7 +84,7 @@ def build_snippet(title, filenames, leaf_dir):
     return {
         "title": title,
         "files": [
-            {"name": name, "content": read_file(os.path.join(leaf_dir, name))}
+            {"name": name, "content": read_snippet_file(os.path.join(leaf_dir, name))}
             for name in filenames
         ],
     }

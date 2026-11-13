@@ -157,6 +157,17 @@ python3 dir_to_snippets.py path/to/source-files prgh-mobius --dryrun
 # preview writes/deletes without touching the filesystem
 ```
 
+### `fix_indent.py`
+
+Converts Python files whose indentation mixes tabs and spaces to spaces only. Python tolerates some such mixes, but they turn into errors as soon as a student adds a line in the editor. `dir_to_snippets.py` and `py_to_json.py` apply the same fix to what they read (the source files are left as they are), so this script is only needed for snippet JSON that was made or edited by hand.
+
+```bash
+python3 fix_indent.py --dryrun   # list the files that would be fixed
+python3 fix_indent.py            # fix them, in the JSON files under snippets/
+```
+
+Files indented with only tabs, or only spaces of any width, are not touched: the editor follows each file's own indentation. A file is only rewritten if the result is provably the same program.
+
 ### `sync_index.py`
 
 Reads the `title` field from each snippet JSON file and updates the matching entry in `index.json`. Run this after editing snippet titles directly in their JSON files.

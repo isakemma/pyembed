@@ -3,7 +3,7 @@
   "files": [
     {
       "name": "main.py",
-      "content": "val = input(\"Vad vill du göra ? Ange siffra 1-4\")\nwhile val != \"4\":\n\tif val == \"1\":\n\t\tprint(\"Du valde 1.\")\n\t\n\telse:\n\t  print(\"Du valde inte 1!\")\n\t\t\n\tif val == \"2\":\n\t  print(\"Du valde 2.\")\n\t\t\n\tif val == \"3\":\n\t  print(\"Du valde\", val)\n\t\n\telse:\n\t\tprint(\"Du valde inte en siffra 1-4.\")\n\t\t\n\tval = input(\"Vad vill du göra ? Ange siffra 1-4\")\nprint(\"Du valde 4. Hejdå!\")\n"
+      "content": "val = input(\"Vad vill du göra ? Ange siffra 1-4\")\nwhile val != \"4\":\n    if val == \"1\":\n        print(\"Du valde 1.\")\n\n    else:\n        print(\"Du valde inte 1!\")\n\n    if val == \"2\":\n        print(\"Du valde 2.\")\n\n    if val == \"3\":\n        print(\"Du valde\", val)\n\n    else:\n        print(\"Du valde inte en siffra 1-4.\")\n\n    val = input(\"Vad vill du göra ? Ange siffra 1-4\")\nprint(\"Du valde 4. Hejdå!\")\n"
     }
   ]
 }
