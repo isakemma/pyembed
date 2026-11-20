@@ -1212,6 +1212,27 @@
           $doc: 'Open file and return a file object.',
         }, null, 'builtins');
 
+        // Skulpt's file object has write() but no writelines(), so
+        // f.writelines(lines) failed with "'file' object has no attribute
+        // 'writelines'". Like Python's, it takes any iterable of strings
+        // (a list, a generator), adds no newlines, and returns None. Each
+        // string goes through the file's own write(), so the filewrite hook
+        // sees it as usual. Skulpt's write() accepts any object; writelines()
+        // gives Python 3's TypeError for a non-str instead.
+        if (!Sk.builtin.file.prototype.writelines) {
+          Sk.builtin.file.prototype.writelines = new Sk.builtin.func(function (self, lines) {
+            const write = Sk.builtin.file.prototype.write;
+            const it = Sk.abstr.iter(lines);
+            for (let line = it.tp$iternext(); line !== undefined; line = it.tp$iternext()) {
+              if (!Sk.builtin.checkString(line))
+                throw new Sk.builtin.TypeError(
+                  `write() argument must be str, not ${Sk.abstr.typeName(line)}`);
+              Sk.misceval.callsimArray(write, [self, line]);
+            }
+            return Sk.builtin.none.none$;
+          });
+        }
+
         // Skulpt's math.gcd takes exactly two arguments; since Python 3.9 it
         // takes any number (gcd() == 0, gcd(x) == abs(x)). The math module is
         // only built when a program imports it, so the two-argument gcd is
