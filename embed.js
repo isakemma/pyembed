@@ -137,8 +137,8 @@
 .${HOST_CLS} .pw-btn-dl:not(:disabled):hover    { background: #f3f4f6; border-color: #9a9da1; }
 .${HOST_CLS} .pw-btn-reset { background: #fff; color: #57606a; border-color: #d0d7de; }
 .${HOST_CLS} .pw-btn-reset:not(:disabled):hover { background: #fff8c5; border-color: #d4a72c; color: #24292e; }
-.${HOST_CLS} .pw-btn-embed, .${HOST_CLS} .pw-btn-link { background: #fff; color: #0969da; border-color: #d0d7de; }
-.${HOST_CLS} .pw-btn-embed:hover, .${HOST_CLS} .pw-btn-link:hover { background: #dbeafe; border-color: #0969da; }
+.${HOST_CLS} .pw-btn-link { background: #fff; color: #0969da; border-color: #d0d7de; }
+.${HOST_CLS} .pw-btn-link:hover { background: #dbeafe; border-color: #0969da; }
 .${HOST_CLS} .pw-hint     { font-size: 12px; color: #57606a; flex-shrink: 0; }
 .${HOST_CLS} .pw-hint-err { color: #cf222e; }
 
@@ -252,7 +252,6 @@
 .${HOST_CLS}.pw-narrow .pw-btn     { padding: 7px 10px; font-size: 13px; }
 .${HOST_CLS}.pw-narrow .pw-btn-dl-label    { display: none; }
 .${HOST_CLS}.pw-narrow .pw-btn-reset-label { display: none; }
-.${HOST_CLS}.pw-narrow .pw-btn-embed-label { display: none; }
 .${HOST_CLS}.pw-narrow .pw-btn-link-label  { display: none; }
 .${HOST_CLS}.pw-narrow .pw-files     { display: none; }
 .${HOST_CLS}.pw-narrow .pw-file-tabs { display: block; }
@@ -457,16 +456,13 @@
     resetBtn.title = 'Restore all files to their original state';
     resetBtn.innerHTML = '↺ <span class="pw-btn-reset-label">Reset</span>';
 
-    const embedBtn = el('button', 'pw-btn pw-btn-embed');
-    embedBtn.title = 'Get embed code for this snippet';
-    embedBtn.innerHTML = '&lt;/&gt; <span class="pw-btn-embed-label">Embed</span>';
     const linkBtn = el('button', 'pw-btn pw-btn-link');
-    linkBtn.title = 'Get a link and a QR code for this snippet';
+    linkBtn.title = 'Link, QR code and embed code for this snippet';
     linkBtn.innerHTML = '🔗 <span class="pw-btn-link-label">Link</span>';
     const fsBtn = el('button', 'pw-fullscreen-btn', '⛶');
     fsBtn.title = 'Fullscreen';
     const hint = el('span', 'pw-hint', 'Loading Python…');
-    toolbar.append(titleArea, runBtn, dlBtn, resetBtn, linkBtn, embedBtn, fsBtn, hint);
+    toolbar.append(titleArea, runBtn, dlBtn, resetBtn, linkBtn, fsBtn, hint);
     widget.appendChild(toolbar);
 
     // Main area
@@ -824,10 +820,9 @@
       clearOutput();
     });
 
-    // One dialog for both buttons: 🔗 Link opens it on the "Link & QR" tab,
-    // </> Embed on the "iframe Embed" tab.
+    // 🔗 Link opens the dialog on its "Link & QR" tab; the iframe embed code
+    // and the JSON export are the other tabs.
     linkBtn.addEventListener('click', () => openShareModal('link'));
-    embedBtn.addEventListener('click', () => openShareModal('iframe'));
 
     async function openShareModal(initialTab) {
       // ── Link to the snippet on a page of its own, and iframe embed code ────────────────────────────────────────────────────

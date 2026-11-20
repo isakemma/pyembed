@@ -1,7 +1,8 @@
 """
 The 🔗 Link button opens the dialog on its "Link & QR" tab, with the
 snippet's viewer.html address, a QR code for it, a working Copy link button
-and a PNG download. </> Embed must still open on the iframe tab.
+and a PNG download. The iframe embed code is a tab in the same dialog;
+there is no separate Embed button.
 
 The address is the snippet's own (viewer.html?basic-examples/hello, from
 snippets/addresses.json), not the ?src= form the page was opened with here;
@@ -85,16 +86,18 @@ def check_dialog(page, base_url):
     with open(dl.value.path(), "rb") as f:
         assert f.read(8) == b"\x89PNG\r\n\x1a\n"
 
-    # Escape closes the dialog
-    page.keyboard.press("Escape")
-    assert page.locator(".psw-modal-overlay").count() == 0
-
-    # ── Embed button still opens on the iframe tab ───────────────────────
-    page.click(".pw-btn-embed")
+    # ── The iframe embed code is the next tab ────────────────────────────
+    assert page.locator(".pw-btn-embed").count() == 0
+    page.click(".psw-modal-tab[data-tab='iframe']")
     panel = page.locator(".psw-modal-panel.active")
     assert panel.get_attribute("data-panel") == "iframe", panel.get_attribute("data-panel")
     assert expected_url in page.inner_text(".psw-modal-panel.active .psw-modal-code")
     page.click(".psw-modal-panel.active .psw-modal-close")
+    assert page.locator(".psw-modal-overlay").count() == 0
+
+    # Escape closes the dialog too
+    page.click(".pw-btn-link")
+    page.keyboard.press("Escape")
     assert page.locator(".psw-modal-overlay").count() == 0
 
     # ── The address works: it shows the snippet we were looking at ───────
