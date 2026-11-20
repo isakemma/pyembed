@@ -104,8 +104,12 @@ def find_leaves(input_dir):
     """
     leaves = []
     for dirpath, dirnames, filenames in os.walk(input_dir):
-        dirnames[:] = sorted(d for d in dirnames if not d.startswith("."))
-        filenames = sorted(f for f in filenames if not f.startswith("."))
+        # Hidden entries and Python's bytecode cache (made when a file in an
+        # example is run) are not part of an example.
+        dirnames[:] = sorted(d for d in dirnames
+                             if not d.startswith(".") and d != "__pycache__")
+        filenames = sorted(f for f in filenames
+                           if not f.startswith(".") and not f.endswith(".pyc"))
 
         if dirnames:
             if filenames:
