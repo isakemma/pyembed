@@ -3018,6 +3018,16 @@
           "id": "tilproovn-ovn04-02-example",
           "file": "tilproovn/ovn04/02-example.json",
           "title": "02-example"
+        },
+        {
+          "id": "tilproovn-ovn04-adresser-enrad",
+          "file": "tilproovn/ovn04/adresser-enrad.json",
+          "title": "adresser-enrad"
+        },
+        {
+          "id": "tilproovn-ovn04-adresser-flerrad",
+          "file": "tilproovn/ovn04/adresser-flerrad.json",
+          "title": "adresser-flerrad"
         }
       ]
     },

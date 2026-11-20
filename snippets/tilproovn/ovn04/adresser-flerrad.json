@@ -1,0 +1,17 @@
+{
+  "title": "adresser-flerrad",
+  "files": [
+    {
+      "name": "adress.py",
+      "content": "class Adress:\n\n    def __init__(self, gata, nummer, postnr, postort, land='Sverige'):\n        self.gata = gata\n        self.nummer = nummer\n        self.postnr = postnr\n        self.postort = postort\n        self.land = land\n\n    def __str__(self):\n        adress = self.gata+\" \"+self.nummer+\"\\n\"+self.postnr+\" \"+self.postort+\"\\n\"+self.land\n        return adress\n    \n    def __lt__(self, other):\n        return self.gata < other.gata and self.nummer < other.nummer or (self.postnr < other.postnr and self.postort < other.postort)\n    \n    def __eq__(self, otherAddress):\n        return (self.gata == otherAddress.gata and \n                self.nummer==otherAddress.nummer and \n                self.postnr == otherAddress.postnr and \n                self.postort == otherAddress.postort)"
+    },
+    {
+      "name": "adresser2.txt",
+      "content": "Experimentslingan 9\n14545\nStorstad\nHelhetsvägen 18\n43325\nAnkarby \nLånga vägen 3b\n22439\nLillstad\nHelhetsvägen 20\n43325\nAnkarby\nSverige\nSorterargatan 13c\n134 33\nStorstad"
+    },
+    {
+      "name": "main.py",
+      "content": "from adress import Adress\n\n#List-hanterande läsning av filen\n# with open('adresser2.txt', 'r') as infile:\n#     adresser = []\n#     line = infile.readline().strip()\n#     while line:\n#         tmp = line.split()\n#         nummer = tmp[-1]\n#     # Här behövde vi slå ihop flera ord igen! Vi använder str.join(), kolla dokumentationen!\n#         gata = \" \".join(tmp[:-1])\n#         postnr = infile.readline().strip()\n#         postort = infile.readline().strip()\n#         land = infile.readline().strip()\n#         adresser.append(Adress(gata, nummer, postnr, postort, land))\n#         line = infile.readline().strip()\n\n\n#Naiv läsning av filen\nwith open('adresser2.txt', 'r') as infile:\n    adresser = []\n    line = infile.readline().strip()\n    while line:\n        tmp = line.split()\n        nummer = tmp[-1]\n        gata =tmp[:-1]\n        postnr = infile.readline().strip()\n        postort = infile.readline().strip()\n        land = infile.readline().strip()\n        adresser.append(Adress(gata, nummer, postnr, postort, land))\n        line = infile.readline().strip()\n\nprint(adresser)\n\n# for a in adresser:\n#     print(a)\n"
+    }
+  ]
+}
