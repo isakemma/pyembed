@@ -46,6 +46,21 @@
       margin-bottom: 10px; letter-spacing: 0.3px;
     }
     .py-snippet { display: block; }
+    /* Title of an example with its links to the right */
+    .snippet-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+    .snippet-head .snippet-label { margin-bottom: 0; margin-right: auto; }
+    .snippet-open { font-size: 13px; color: var(--accent); text-decoration: none; }
+    .snippet-open:hover { text-decoration: underline; }
+
+    /* ── Download buttons (made by PySnippets.downloadButton in site.js) ── */
+    .dl-btn {
+      padding: 5px 12px; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--accent); font-size: 13px;
+      font-family: inherit; cursor: pointer; white-space: nowrap;
+    }
+    .dl-btn:hover:not(:disabled) { background: var(--border); }
+    .dl-btn:disabled { opacity: 0.5; cursor: default; }
+    .hero .dl-btn { margin-top: 12px; }
 
     /* ── States ── */
     .state     { padding: 60px 0; text-align: center; color: var(--muted); font-size: 14px; }
@@ -89,6 +104,7 @@
     </div>
   </footer>
 
+  <script src="site.js"></script>
   <script src="embed.js"></script>
   <script>
     const params   = new URLSearchParams(location.search);
@@ -101,7 +117,7 @@
       const content = document.getElementById('content');
 
       try {
-        const index = await fetch('snippets/index.json').then(r => r.json());
+        const index = await PySnippets.loadIndex();
         const courses = index.courses || [];
         const course  = courses.find(c => c.id === courseId) || courses.find(c => c.id === 'lectures');
         if (!course) throw new Error('Course ' + courseId + ' not found in index.json');
@@ -140,18 +156,34 @@
         // ── Render widgets inline ─────────────────────────────────────────
         state.remove();
 
+        // The whole lesson as one zip: folder/name/files for each example
+        if (cat.snippets.length) {
+          document.querySelector('.hero').appendChild(PySnippets.downloadButton(
+            '↓ Download all examples (.zip)', cat.snippets.map(s => s.file),
+            catFolder.replace(/\//g, '-') + '.zip'));
+        }
+
         for (const s of cat.snippets) {
           const group = document.createElement('div');
           group.className = 'snippet-group';
 
+          const head = document.createElement('div');
+          head.className = 'snippet-head';
           const label = document.createElement('div');
           label.className   = 'snippet-label';
           label.textContent = s.title;
-          group.appendChild(label);
+          // The example on a page of its own, at its address (see site.js)
+          const open = document.createElement('a');
+          open.className   = 'snippet-open';
+          open.textContent = 'Open on its own page ↗';
+          open.href        = await PySnippets.linkTo(s.file);
+          head.append(label, open, PySnippets.downloadButton(
+            '↓ Files (.zip)', [s.file], () => PySnippets.zipNameFor(s.file)));
+          group.appendChild(head);
 
           const widget = document.createElement('div');
           widget.className   = 'py-snippet';
-          widget.dataset.src = 'snippets/' + s.file;
+          widget.dataset.src = PySnippets.srcFor(s.file);
           group.appendChild(widget);
 
           content.appendChild(group);

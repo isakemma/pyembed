@@ -10,7 +10,7 @@ Embed a snippet on any page with a single `<iframe>`:
 
 ```html
 <iframe
-  src="https://USERNAME.github.io/REPO/viewer.html?src=basic-examples/hello.json"
+  src="https://USERNAME.github.io/REPO/viewer.html?basic-examples/hello"
   width="100%"
   height="540"
   style="border:none;border-radius:8px;"
@@ -20,9 +20,10 @@ Embed a snippet on any page with a single `<iframe>`:
 ```
 
 - Replace `USERNAME` and `REPO` with your GitHub username and repository name
-- The `src` parameter is relative to the `snippets/` folder
+- What follows `viewer.html?` is the snippet's **address**: its folder under `snippets/`, then its name (see [Addresses](#addresses))
 - Use the **</> Embed** button on any widget to get a ready-to-paste iframe
 - Use the **🔗 Link** button to get the snippet's address (the `viewer.html` URL above) with a **Copy link** button, and a QR code for it that can be downloaded as a PNG for slides and handouts
+- Links and iframes made before snippets had names, `viewer.html?src=basic-examples/hello.json` or `…?src=basic-examples%2Fhello.json`, keep working
 
 ---
 
@@ -35,9 +36,11 @@ Four pages are available for navigating snippets:
 | `gallery.html` | All courses and categories as clickable cards |
 | `gallery.html?cat=basic-examples` | All snippets in a single category |
 | `lecture.html?course=lectures&n=1` | All examples for a specific lesson inline |
-| `viewer.html?src=basic-examples/hello.json` | A single snippet, full-page |
+| `viewer.html?basic-examples/hello` | A single snippet, full-page |
 
 Change `n=1` to the lesson number you want.
+
+On `lecture.html` and `gallery.html?cat=…`, **↓ Files (.zip)** downloads all files of one example and **↓ Download all** those of the whole lesson. The zip unpacks to one directory per example, named after its address: `prgh-mobius/lesson01/count_up_down_example/main.py`.
 
 ---
 
@@ -69,6 +72,49 @@ Current courses:
 | prgh-mobius | Prgh Möbius | `prgh-mobius/lesson` |
 
 Categories that don't match any course's `folderPrefix` (e.g. `basic-examples`, `prgh`) show up as individual cards on `gallery.html` instead of being grouped.
+
+---
+
+## Addresses
+
+A snippet's address is its folder under `snippets/` and its name:
+
+```
+https://USERNAME.github.io/REPO/viewer.html?prgh-lectures/frl07/sortering
+```
+
+The name comes from the snippet's file name, which `dir_to_snippets.py` takes from the name of the source directory:
+
+| File (source directory) | Address handed out | Also works |
+|---|---|---|
+| `frl07/03-sortering.json` | `frl07/sortering` | `frl07/03-sortering` |
+| `frl07/03-example.json` | `frl07/03-example` | |
+| `lecture07/03.json` | `lecture07/03` | |
+| `basic-examples/hello.json` | `basic-examples/hello` | |
+
+- **The digits in front are the place in the lesson, not part of the name.** Two or more digits, optionally followed by one letter: `03-`, `03b-`, `10_`.
+- **A name is optional.** `03.json` and `03-example.json` have none, and their address is the file name as it is. (Which words do not count as names is the `not_names` list in `snippets/addresses.json`; it starts out as `example`.)
+- **A name must be the only one of its kind in the lesson.** If two files in a folder would get the same name (`01-lists`, `02-lists`), neither gets it; both keep the address with the number.
+- Names are written in lower case with `a-z`, digits, `-` and `_`: `04-Köer och stackar` gets the address `koer-och-stackar`. A name must contain a letter.
+
+**An address, once it exists, always leads to the same example.** `snippets/addresses.json` lists every address each snippet has ever had; `create_index.py` adds to it and never hands an address to another snippet. So:
+
+| To… | do this | and then |
+|---|---|---|
+| add a directory of examples | nothing extra: run `dir_to_snippets.py` and `create_index.py` | every example has an address |
+| give an example a name | rename its directory (or JSON file): `03-example` → `03-sortering` | the address `…/sortering` is handed out; `…/03-example` still leads to it |
+| change the name later | rename again: `03-sortering` → `03-quicksort` | all three addresses lead to it |
+| insert an example in the middle | give the new one a number that fits in between: `03b-binarsokning` | it is shown between 03 and 04; no other example is touched |
+| renumber examples | only those that have a name: `03b-binarsokning` → `04-binarsokning` | the name is the address, so nothing changes for links |
+| remove an example | delete it, then `python3 snippet_addresses.py retire ADDRESS` | the address says "This example has been removed" and is never reused |
+
+Renaming is recognised when the files of the example are unchanged, or when the name is unchanged (so renumber *or* rename and edit in one go, as you like, but do not rename and edit at the same time). If `create_index.py` cannot tell where an example went, it says which addresses no longer lead anywhere, and how to say where they should lead (`snippet_addresses.py redirect`).
+
+**Do not renumber examples that have no name** (`03-example` → `04-example`, `03.json` → `04.json`): their number *is* their address, so every existing link to 04 would show another example. `create_index.py` notices when a file has the content its neighbour had, warns, and keeps warning until it is undone or accepted.
+
+`snippets/legacy-addresses.txt` is the list of the 505 addresses that existed before names (2026-11-13). It is never changed; `python3 snippet_addresses.py check` and the tests verify that each of them still leads to an example.
+
+How a link is turned into a snippet is in one file, `site.js`, used by all the pages. The lists are data in `snippets/`, next to `index.json`.
 
 ---
 
@@ -115,8 +161,8 @@ Each snippet is a JSON file in the `snippets/` folder.
 
 **Single snippet:**
 
-1. Create a JSON file in the appropriate subfolder under `snippets/`
-2. Run `create_index.py` to register it in `snippets/index.json`
+1. Create a JSON file in the appropriate subfolder under `snippets/`. Its file name decides its place in the lesson and its address: `03b-sortering.json` comes after `03…` and gets the address `…/sortering` (see [Addresses](#addresses))
+2. Run `create_index.py` to register it in `snippets/index.json` and `snippets/addresses.json`
 3. Commit and push:
 
 ```bash
@@ -128,7 +174,7 @@ git push
 **Bulk import (a directory of source files, one snippet per leaf folder):**
 
 1. Run `dir_to_snippets.py` to convert the directory tree into snippet JSON files (see [Utility scripts](#utility-scripts))
-2. Run `create_index.py` to register the new/changed snippets in `index.json`
+2. Run `create_index.py` to register the new/changed snippets in `index.json` and give them addresses. No naming is needed; names can be given later by renaming directories (see [Addresses](#addresses))
 3. If it's a new multi-lesson course, add a `courses` entry (see [Categories and courses](#categories-and-courses))
 4. Commit and push
 
@@ -138,7 +184,9 @@ git push
 
 ### `create_index.py`
 
-Rebuilds `snippets/index.json`'s `categories` list by scanning `snippets/` for every folder that directly contains `.json` files. Preserves existing category/snippet `id`s and titles, adds new categories/snippets it finds on disk, and flags (without deleting) index entries whose folder has disappeared. Leaves the `courses` list untouched.
+Rebuilds `snippets/index.json`'s `categories` list by scanning `snippets/` for every folder that directly contains `.json` files. Preserves existing category/snippet `id`s and titles, adds new categories/snippets it finds on disk, removes snippets whose file is gone, and flags (without deleting) categories whose folder has disappeared. Within a category, snippets are ordered by the digits in front of their file names (`03`, `03b`, `04`); files without digits keep their order. Leaves the `courses` list untouched.
+
+Then brings `snippets/addresses.json` up to date (see [Addresses](#addresses)) and reports what it found: renamed examples, new addresses, and anything it could not work out. In the last case it exits with status 1.
 
 ```bash
 python3 create_index.py
@@ -156,6 +204,24 @@ python3 dir_to_snippets.py path/to/source-files prgh-mobius
 
 python3 dir_to_snippets.py path/to/source-files prgh-mobius --dryrun
 # preview writes/deletes without touching the filesystem
+```
+
+### `snippet_addresses.py`
+
+For what `create_index.py` cannot work out by itself about [addresses](#addresses):
+
+```bash
+python3 snippet_addresses.py check
+# every address, also those in legacy-addresses.txt, leads to an example that exists
+
+python3 snippet_addresses.py redirect prgh-lectures/frl07/03-example prgh-lectures/frl07/sortering
+# the first address (whose example is gone) now leads where the second one does
+
+python3 snippet_addresses.py retire prgh-lectures/frl07/03-example
+# the example was removed on purpose
+
+python3 snippet_addresses.py accept
+# after a warning about renumbered examples: yes, that is what I want
 ```
 
 ### `fix_indent.py`
@@ -202,12 +268,16 @@ The output is a minimal single-file snippet with the filename as the title. Edit
 ├── lecture.html                ← inline lesson viewer (all examples for one lesson)
 ├── viewer.html                 ← single-snippet full-page viewer
 ├── embed.js                    ← the widget script (self-contained)
+├── site.js                     ← shared by the pages: which snippet a link leads to, zip download
 ├── create_index.py             ← rebuilds index.json's categories from snippets/ on disk
+├── snippet_addresses.py        ← keeps addresses.json; check / redirect / retire
 ├── dir_to_snippets.py          ← bulk-converts a directory of source files into snippet JSON files
 ├── sync_index.py               ← syncs titles from JSON files into index.json
 ├── py_to_json.py               ← converts a single .py file into a snippet JSON file
 ├── snippets/
 │   ├── index.json              ← categories + courses (see Categories and courses)
+│   ├── addresses.json          ← every address each snippet has had (see Addresses)
+│   ├── legacy-addresses.txt    ← the addresses from before names; never changed
 │   ├── basic-examples/
 │   ├── lecture-examples/
 │   │   └── lecture01/ … lecture16/

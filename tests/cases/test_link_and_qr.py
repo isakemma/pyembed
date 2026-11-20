@@ -3,6 +3,10 @@ The 🔗 Link button opens the dialog on its "Link & QR" tab, with the
 snippet's viewer.html address, a QR code for it, a working Copy link button
 and a PNG download. </> Embed must still open on the iframe tab.
 
+The address is the snippet's own (viewer.html?basic-examples/hello, from
+snippets/addresses.json), not the ?src= form the page was opened with here;
+test_snippet_addresses.py covers how addresses are resolved.
+
 The QR generator is loaded from the jsDelivr CDN when the dialog opens, and
 is the only thing the widget fetches from another host. This test uses the
 real CDN (so it needs network access, and fails if the address in embed.js
@@ -47,11 +51,11 @@ def test(page, base_url):
     assert page.is_disabled(".psw-modal-qr-dl")
     page.click(".psw-modal-copy-link")
     copied = page.evaluate("navigator.clipboard.readText()")
-    assert copied == f"{base_url}/viewer.html?src=basic-examples%2Fhello.json", copied
+    assert copied == f"{base_url}/viewer.html?basic-examples/hello", copied
 
 
 def check_dialog(page, base_url):
-    expected_url = f"{base_url}/viewer.html?src=basic-examples%2Fhello.json"
+    expected_url = f"{base_url}/viewer.html?basic-examples/hello"
 
     # ── Link button → Link & QR tab ──────────────────────────────────────
     page.click(".pw-btn-link")
@@ -59,9 +63,6 @@ def check_dialog(page, base_url):
     assert panel.get_attribute("data-panel") == "link", panel.get_attribute("data-panel")
     url = page.input_value(".psw-modal-url")
     assert url == expected_url, url
-
-    # The address works: it is the page we are on, apart from %2F for "/"
-    assert page.url.replace("/hello", "%2Fhello") == url, (page.url, url)
 
     # A QR code: square, with its margin, and a 7×7 finder pattern whose top
     # row is the first thing in the path (7 dark modules from the corner).
@@ -95,3 +96,9 @@ def check_dialog(page, base_url):
     assert expected_url in page.inner_text(".psw-modal-panel.active .psw-modal-code")
     page.click(".psw-modal-panel.active .psw-modal-close")
     assert page.locator(".psw-modal-overlay").count() == 0
+
+    # ── The address works: it shows the snippet we were looking at ───────
+    title = page.inner_text(".pw-title")
+    page.goto(url)
+    page.wait_for_selector(".pw-file", timeout=10000)
+    assert page.inner_text(".pw-title") == title == "Hello World", title

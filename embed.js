@@ -15,6 +15,7 @@
   let _skulptPromise  = null;
   let _cmPromise      = null;
   let _qrPromise      = null;
+  let _sitePromise    = null;
   let _widgetCounter  = 0;
   let _stylesInjected = false;
 
@@ -57,6 +58,24 @@
     _qrPromise = import(QRCODE_CDN).then(m => m.default);
     _qrPromise.catch(() => { _qrPromise = null; });   // let the next click retry
     return _qrPromise;
+  }
+
+  // ── site.js (only when the Link / Embed dialog is opened) ─────────────────
+  // site.js, next to this file, knows which address is handed out for a
+  // snippet. The site's own pages have loaded it already; a page that only
+  // embeds a widget has not. Resolves to null if it cannot be loaded: the
+  // dialog then makes a link from the snippet's file path, which also works.
+  function getSite() {
+    if (window.PySnippets) return Promise.resolve(window.PySnippets);
+    if (_sitePromise) return _sitePromise;
+    _sitePromise = new Promise(resolve => {
+      const s = document.createElement('script');
+      s.src = new URL('site.js', _embedScriptSrc || location.href).href;
+      s.onload  = () => resolve(window.PySnippets || null);
+      s.onerror = () => resolve(null);
+      document.head.appendChild(s);
+    });
+    return _sitePromise;
   }
 
   // ── Global styles (injected once) ─────────────────────────────────────────
@@ -810,13 +829,20 @@
     linkBtn.addEventListener('click', () => openShareModal('link'));
     embedBtn.addEventListener('click', () => openShareModal('iframe'));
 
-    function openShareModal(initialTab) {
+    async function openShareModal(initialTab) {
       // ── Link to the snippet on a page of its own, and iframe embed code ────────────────────────────────────────────────────
       const base = _embedScriptSrc
         ? _embedScriptSrc.replace(/\/embed\.js$/, '')
         : 'https://USERNAME.github.io/REPO';
       const shortSrc  = dataSrc.replace(/^(https?:\/\/[^/]+\/[^/]+\/)?snippets\//, '');
-      const viewerUrl = `${base}/viewer.html?src=${encodeURIComponent(shortSrc)}`;
+      // The snippet's address (viewer.html?folder/name) if it has one: that
+      // link keeps working when the snippet is renamed or moved. Otherwise
+      // (a snippet outside the snippets folder) its file path, as before.
+      let viewerUrl = `${base}/viewer.html?src=${encodeURIComponent(shortSrc)}`;
+      try {
+        const site = await getSite();
+        viewerUrl = (site && await site.shareUrl(dataSrc, base)) || viewerUrl;
+      } catch (_) {}
       const iframeCode = `<iframe\n  src="${viewerUrl}"\n  width="100%"\n  height="540"\n  style="border:none;border-radius:8px;"\n  loading="lazy"\n  allowfullscreen\n></iframe>`;
 
       // ── Suggest a filename from the snippet title ────────────────────────────
