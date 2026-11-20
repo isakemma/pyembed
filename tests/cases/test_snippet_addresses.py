@@ -77,8 +77,7 @@ def title_at(page, url):
 def link_in_dialog(page):
     page.click(".pw-btn-link")
     link = page.input_value(".psw-modal-url")
-    page.keyboard.press("Escape")
-    page.click(".pw-btn-embed")
+    page.click(".psw-modal-tab[data-tab='iframe']")
     code = page.inner_text(".psw-modal-panel.active .psw-modal-code")
     page.keyboard.press("Escape")
     assert f'src="{link}"' in code, (link, code)

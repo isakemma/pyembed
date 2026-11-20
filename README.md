@@ -21,8 +21,8 @@ Embed a snippet on any page with a single `<iframe>`:
 
 - Replace `USERNAME` and `REPO` with your GitHub username and repository name
 - What follows `viewer.html?` is the snippet's **address**: its folder under `snippets/`, then its name (see [Addresses](#addresses))
-- Use the **</> Embed** button on any widget to get a ready-to-paste iframe
-- Use the **🔗 Link** button to get the snippet's address (the `viewer.html` URL above) with a **Copy link** button, and a QR code for it that can be downloaded as a PNG for slides and handouts
+- Use the **🔗 Link** button on any widget and its **iframe Embed** tab to get a ready-to-paste iframe
+- The same button's first tab gives the snippet's address (the `viewer.html` URL above) with a **Copy link** button, and a QR code for it that can be downloaded as a PNG for slides and handouts
 - Links and iframes made before snippets had names, `viewer.html?src=basic-examples/hello.json` or `…?src=basic-examples%2Fhello.json`, keep working
 
 ---
@@ -313,7 +313,7 @@ The output is a minimal single-file snippet with the filename as the title. Edit
 | **File I/O** | Virtual filesystem: `open()`, `read()`, `write()`, `readline()`, `for line in file` all work — see [File I/O in snippets](#file-io-in-snippets) below |
 | **Multi-file** | Import across files; file panel on the left switches between them |
 | **Turtle graphics** | `import turtle` opens a canvas overlay automatically |
-| **`</> Embed`** | Generates an iframe embed code for the current snippet |
+| **`🔗 Link`** | A link and QR code for the current snippet; further tabs give an iframe embed code and a JSON export |
 
 ### File I/O in snippets
 
