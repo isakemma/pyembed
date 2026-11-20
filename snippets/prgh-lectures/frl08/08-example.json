@@ -3,7 +3,7 @@
   "files": [
     {
       "name": "main.py",
-      "content": "\ndef meny():\n  val = \"\" #Kommentera bort den här raden så får du UnboundLocalError\n  while val != \"2\":\n    print(\"Meny\\n1. Val 1.\\n2. Avsluta.\")\n    val = input(\"Vad vill du göra?\")\n    if val == \"1\":\n      print(\"Du valde 1.\\n\")\n      \n    elif val == \"2\":\n      print(\"Programmet avslutas\")\n      \n    else:\n       print(\"Inte ett menyval, välj igen.\")\n    \nmeny()\n\n"
+      "content": "\n#def meny():\n#val = \"\" #Ta bort starttecknet på här raden så får du inte längre NameError (eller UnboundLocalError om det ligger i en funktion)\nwhile val != 2:\n  print(\"Meny\\n1. Val 1.\\n2. Avsluta.\")\n  val = int(input(\"Vad vill du göra?\"))\n  if val == 1:\n    print(\"Du valde 1.\\n\")\n    \n  elif val == 2:\n    print(\"Programmet avslutas\")\n    \n  else:\n      print(\"Inte ett menyval, välj igen.\")\n    \n#meny()\n\n"
     }
   ]
 }
