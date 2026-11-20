@@ -1,0 +1,6 @@
+{
+  "title": "writelines_fixture",
+  "files": [
+    { "name": "main.py", "content": "with open('husdjur.txt', 'w') as fil:\n    fil.writelines(['Katt\\n', 'Hund\\n'])\n    fil.writelines(x + '\\n' for x in ['Marsvin'])\nwith open('husdjur.txt') as fil:\n    print(repr(fil.read()))\nwith open('husdjur.txt', 'a') as fil:\n    print(fil.writelines([]))\ntry:\n    with open('tal.txt', 'w') as fil:\n        fil.writelines([1, 2])\nexcept TypeError:\n    print('TypeError for non-str')\n" }
+  ]
+}
