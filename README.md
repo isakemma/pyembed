@@ -107,7 +107,7 @@ Each snippet is a JSON file in the `snippets/` folder.
 | `description` | No | Displayed as a subtitle |
 | `files` | Yes | Array of `{ name, content }` objects |
 
-The first file named `main.py` is always the entry point executed when ▶ Run is clicked.
+▶ Run executes the `.py` file that is open in the editor, so every script in a multi-file snippet can be run on its own (and can still import the other files). The widget opens on `main.py`, so that is what runs by default; if the open file isn't a `.py` file, Run falls back to `main.py`.
 
 ---
 
@@ -233,7 +233,7 @@ The output is a minimal single-file snippet with the filename as the title. Edit
 |---------|---------|
 | **Editor** | CodeMirror 6 with IDLE-style syntax highlighting and Menlo font |
 | **Syntax colours** | Keywords orange, strings green, comments red, built-ins purple, def/class names blue |
-| **▶ Run** | Executes `main.py` via Skulpt; also triggered by **Ctrl+Enter** / **Cmd+Enter** |
+| **▶ Run** | Executes the open `.py` file (falling back to `main.py`) via Skulpt; also triggered by **Ctrl+Enter** / **Cmd+Enter** |
 | **⏹ Stop** | Interrupts a running program |
 | **↺ Reset** | Restores all files to their original state and clears output |
 | **↓ Download** | Saves the currently active file |

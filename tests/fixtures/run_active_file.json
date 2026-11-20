@@ -1,0 +1,9 @@
+{
+  "title": "run_active_file_fixture",
+  "files": [
+    { "name": "helper.py", "content": "def greet():\n    return 'hello from helper'\n" },
+    { "name": "other.py", "content": "from helper import greet\nprint('ran other.py:', greet())\n" },
+    { "name": "notes.txt", "content": "not python\n" },
+    { "name": "main.py", "content": "print('ran main.py')\n" }
+  ]
+}

@@ -428,7 +428,7 @@
     if (snippet.description) titleArea.appendChild(el('div', 'pw-desc',  snippet.description));
     const runBtn = el('button', 'pw-btn pw-btn-run', '▶ Run');
     runBtn.disabled = true;
-    runBtn.title = 'Run main.py  (Ctrl+Enter)';
+    runBtn.title = 'Run  (Ctrl+Enter)';
 
     const dlBtn = el('button', 'pw-btn pw-btn-dl');
     dlBtn.title = 'Download active file';
@@ -656,6 +656,17 @@
       fileItems.get(name)?.classList.add('active');
       fileTabItems.get(name)?.classList.add('active');
       editor.setState(fileStates.get(name) ?? makeState(name, ''));
+      const target = runTarget();
+      runBtn.title = target ? `Run ${target.name}  (Ctrl+Enter)` : 'Run  (Ctrl+Enter)';
+    }
+
+    // ▶ Run executes the .py file the user is looking at, so every script in
+    // a multi-file example can be run on its own. When the open file isn't a
+    // project .py file (e.g. a .txt or a file written at runtime), it falls
+    // back to main.py, or the first .py file if there is no main.py.
+    function runTarget() {
+      const open = files.find(f => f.name === currentFile && f.name.endsWith('.py'));
+      return open ?? files.find(f => f.name === 'main.py') ?? files.find(f => f.name.endsWith('.py'));
     }
 
     const firstFile = files.find(f => f.name === 'main.py') ?? files[0];
@@ -1058,7 +1069,7 @@
       turtleModal.classList.remove('pw-turtle-open');
       turtleCloseBtn.textContent = '✕ Close';
 
-      const mainFile = files.find(f => f.name === 'main.py') ?? files.find(f => f.name.endsWith('.py'));
+      const mainFile = runTarget();
       if (!mainFile) {
         appendOut('No Python (.py) file found in this project.', true);
         runBtn.disabled = false; runBtn.textContent = '▶ Run';
