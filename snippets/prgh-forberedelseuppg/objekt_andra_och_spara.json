@@ -1,0 +1,25 @@
+{
+  "title": "objekt_andra_och_spara",
+  "files": [
+    {
+      "name": "filhantering.py",
+      "content": "from spelare import Spelare\n\n\ndef rad_till_spelare(rad):\n    \"\"\"Gör om en rad från filen till ett Spelare-objekt.\n    Returnerar objektet, eller None om raden inte är godkänd.\"\"\"\n    rad = rad.strip()\n    if rad == \"\":\n        print(\"Rad ignorerad pga: Tom rad\")\n        return None\n    delar = rad.split(\";\")\n\n    # Se till att programmet också kan ignorera rader med fel antal delar, \n    # eller där namn är tomma strängen, med egna felmeddelanden!\n    \n    try:\n        namn = delar[0].strip()\n        poäng = int(delar[1])\n    except ValueError:\n        print(\"Rad ignorerad pga: Ogiltig poäng\")\n        return None\n    return Spelare(namn, poäng)\n\ndef läs_spelare(filnamn):\n    \"\"\"Läser spelarna från filen filnamn.\n    Returnerar en lista med Spelare-objekt.\"\"\"\n    spelarlista = []\n    felaktiga = 0\n    with open(filnamn, \"r\") as fil:\n        for rad in fil:\n            spelaren = rad_till_spelare(rad)\n            if spelaren != None:\n                spelarlista.append(spelaren)\n            else:\n                felaktiga += 1\n    return spelarlista, felaktiga\n\ndef skriv_spelare(filnamn, spelarlista):\n    \"\"\"Skriver alla spelare i spelarlista till filen filnamn, en spelare per rad.\n    Returnerar antalet spelare som skrevs.\"\"\"\n    with open(filnamn, \"w\") as fil:\n        for spelaren in spelarlista:\n            fil.write(spelaren.till_rad() + \"\\n\")\n    return len(spelarlista)\n"
+    },
+    {
+      "name": "lag_b.txt",
+      "content": "Vera;40\nOmar;38\nTilde;35\n"
+    },
+    {
+      "name": "main.py",
+      "content": "# Övning 5: Ge Noor en poäng till och spara alla spelare i uppdaterade_spelare.txt.\nfrom spelare import Spelare\nfrom filhantering import läs_spelare, skriv_spelare\n\nINFIL = \"spelare.txt\"\nUTFIL = \"uppdaterade_spelare.txt\"\n\n\ndef skriv_ut_spelare(spelarlista):\n    \"\"\"Skriver ut alla spelare i spelarlista, en per rad.\"\"\"\n    for spelaren in spelarlista:\n        print(spelaren)\n\ndef hitta_spelare(spelarlista, namn):\n    \"\"\"Returnerar spelaren med namnet namn i spelarlista, eller None om den inte finns.\"\"\"\n    for spelaren in spelarlista:\n        if spelaren.namn == namn:\n            return spelaren\n    return None\n\ndef öka_poäng(spelaren):\n    \"\"\"Ger spelaren en poäng till.\"\"\"\n    ny_spelare = Spelare(spelaren.namn, spelaren.poäng + 1)\n    return ny_spelare\n\ndef main():\n    #Någonting är feltänkt på just den här raden. Vad returnerar läs_spelare? Vad säger python, och när? Vad kan vi ändra?\n    spelarlista = läs_spelare(INFIL)\n    #print(type(spelarlista))\n    print(\"Antal felaktiga rader i filen: \")\n\n    #Någons försök att ge Amir fler poäng\n    amir = hitta_spelare(spelarlista, \"Amir\")\n    print(\"Amir har \", amir.poäng, \" poäng.\" )\n    if amir != None:\n        öka_poäng(amir)\n\n    # Skriv din kod här: ge Noor en poäng till.\n\n    print()\n    print(\"Efter ändringen:\")\n    skriv_ut_spelare(spelarlista)\n    antal = skriv_spelare(UTFIL, spelarlista)\n    print(antal, \"spelare sparade i\", UTFIL)\n\nmain()\n"
+    },
+    {
+      "name": "spelare.py",
+      "content": "class Spelare:\n\n    def __init__(self, namnet, poängen):\n        \"\"\"Skapar en spelare med ett namn (sträng) och en poäng (heltal).\"\"\"\n        self.namn = namnet\n        self.poäng = poängen\n\n    def mer_poäng(self):\n        \"\"\"Ger spelaren en poäng till.\"\"\"\n        self.poäng += 1\n\n    def till_rad(self):\n        \"\"\"Returnerar spelaren som en rad till filen, t.ex. \"Emma;23\".\"\"\"\n        return self.namn + \";\" + str(self.poäng)\n\n    def __str__(self):\n        \"\"\"Returnerar en text om spelaren, t.ex. \"Emma har 23 poäng\".\"\"\"\n        return self.namn + \" har \" + str(self.poäng) + \" poäng\"\n"
+    },
+    {
+      "name": "spelare.txt",
+      "content": "Emma;23\nAmir;25\n\nLisa;tjugo\nKim\nNoor;31\nSam;12;4\nAnna Andersson;19\nBengt;Gran;53\nSvante\nVera;39\nOmar:41\nTilde;42\n53\nEinar;\nAfram;43\nAhmad;42\nEvelina;44\nChiara;-54\nJoel;50.5\nFredrik;Kai\n\n;2\nTräslöjd;12\nNO;True\nTrue;Ture\n"
+    }
+  ]
+}

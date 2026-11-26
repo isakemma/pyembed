@@ -3074,6 +3074,18 @@
           "title": "TestSpace"
         }
       ]
+    },
+    {
+      "id": "prgh-forberedelseuppg",
+      "name": "prgh – Förberedelseuppgifter",
+      "folder": "prgh-forberedelseuppg",
+      "snippets": [
+        {
+          "id": "prgh-forberedelseuppg-objekt-andra-och-spara",
+          "file": "prgh-forberedelseuppg/objekt_andra_och_spara.json",
+          "title": "objekt_andra_och_spara"
+        }
+      ]
     }
   ]
 }
