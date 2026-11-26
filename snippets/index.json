@@ -3104,6 +3104,11 @@
           "id": "prgh-forberedelseuppg-objekt-andra-och-spara",
           "file": "prgh-forberedelseuppg/objekt_andra_och_spara.json",
           "title": "objekt_andra_och_spara"
+        },
+        {
+          "id": "prgh-forberedelseuppg-lag-och-trupp",
+          "file": "prgh-forberedelseuppg/lag_och_trupp.json",
+          "title": "lag_och_trupp"
         }
       ]
     }

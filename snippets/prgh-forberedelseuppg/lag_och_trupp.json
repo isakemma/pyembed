@@ -1,0 +1,29 @@
+{
+  "title": "lag_och_trupp",
+  "files": [
+    {
+      "name": "lag.py",
+      "content": "class Lag:\n    \"\"\"Ett lag med attributen namn (sträng), kapten (ett Spelare-objekt) och\n    spelare (ett Trupp-objekt med alla spelare i laget, kaptenen också).\"\"\"\n\n    # Del 3: skriv konstruktorn här.\n\n    def __str__(self):\n        \"\"\"Returnerar en text om laget, med kaptenen och alla spelare.\"\"\"\n        text = \"Lag \" + self.namn + \" (kapten: \" + self.kapten.namn + \")\\n\"\n        text = text + str(self.spelare)\n        text = text + \"Totalt: \" + str(self.spelare.total_poäng()) + \" poäng\\n\"\n        return text\n\n    def till_rad(self):\n        \"\"\"Returnerar laget som en rad till filen, t.ex. \"Blå;Emma;Emma,Amir,Noor\".\"\"\"\n        namnen = \"\"\n        for namn in self.spelare:\n            if namnen != \"\":\n                namnen = namnen + \",\"\n            namnen = namnen + namn\n        return self.namn + \";\" + self.kapten.namn + \";\" + namnen\n"
+    },
+    {
+      "name": "lag.txt",
+      "content": "Blå;Emma;Emma,Amir,Noor\nRöd;Kim;Kim,Lisa,Sam\nGul;Vera;Vera,Omar,Tilde\n"
+    },
+    {
+      "name": "main.py",
+      "content": "# Lag och trupp: läser spelare och lag från två filer, låter användaren ge\n# en spelare en poäng och sparar spelarna i en ny fil.\nfrom spelare import Spelare\nfrom trupp import Trupp\nfrom lag import Lag\n\nSPELARFIL = \"spelare.txt\"\nLAGFIL = \"lag.txt\"\nUTFIL = \"spelare_ny.txt\"\n\n\ndef läs_spelare(filnamn):\n    \"\"\"Läser alla spelare från filen filnamn, en per rad (\"Emma;23\").\n    Returnerar en Trupp med alla spelarna.\"\"\"\n    alla_spelare = Trupp()\n    with open(filnamn, \"r\") as fil:\n        for rad in fil:\n            delar = rad.strip().split(\";\")\n            spelaren = Spelare(delar[0], int(delar[1]))\n            alla_spelare.lägg_till(spelaren)\n    return alla_spelare\n\n\ndef läs_lag(filnamn, alla_spelare):\n    \"\"\"Läser lagen från filen filnamn, ett lag per rad (\"Blå;Emma;Emma,Amir,Noor\").\n    Spelarna hämtas från alla_spelare (en Trupp) med hjälp av namnen.\n    Returnerar en lista med Lag-objekt.\"\"\"\n    lagen = []\n    with open(filnamn, \"r\") as fil:\n        for rad in fil:\n            delar = rad.strip().split(\";\")\n            kapten = alla_spelare[delar[1]]\n            trupp = Trupp()\n            for namn in delar[2].split(\",\"):\n                trupp.lägg_till(alla_spelare[namn])\n            lagen.append(Lag(delar[0], kapten, trupp))\n    return lagen\n\n\ndef skriv_ut_lag(lagen):\n    \"\"\"Skriver ut alla lag i listan lagen.\"\"\"\n    for laget in lagen:\n        print(laget)\n\n\n# Del 4: skriv funktionen välj_lag(lagen) här.\n\n\n# Del 5: skriv funktionen skriv_spelare(filnamn, alla_spelare) här.\n\n\ndef main():\n    alla_spelare = läs_spelare(SPELARFIL)\n    lagen = läs_lag(LAGFIL, alla_spelare)\n    skriv_ut_lag(lagen)\n\n    # Del 4: låt användaren välja ett lag och ge en spelare i laget en poäng.\n\n    # Del 5: spara alla spelare i UTFIL.\n\nmain()\n"
+    },
+    {
+      "name": "spelare.py",
+      "content": "class Spelare:\n\n    def __init__(self, namnet, poängen):\n        \"\"\"Skapar en spelare med ett namn (sträng) och en poäng (heltal).\"\"\"\n        self.namn = namnet\n        self.poäng = poängen\n\n    def mer_poäng(self):\n        \"\"\"Ger spelaren en poäng till.\"\"\"\n        self.poäng += 1\n\n    def till_rad(self):\n        \"\"\"Returnerar spelaren som en rad till filen, t.ex. \"Emma;23\".\"\"\"\n        return self.namn + \";\" + str(self.poäng)\n\n    def __str__(self):\n        \"\"\"Returnerar en text om spelaren, t.ex. \"Emma har 23 poäng\".\"\"\"\n        return self.namn + \" har \" + str(self.poäng) + \" poäng\"\n"
+    },
+    {
+      "name": "spelare.txt",
+      "content": "Emma;23\nAmir;25\nNoor;31\nKim;12\nLisa;20\nSam;17\nVera;40\nOmar;38\nTilde;35\n"
+    },
+    {
+      "name": "trupp.py",
+      "content": "# Del 2: skriv klassen Trupp i den här filen.\n#\n# Trupp ska ärva från Pythons inbyggda klass dict. Nycklarna är spelarnas\n# namn och värdena är Spelare-objekt, t.ex. {\"Emma\": <Spelare Emma>, ...}.\n# Konstruktorn ärvs från dict, så Trupp() ger en tom trupp.\n#\n# Metoder:\n#\n# lägg_till(self, spelare)\n#     Lägger in spelaren i truppen, med spelarens namn som nyckel.\n#     Tips: en Trupp är en dict, så self[nyckel] = värde fungerar.\n#\n# total_poäng(self)\n#     Returnerar summan av poängen för alla spelare i truppen.\n#     Tips: self.values() ger alla Spelare-objekt.\n#\n# __str__(self)\n#     Överlagra __str__ så att truppen skrivs ut med en spelare per rad:\n#       - Emma har 23 poäng\n#       - Amir har 25 poäng\n#     Tips: str(spelaren) ger texten för en spelare.\n"
+    }
+  ]
+}
