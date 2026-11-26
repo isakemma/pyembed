@@ -2252,6 +2252,16 @@
           "id": "prgh-lectures-f-rel-sning-10-09-example",
           "file": "prgh-lectures/frl10/09-example.json",
           "title": "09-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-10-10-example",
+          "file": "prgh-lectures/frl10/10-example.json",
+          "title": "10-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-10-11-example",
+          "file": "prgh-lectures/frl10/11-example.json",
+          "title": "11-example"
         }
       ]
     },
@@ -2294,6 +2304,16 @@
           "id": "prgh-lectures-f-rel-sning-11-07-example",
           "file": "prgh-lectures/frl11/07-example.json",
           "title": "07-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-11-08-example",
+          "file": "prgh-lectures/frl11/08-example.json",
+          "title": "08-example"
+        },
+        {
+          "id": "prgh-lectures-f-rel-sning-11-09-example",
+          "file": "prgh-lectures/frl11/09-example.json",
+          "title": "09-example"
         }
       ]
     },

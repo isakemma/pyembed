@@ -7,7 +7,7 @@
     },
     {
       "name": "main.py",
-      "content": "from rum import *\nfrom hus import *\n\ndef main():\n  test()\n\nmain()"
+      "content": "from rum import *\nfrom hus import *\n\ndef main():\n  pass\n\nmain()"
     },
     {
       "name": "rum.py",

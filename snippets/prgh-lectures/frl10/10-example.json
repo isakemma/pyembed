@@ -1,0 +1,9 @@
+{
+  "title": "10-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "class Leksak:\n\n    def __init__(self, färg, åldersgräns):\n        self.färg = färg\n        self.åldersgräns = åldersgräns\n\n    def __str__(self):\n        text = \"En leksak för barn över \" + str(self.åldersgräns) + \" år\"\n        return text + \" med färgen \" + self.färg + \".\"\n\n\n# Uppgift: skriv klassen Boll som ärver från Leksak.\n# Boll behöver ingen egen __init__ eller __str__, de ärvs från Leksak.\n# Lägg till metoden studsa(), som skriver ut till exempel:\n#     Bollen med färgen röd studsar!\n\n\ndef main():\n    leksak = Leksak(\"grön\", 8)\n    print(leksak)\n    # Ta bort # på raderna nedan när klassen Boll finns:\n    # boll = Boll(\"röd\", 3)\n    # print(boll)\n    # boll.studsa()\n\nmain()\n"
+    }
+  ]
+}

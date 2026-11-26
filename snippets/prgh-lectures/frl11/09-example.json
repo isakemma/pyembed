@@ -1,0 +1,9 @@
+{
+  "title": "09-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "class Fordon:\n\n    def __init__(self, märke, antal_hjul):\n        self.märke = märke\n        self.antal_hjul = antal_hjul\n\n    def __str__(self):\n        return self.märke + \" med \" + str(self.antal_hjul) + \" hjul\"\n\n\nclass Cykel(Fordon):\n\n    def __init__(self, märke, antal_växlar):\n        super().__init__(märke, 2)       # en cykel har alltid 2 hjul\n        self.antal_växlar = antal_växlar\n\n    def __str__(self):\n        text = super().__str__()\n        return text + \" och \" + str(self.antal_växlar) + \" växlar\"\n\n\ndef main():\n    bil = Fordon(\"Volvo\", 4)\n    print(bil)\n    cykel = Cykel(\"Crescent\", 7)\n    print(cykel)\n\nmain()\n"
+    }
+  ]
+}
