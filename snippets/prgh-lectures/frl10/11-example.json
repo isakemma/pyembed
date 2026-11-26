@@ -1,0 +1,9 @@
+{
+  "title": "11-example",
+  "files": [
+    {
+      "name": "main.py",
+      "content": "class Leksak:\n\n    def __init__(self, färg, åldersgräns):\n        self.färg = färg\n        self.åldersgräns = åldersgräns\n\n    def __str__(self):\n        text = \"En leksak för barn över \" + str(self.åldersgräns) + \" år\"\n        return text + \" med färgen \" + self.färg + \".\"\n\n\nclass Boll(Leksak):\n\n    def studsa(self):\n        print(\"Bollen med färgen \" + self.färg + \" studsar!\")\n\n\ndef main():\n    leksak = Leksak(\"grön\", 8)\n    print(leksak)\n    boll = Boll(\"röd\", 3)\n    print(boll)\n    boll.studsa()\n\nmain()\n"
+    }
+  ]
+}

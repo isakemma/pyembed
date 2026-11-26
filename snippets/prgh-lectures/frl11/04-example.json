@@ -3,7 +3,7 @@
   "files": [
     {
       "name": "geometri.py",
-      "content": "class Parallellogram(object):\n    \n  def __init__(self, a, b, h):\n    self.kant1 = a\n    self.basKant = b\n    self.hojd = h\n        \n  def area(self):\n    return self.hojd*self.basKant\n\n  def omkrets(self):\n    return 2*(self.kant1+self.basKant)\n    \nclass Rektangel(Parallellogram):\n\n  def __init__(self, a, b):\n    self.kant1  =  a\n    self.basKant = b\n\n  def area(self):\n    return self.kant1*self.basKant\n    \nclass Kvadrat(Rektangel):\n\n  def __init__(self,a):\n    self.kant1 = a\n    self.basKant = a"
+      "content": "class Parallellogram:\n\n    def __init__(self, a, b, h):\n        self.kant1 = a\n        self.basKant = b\n        self.hojd = h\n\n    def area(self):\n        return self.hojd*self.basKant\n\n    def omkrets(self):\n        return 2*(self.kant1+self.basKant)\n\n\nclass Rektangel(Parallellogram):\n\n    def __init__(self, a, b):\n        super().__init__(a, b, a)\n\n    def area(self):\n        # Egentligen onödigt, vi kan ärva metoden!\n        return self.kant1*self.basKant\n\n\nclass Kvadrat(Rektangel):\n\n    def __init__(self, a):\n        super().__init__(a, a)\n"
     },
     {
       "name": "main.py",
